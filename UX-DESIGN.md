@@ -10,3 +10,15 @@ Replace the contents of this file with the completed assignments, as described i
 
 App Map
 - ![App Map](ux-design/app-map.png)
+
+Wireframes
+- ![Home](ux-design/Home.png)
+- ![Coins](ux-design/Coins.png)
+- ![Compare](ux-design/Compare.png)
+- ![Compare-Dropdown](ux-design/Comparison-Dropdown.png)
+- ![Tutorials](ux-design/Tutorials.png)
+- ![Article](ux-design/Article.png)
+- ![Login](ux-design/Login.png)
+- ![Register](ux-design/Register.png)
+- ![Portfolio](ux-design/Portfolio.png)
+
