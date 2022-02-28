@@ -1,4 +1,4 @@
-# Project Repository
+# CoinMaster:moneybag:
 
 1. Description of project
 
@@ -8,15 +8,15 @@
 
 
 1. Core Team Members:
-  [Scott Chen](https://github.com/2170chm)
+  	  [Scott Chen](https://github.com/2170chm)
   
-  [Yoga Keshnen](https://github.com/Keshnen)
+  	  [Yoga Keshnen](https://github.com/Keshnen)
   
-  [Olivia Wang](https://github.com/oliviaw215)
+  	  [Olivia Wang](https://github.com/oliviaw215)
   
-  [Jinju Lima](https://github.com/jlima714)
-  
-  Aziz
+  	  [Jinju Lima](https://github.com/jlima714)
+      
+  	Aziz
 
 
 1. A short history of how the project came to be and information about how to [contribute to the project](https://github.com/software-assignments-spring2022/final-project-coinmaster/blob/master/CONTRIBUTING.md)
@@ -26,3 +26,4 @@
 1. Links to any additional Markdown documents or web pages that may be relevant reading about the project
 
 1. Anything else you think is important to communicate to people viewing the project
+
