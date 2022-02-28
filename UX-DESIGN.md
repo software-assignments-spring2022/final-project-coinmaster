@@ -12,13 +12,13 @@ App Map
 - ![App Map](ux-design/app-map.png)
 
 Wireframes
-- ![Home](ux-design/Home.png)
-- ![Coins](ux-design/Coins.png)
-- ![Compare](ux-design/Compare.png)
-- ![Compare-Dropdown](ux-design/Comparison-Dropdown.png)
-- ![Tutorials](ux-design/Tutorials.png)
-- ![Article](ux-design/Article.png)
-- ![Login](ux-design/Login.png)
-- ![Register](ux-design/Register.png)
-- ![Portfolio](ux-design/Portfolio.png)
+- <img src="ux-design/Home.png" width="200" height="200"/>
+- <img src="ux-design/Coins.png" width="200" height="200"/>
+- <img src="ux-design/Compare.png" width="200" height="200"/>
+- <img src="ux-design/Comparison-Dropdown.png" width="200" height="200"/>
+- <img src="ux-design/Tutorials.png" width="200" height="200"/>
+- <img src="ux-design/Article.png" width="200" height="200"/>
+- <img src="ux-design/Login.png" width="200" height="200"/>
+- <img src="ux-design/Register.png" width="200" height="200"/>
+- <img src="ux-design/Portfolio.png" width="200" height="200"/>
 
