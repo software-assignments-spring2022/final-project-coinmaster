@@ -43,4 +43,4 @@ The screen for user account's registration.
 
 ### Portfolio Page:
 <img src="ux-design/Portfolio.png" width="300"/>
-The screen for loggin users to invest virtually on cryptocurrencies.
+The screen for virtual investment on cryptocurrencies. Users are required to log in before accessing it.
