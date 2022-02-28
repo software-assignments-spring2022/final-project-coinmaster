@@ -6,7 +6,7 @@
 - Prototype Invision (same content): https://yogakeshnenkeshnenyogaindran430063.invisionapp.com/freehand/CoinMaster-pgu38GUwX?dsid_h=92d20c84e4b11df2a52c9f58c15a4a5604a718582e325b10630ee4f81ee1b21f&uid_h=ee05d0500798ca5f80d6f7670bc0dcbbeb44bf407892881064c161107b1f4859
 
 ## App Map
-<img src="ux-design/app-map.png" width="300"/>
+<img src="ux-design/app-map.png" width="400" height="200"/>
 
 ## Wireframes
 ### Home Page:
