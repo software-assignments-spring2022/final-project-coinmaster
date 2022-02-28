@@ -9,9 +9,13 @@
 
 1. Core Team Members:
   [Scott Chen](https://github.com/2170chm)
+  
   [Yoga Keshnen](https://github.com/Keshnen)
+  
   [Olivia Wang](https://github.com/oliviaw215)
-	[Jinju Lima](https://github.com/jlima714)
+  
+  [Jinju Lima](https://github.com/jlima714)
+  
   Aziz
 
 
