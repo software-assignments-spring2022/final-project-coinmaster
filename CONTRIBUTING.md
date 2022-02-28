@@ -1,6 +1,6 @@
-# H1 Team Norms:
+#  Team Norms:
 
-# H2 Team Values:
+## Team Values:
 
 - Team will ideally meet in person at least once during each sprint while they work on the project. Outside of this in person session, team members will communicate with each other using voice and video channels, screen sharing, and messaging. 
 
@@ -11,11 +11,11 @@
 - During weekdays, team members are expected to respond to messages from other members within a 24 hour period. On the weekends, this is extended to a 32 hour period. 
 
 
-# H2 Sprint Cadence:
+## Sprint Cadence:
 
 - Each sprint will last approximately 2 weeks. 
 
-# H2 Daily Standups:
+## Daily Standups:
 
 - Daily standups will take place Mondays and Fridays at 6 pm and will last approximately 30 minutes. These meetings will occur over discord or zoom.
 
@@ -24,7 +24,7 @@
 - A member who makes no progress on a task for two standups or more in a row will be reported to management.
 
 
-# H2 Coding Standards:
+## Coding Standards:
 
 - VS Code and eslint will be used by all team members. 
 
