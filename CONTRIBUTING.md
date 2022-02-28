@@ -32,3 +32,8 @@
 
 - Make frequent commits; don’t commit a large amount of code all at once. 
 
+# Git Workflow
+
+- The team will follow a centralized workflow
+- Each team member will clone the repository and issue pull/push requests 
+- Scrum Master will be in charge of authorizing these requests 
