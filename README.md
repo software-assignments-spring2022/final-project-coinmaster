@@ -8,6 +8,7 @@
 
 
 1. Core Team Members:
+
   	  [Scott Chen](https://github.com/2170chm)
   
   	  [Yoga Keshnen](https://github.com/Keshnen)
