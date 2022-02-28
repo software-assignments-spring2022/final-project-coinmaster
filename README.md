@@ -25,7 +25,7 @@ Unlike other cryptocurrencies tracker, CoinMaster allows users to trade with vir
   
   [Jinju Lima](https://github.com/jlima714)
       
-  Aziz
+  [Aziz](https://github.com/m-aziz)
 
 ## Project History
 As college students who are interested in investing in the Crypto Market, we find it difficult to find a tool that is beginner-friendly. Thus we want to build a software that is easy for tracking prices/news and simulates the real investing process.
