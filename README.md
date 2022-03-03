@@ -1,19 +1,38 @@
-# Project Repository
+# CoinMaster:moneybag:
 
-This repository will be used for team projects.
+## Description of project
 
-Several sets of instructions are included in this repository. They should each be treated as separate assignments with their own due dates and sets of requirements.
+CoinMaster is a cryptocurrency tracker that shows the real-time information on cryptocurrency prices and events. It helps build your portfolio with a few clicks. Users can compare data on different coins and see the latest news. It allows beginners to watch tutorials and learn crypto basics.
 
-1. See the [App Map & Wireframes](instructions-0a-app-map-wireframes.md) and [Prototyping](./instructions-0b-prototyping.md) instructions for the requirements of the initial user experience design of the app.
+This is different from a cryptocurrency exchange platform, since users will not hold their funds on this platform. For example, if you prefer to store your crypto in a hardware wallet but you still want to keep up with price movements throughout the day, choosing CoinMaster is less complicated than signing up for an exchange.
 
-1. Delete the contents of this file and replace with the contents of a proper README.md, as described in the [project setup instructions](./instructions-0c-project-setup.md)
 
-1. See the [Sprint Planning instructions](instructions-0d-sprint-planning.md) for the requirements of Sprint Planning for each Sprint.
 
-1. See the [Front-End Development instructions](./instructions-1-front-end.md) for the requirements of the initial Front-End Development.
+## Product Vision Statement
 
-1. See the [Back-End Development instructions](./instructions-2-back-end.md) for the requirements of the initial Back-End Development.
+For cryptocurrency investors who need to track the prices and latest news of cryptocurrencies, CoinMaster is a website that is easy to build a portfolio and keep   track of the crypto market. 
+	  
+Unlike other cryptocurrencies tracker, CoinMaster allows users to trade with virtual money for practice and compare the performance of   different    cryptocurrencies. 
 
-1. See the [Database Integration instructions](./instructions-3-database.md) for the requirements of integrating a database into the back-end.
 
-1. See the [Deployment instructions](./instructions-4-deployment.md) for the requirements of deploying an app.
+## Core Team Members:
+
+  [Scott Chen](https://github.com/2170chm)
+  
+  [Yoga Keshnen](https://github.com/Keshnen)
+  
+  [Olivia Wang](https://github.com/oliviaw215)
+  
+  [Jinju Lima](https://github.com/jlima714)
+      
+  [Aziz](https://github.com/m-aziz)
+
+## Project History
+As college students who are interested in investing in the Crypto Market, we find it difficult to find a tool that is beginner-friendly. Thus we want to build a software that is easy for tracking prices/news and simulates the real investing process.
+
+## Contribute
+[contribute to the project](https://github.com/software-assignments-spring2022/final-project-coinmaster/blob/master/CONTRIBUTING.md)
+
+## Instructions for Building and Testing
+## Additional Link
+## Additional Information
