@@ -12,7 +12,7 @@ const Login = props => {
             <div>
                 <h1 className="header">Welcome to Coin Master!</h1>
             </div>
-            <div className="form-container">
+            <div>
                 <Form className="login-form">
                     <Form.Group className="mb-3">
                         <Form.Label>Username</Form.Label>
@@ -31,8 +31,8 @@ const Login = props => {
             <div className="footnote">
                 Don't Have an Account?
                 {/* TODO: Here is the link to Register page */}
-                <Link to="/Register" className="link-register">Register</Link>
-                {/* <a href="url" className="link-register">Register</a> */}
+                {/* <Link to="/Register" className="link-register">Register</Link> */}
+                <a href="url" className="link-register">Register</a>
             </div>
         </div>
         </>

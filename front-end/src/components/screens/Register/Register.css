@@ -4,20 +4,12 @@
   width: 50%;
   min-width: 600px;
 }
-.form-container{
-  display: block;
-  text-align: center;
-  width: 100%;
-}
 .register-form{
-  width:500px;
-  display: inline-block;
-  border: 1px;
+  padding-left:20px;
+  padding-right: 20px;
 }
 .footnote {
   font-size: 14px;
-  padding-top: 20px;
-  padding-bottom: 20px;
 }
 .link-login{
   margin-left: 10px;
