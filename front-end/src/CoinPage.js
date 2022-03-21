@@ -6,7 +6,7 @@ import Table from "./components/screens/Coins/Coins";
 import Navbar from "./components/Navbar";
 //this line imports bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
-import coin_pic_1 from "/Users/keshnen/Documents/final-project-coinmaster/front-end/src/media/coin-pic-1.png";
+//import coin_pic_1 from "/Users/keshnen/Documents/final-project-coinmaster/front-end/src/media/coin-pic-1.png";
 //IMPORT YOUR MAIN COMPONENT HERE;
 //FOR EXAMPLE IF YOU ARE WORKING ON REGISTER
 //import register from ....
