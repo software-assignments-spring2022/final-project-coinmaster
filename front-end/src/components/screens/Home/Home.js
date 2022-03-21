@@ -16,10 +16,10 @@ function Home(props){
                     cryptocurrencies—CoinMaster is a website that is easy to build a portfolio and 
                     keep track of the crypto market.</p>
             </div>
-            <button type="button" class="btn btn-primary btn-lg">Coins</button>
+            <button type="button" class="btn btn-primary btn-lg" href="/Portfolio">Coins</button>
             <button type="button" class="btn btn-primary btn-lg">Compare</button>
             <button type="button" class="btn btn-primary btn-lg">Learn</button>
-            <Link to="/Portfolio"><button type="button" class="btn btn-primary btn-lg">Portfolio</button></Link>
+            <button type="button" class="btn btn-primary btn-lg">Portfolio</button>
             <div className="section">
                 <h1>Get Started Here!</h1>
                 <p>If you would like to start trading without any risk, create an account or login below.
