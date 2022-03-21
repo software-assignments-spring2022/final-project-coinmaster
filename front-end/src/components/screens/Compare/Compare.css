@@ -1,0 +1,36 @@
+table{
+  
+    width: 100;
+    height: 80%;
+  }
+  
+  table, td, th{
+    border: 2px solid black;
+    border-collapse: collapse;
+  }
+  
+   .dropdown{
+    position: center;
+    margin-right: 2px;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .text{
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+}
+  .compare{
+      align-items: center;
+      text-align: center;
+      margin: auto;
+      width: 100%;
+      padding: 40px;
+      padding-bottom: 20px;
+  }
+
+ 

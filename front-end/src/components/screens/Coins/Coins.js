@@ -1,4 +1,10 @@
 require("./Coins.css");
+
+/*
+import React from "react";
+import { Link } from "react-router-dom";
+*/
+
 class Coin {
   constructor(name, price, marketCap) {
     //this.rank = height;
@@ -17,10 +23,17 @@ const cryptoCurriences = [
   new Coin("XRP", 4444444, "678678567"),
 ];
 
+let teableTitle = "Cryptocurrencies"; // Make responsive - Come from prototype
+
 function Table() {
   return (
     <div className="Coins">
-      <table className="table table-hover">
+      {/*      <Link to="/Home">
+        <button>Go to Page 2</button>
+      </Link> */}
+
+      <table className="table table-hover caption-top">
+        <caption>{teableTitle}</caption>
         <thead class="table-light">
           <tr>
             {Object.getOwnPropertyNames(cryptoCurriences[0]).map(
