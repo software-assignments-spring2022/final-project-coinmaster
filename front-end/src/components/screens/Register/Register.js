@@ -43,7 +43,7 @@ const Register = props => {
             <div className="footnote">
                 Already Have an Account?
                 {/* TODO: Here is the link to Login page */}
-                <Link to="/" className="link-sign-up">Login</Link>
+                <Link to="/Login" className="link-sign-up">Login</Link>
                 {/* <a href="url" className="link-login">Login</a> */}
             </div>
         </div>
