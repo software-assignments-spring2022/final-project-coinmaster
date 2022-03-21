@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-//import DropdownButton from 'react-bootstrap/Dropdown';
 import Dropdown from 'react-bootstrap/Dropdown';
-import '../../../App.css';
-
+import "./Compare.css"
+import Navbar from "../../Navbar";
 
 class CoinCompare {
     constructor(price, allTimeHigh, marketCap, rank, type, algo) {
@@ -54,20 +53,22 @@ class CoinCompare {
 
 
 
- function Columns(){
+ function Compare(){
 
     const [coin1,setCoin1] = useState("Coin #1");
     const [coin2,setCoin2] = useState("Coin #2");
-    const tbCols = ["Price","All Time High","Market Cap","Rank","Type","Algorithm"];
     
     return (
+        <>
+        <Navbar/>
         <div className = 'compare'>
-            <h1>Compare</h1>
-
+            
+            <h3>Comparison Tool</h3>
+            
             {/*Coin 1*/}
             <div class = "dropdown">
                 <Dropdown>
-                <Dropdown.Toggle variant="success" >
+                <Dropdown.Toggle variant="dark">
                     {coin1}
                 </Dropdown.Toggle>
 
@@ -81,10 +82,12 @@ class CoinCompare {
                     
                 </Dropdown.Menu>
             </Dropdown>
+            </div>
             
             {/*Coin 2*/}
+            <div class = "dropdown">
             <Dropdown>
-                <Dropdown.Toggle variant="success" >
+                <Dropdown.Toggle variant="dark">
                     {coin2}
                 </Dropdown.Toggle>
 
@@ -99,34 +102,22 @@ class CoinCompare {
                 </Dropdown.Menu>
             </Dropdown>
             </div>
-            
 
+    <h3>Performance</h3>
 
-                {/* <table>
-                    <tr>
-                        <th></th>
-                        <td>{coin1}</td>
-                        <td>{coin2}</td>
-                    </tr>
-                {tbCols.map((header)=> (
-                    <tr>
-                        <th>{header}</th>
-                    </tr>
-            ),
-            )}
-             </table> */}
+    <p>Will be filled in Later</p>
 
+    <h3>Specification</h3>
+        
+        
+
+        {/*Coin Table*/}
         <table className="table table-hover">
         <thead class="table-light">
           <tr>
               <th></th>
               <th>{coin1}</th>
               <th>{coin2}</th>
-            {/* {Object.getOwnPropertyNames(propertiesToCompare[0]).map(
-              (headerName) => {
-                return <td>{headerName}</td>;
-              }
-            )} */}
           </tr>
         </thead>
         <tbody>
@@ -144,12 +135,11 @@ class CoinCompare {
            
     
         </div>
+        </>
     );
-    
-    
-
+   
 }
 
-export default Columns;
+export default Compare;
 
     

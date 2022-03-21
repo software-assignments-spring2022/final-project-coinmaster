@@ -1,9 +1,13 @@
 .container{
+  padding-top: 20px;
   border: solid 1px black;
+  width: 50%;
+  min-width: 600px;
 }
 .form-container{
   display: block;
   text-align: center;
+  width: 100%;
 }
 .register-form{
   width:500px;
@@ -12,9 +16,9 @@
 }
 .footnote {
   font-size: 14px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
-.btn-login{
+.link-login{
   margin-left: 10px;
 }
