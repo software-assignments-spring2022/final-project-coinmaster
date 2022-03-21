@@ -1,4 +1,5 @@
 import './Register.css';
+import { Outlet, Link } from "react-router-dom";
 import Navbar from "../../Navbar";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -42,8 +43,8 @@ const Register = props => {
             <div className="footnote">
                 Already Have an Account?
                 {/* TODO: Here is the link to Login page */}
-                {/* <Link to="/Login" className="link-sign-up">Login</Link> */}
-                <a href="url" className="link-login">Login</a>
+                <Link to="/" className="link-sign-up">Login</Link>
+                {/* <a href="url" className="link-login">Login</a> */}
             </div>
         </div>
         </>
