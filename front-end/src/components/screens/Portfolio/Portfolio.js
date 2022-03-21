@@ -21,12 +21,19 @@ function Portfolio(props){
                         </tr>
                     </thead>
                     <tbody>
-
-                    </tbody>
+                    {ownedCryptos.map((row,i) => 
+                    <tr>
+                        <td>{row[0]}</td>
+                        <td>{row[1]}</td>
+                        <td>{row[2]}</td>
+                        <td>{row[3]}</td>
+                    </tr>)}
+                </tbody>
                 </table>
             </div>
         </>
       )
 }
+
 
 export default Portfolio;
