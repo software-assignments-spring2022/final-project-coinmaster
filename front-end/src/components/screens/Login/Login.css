@@ -1,5 +1,8 @@
 .container{
+  padding-top: 20px;
   border: solid 1px black;
+  width: 50%;
+  min-width: 600px;
 }
 .form-container{
   display: block;
@@ -12,9 +15,9 @@
 }
 .footnote {
   font-size: 14px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
-.btn-sign-up{
+.link-register{
   margin-left: 10px;
 }
