@@ -1,10 +1,13 @@
 import './Register.css';
+import Navbar from "../../Navbar";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 //import Navbar from '../Navbar'
 
 const Register = props => {
     return (
+        <>
+            <Navbar/>
         <div className='container'>
             <div>
                 <h1 className="header">Welcome to Coin Master!</h1>
@@ -31,18 +34,19 @@ const Register = props => {
                         <Form.Label>Email</Form.Label>
                         <Form.Control type="email" placeholder="Enter your email" />
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <Button variant="dark" type="submit">
                         Submit
                     </Button>
                 </Form>
             </div>
             <div className="footnote">
                 Already Have an Account?
-                <Button className="btn-login" variant="light">
+                <Button className="btn-login" variant="dark">
                     Login
                 </Button>
             </div>
         </div>
+        </>
     )
 }
 export default Register

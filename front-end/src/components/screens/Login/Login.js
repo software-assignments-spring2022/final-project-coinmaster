@@ -1,10 +1,12 @@
 import './Login.css';
+import Navbar from "../../Navbar";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-//import Navbar from '../Navbar'
 
 const Login = props => {
     return (
+        <>
+            <Navbar/>
         <div className="container">
             <div>
                 <h1 className="header">Welcome to Coin Master!</h1>
@@ -20,18 +22,19 @@ const Login = props => {
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder="Enter your password" />
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <Button variant="dark" type="submit">
                         Submit
                     </Button>
                 </Form>
             </div>
             <div className="footnote">
                 Don't Have an Account?
-                <Button className="btn-sign-up" variant="light">
+                <Button className="btn-sign-up" variant="dark">
                     Sign up
                 </Button>
             </div>
         </div>
+        </>
     )
 }
 export default Login
