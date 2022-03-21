@@ -1,4 +1,8 @@
 require("./Coins.css");
+
+import React from "react";
+import { Link } from "react-router-dom";
+
 class Coin {
   constructor(name, price, marketCap) {
     //this.rank = height;
@@ -20,6 +24,10 @@ const cryptoCurriences = [
 function Table() {
   return (
     <div className="Coins">
+      <Link to="/Home">
+        <button>Go to Page 2</button>
+      </Link>
+
       <table className="table table-hover">
         <thead class="table-light">
           <tr>
