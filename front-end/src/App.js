@@ -44,8 +44,8 @@ import { BrowserRouter, Routes, Route, Switch } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      {/*replace this line with you component, for example "<Register/>" */}
-        <Portfolio/>
+      {/*replace this line with you component, for example "<Register/>" */}'
+        <Register/>
       {/*Note: this won't actually won't be where your screen is going to live
       this will probably be something like Routes, but for now this is how we can test locally. */}
     </div>

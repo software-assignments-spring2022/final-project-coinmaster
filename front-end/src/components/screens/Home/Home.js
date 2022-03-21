@@ -2,6 +2,7 @@ import Navbar from "../../Navbar";
 import home_pic_1 from "../../../media/home-pic-1.png";
 import home_pic_2 from "../../../media/home-pic-2.png";
 import "./Home.css";
+import { Outlet, Link } from "react-router-dom";
 
 function Home(props){
     return (
@@ -18,7 +19,7 @@ function Home(props){
             <button type="button" class="btn btn-primary btn-lg">Coins</button>
             <button type="button" class="btn btn-primary btn-lg">Compare</button>
             <button type="button" class="btn btn-primary btn-lg">Learn</button>
-            <button type="button" class="btn btn-primary btn-lg">Portfolio</button>
+            <Link to="/Portfolio"><button type="button" class="btn btn-primary btn-lg">Portfolio</button></Link>
             <div className="section">
                 <h1>Get Started Here!</h1>
                 <p>If you would like to start trading without any risk, create an account or login below.
