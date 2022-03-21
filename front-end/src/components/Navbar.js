@@ -1,15 +1,17 @@
-//this is incomplete, Aziz will finish later
+import homeIcon from "../media/home-icon.png"
+import logo from "../media/logo.png"
+import "../css/Navbar.css"
 
 function Navbar(props) {
     return (
-        <>
-        <button type="button" class="btn btn-secondary">Secondary</button>
-            <ul>
-                <li><a href="default.asp">Home</a></li>
-                <li><a href="news.asp">Coin Master</a></li>
-                <li><a href="contact.asp">Logo</a></li>
-            </ul>
-        </>
+        
+        <div class="nav-container">
+            <nav class="navbar  navbar-dark bg-primary" >
+                <img src={homeIcon} class="navbar-brand nav-icon" href="Home"/>
+                <h1 class="navbar-brand">Coin Master</h1>
+                <img src={logo} class="navbar-brand nav-icon" href="Home"/>
+            </nav>
+        </div>
     )
   }
 
