@@ -1,7 +1,11 @@
 import Navbar from "../../Navbar";
 import "./Portfolio.css";
+import React, { useState } from 'react';
 
 function Portfolio(props){
+
+    const [ownedCryptos,setOwnedCryptos] = useState([["1","Lorem","$100.00","$100M"]]);
+
     return (
         <>
             <Navbar/>
@@ -20,8 +24,6 @@ function Portfolio(props){
 
                     </tbody>
                 </table>
-
-            
             </div>
         </>
       )

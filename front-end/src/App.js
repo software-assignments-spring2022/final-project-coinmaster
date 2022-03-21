@@ -1,9 +1,10 @@
 import './App.css';
 //import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Home from "./components/screens/Home/Home"
-import Portfolio from "./components/screens/Portfolio/Portfolio"
+import compare from "./components/screens/Compare/compare"
 //this line imports bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Portfolio from './components/screens/Portfolio/Portfolio';
 //IMPORT YOUR MAIN COMPONENT HERE; 
 //FOR EXAMPLE IF YOU ARE WORKING ON REGISTER
 //import register from ....
