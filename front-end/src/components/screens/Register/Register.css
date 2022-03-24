@@ -1,11 +1,9 @@
 .container{
   padding-top: 20px;
   border: solid 1px black;
-  width: 50%;
-  min-width: 600px;
 }
 .register-form{
-  padding-left:20px;
+  padding-left: 20px;
   padding-right: 20px;
 }
 .footnote {
