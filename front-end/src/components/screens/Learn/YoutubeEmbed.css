@@ -1,14 +1,18 @@
+/*
 .video-responsive {
-  overflow: hidden;
   padding-bottom: 56.25%;
   position: relative;
   height: 0;
+  align-items: center;
 }
-
+*/
 .video-responsive iframe {
   left: 0;
   top: 0;
   height: 40%;
-  width: 40%;
+  width: 75%;
+  /*
   position: absolute;
+  align-items: center;
+  */
 }
