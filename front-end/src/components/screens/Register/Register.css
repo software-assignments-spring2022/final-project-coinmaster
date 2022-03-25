@@ -1,10 +1,7 @@
 .container{
   padding-top: 20px;
   border: solid 1px black;
-}
-.register-form{
-  padding-left: 20px;
-  padding-right: 20px;
+  max-width: 700px;
 }
 .footnote {
   font-size: 14px;
