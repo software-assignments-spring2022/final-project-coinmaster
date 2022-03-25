@@ -21,8 +21,9 @@ function Home(props){
             <button type="button" class="btn btn-primary btn-lg">Portfolio</button>
             <div className="section">
                 <h1>Get Started Here!</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                    incididunt ut labore et dolore magna aliqua.</p>
+                <p>If you would like to start trading without any risk, create an account or login below.
+                    CoinMaster offers a free paper trading platform to learnt he ins and outs of crypto trading!
+                </p>
             </div>
             <img src={home_pic_2} href="Home"/>
             <button type="button" class="btn btn-primary btn-lg">Register</button>
