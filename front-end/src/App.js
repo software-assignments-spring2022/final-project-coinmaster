@@ -4,7 +4,7 @@ import "./App.css";
 //import Home from "./components/screens/Home/Home";
 //import Portfolio from "./components/screens/Portfolio/Portfolio";
 import Navbar from "./components/Navbar";
-import Home from "./Coins";
+import Home from "./Home";
 import Coins from "./Coins";
 import Compare from "./Compare";
 import Login from "./Login";
@@ -28,7 +28,6 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/coins" element={<Coins />} />
