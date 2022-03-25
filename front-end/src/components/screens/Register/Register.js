@@ -14,7 +14,7 @@ const Register = props => {
                 <RegisterForm/>
                 <div className="footnote">
                     Already Have an Account?
-                    <Link to="/compare">
+                    <Link to="/Login">
                         <a href="url" className="link-login">Login</a>
                     </Link>
                 </div>

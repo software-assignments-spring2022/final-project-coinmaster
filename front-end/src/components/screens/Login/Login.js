@@ -14,7 +14,7 @@ const Login = props => {
                 <LoginForm/>
                 <div className="footnote">
                     Don't Have an Account?
-                    <Link to="/compare">
+                    <Link to="/Register">
                         <a href="url" className="link-register">Register</a>
                     </Link>
                 </div>
