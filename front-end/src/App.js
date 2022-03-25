@@ -1,27 +1,41 @@
-import './App.css';
+import "./App.css";
+
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+//import Home from "./components/screens/Home/Home";
+//import Portfolio from "./components/screens/Portfolio/Portfolio";
+import Navbar from "./components/Navbar";
+import Home from "./Home";
+import Coins from "./Coins";
+import Compare from "./Compare";
+import Login from "./Login";
+import Register from "./Register";
+import Portfolio from "./Portfolio";
+import Learn from "./Learn";
+
 //this line imports bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css';
-//IMPORT YOUR MAIN COMPONENT HERE; 
+import "bootstrap/dist/css/bootstrap.min.css";
+//import coin_pic_1 from "/Users/keshnen/Documents/final-project-coinmaster/front-end/src/media/coin-pic-1.png";
+//IMPORT YOUR MAIN COMPONENT HERE;
 //FOR EXAMPLE IF YOU ARE WORKING ON REGISTER
 //import register from ....
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from './components/screens/Home/Home'
-import Login from './components/screens/Login/Login'
-import Register from './components/screens/Register/Register'
+
+//Below is to use routing
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 function App() {
   return (
-    // <div className="App">
-    //   {/*replace this line with you component, for example "<Register/>" /}
-    //   {/Note: this won't actually won't be where your screen is going to live
-    //   this will probably be something like Routes, but for now this is how we can test locally. */}
-    //   <Login/>
-    // </div>
     <BrowserRouter>
+      <Navbar />
       <Routes>
-        <Route path="/" element={<Login />}>
-          <Route path="Register" element={<Register />} />
-        </Route>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/coins" element={<Coins />} />
+        <Route exact path="/compare" element={<Compare />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/register" element={<Register />} />
+        <Route exact path="/portfolio" element={<Portfolio />} />
+        <Route exact path="/learn" element={<Learn />} />
       </Routes>
     </BrowserRouter>
   );
