@@ -1,5 +1,5 @@
 import './Login.css';
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navbar from '../../Navbar.js';
 import LoginForm from "../../LoginForm.js"
 
@@ -14,9 +14,9 @@ const Login = props => {
                 <LoginForm/>
                 <div className="footnote">
                     Don't Have an Account?
-                    {/* TODO: Here is the link to Register page */}
-                    {/* <Link to="/Register" className="link-register">Register</Link> */}
-                    <a href="url" className="link-register">Register</a>
+                    <Link to="/compare">
+                        <a href="url" className="link-register">Register</a>
+                    </Link>
                 </div>
             </div>
         </>
