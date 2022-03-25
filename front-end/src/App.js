@@ -1,10 +1,20 @@
 import "./App.css";
-//import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 //import Home from "./components/screens/Home/Home";
 //import Portfolio from "./components/screens/Portfolio/Portfolio";
-import Table from "./components/screens/Coins/Coins";
+import Navbar from "./components/Navbar";
+import Home from "./Coins";
+import Coins from "./Coins";
+import Compare from "./Compare";
+import Login from "./Login";
+import Register from "./Register";
+import Portfolio from "./Portfolio";
+import Learn from "./Learn";
+
 //this line imports bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
+//import coin_pic_1 from "/Users/keshnen/Documents/final-project-coinmaster/front-end/src/media/coin-pic-1.png";
 //IMPORT YOUR MAIN COMPONENT HERE;
 //FOR EXAMPLE IF YOU ARE WORKING ON REGISTER
 //import register from ....
@@ -12,49 +22,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 //Below is to use routing
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-
-import Home from "./Home";
-import Coin from "./Coin";
-import Compare from "./Compare";
-import Learn from "./Learn";
-import Register from "./Register";
-import Login from "./Login";
-import Portfolio from "./Portfolio";
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(
-  <BrowserRouter>
-    <Switch>
-      <Route exact path="./components/screens/Home/Home.js" component={Home} />
-      <Route path="./components/screens/Coin/Coin.js" component={Coin} />
-      <Route
-        path="./components/screens/Compare/Compare.js"
-        component={Compare}
-      />
-      <Route path="./components/screens/Learn/Learn.js" component={Learn} />
-      <Route
-        path="./components/screens/Register/Register.js"
-        component={Register}
-      />
-      <Route path="./components/screens/Login/Login.js" component={Login} />
-      <Route
-        path="./components/screens/Portfolio/Portfolio.js"
-        component={Portfolio}
-      />
-    </Switch>
-  </BrowserRouter>,
-  rootElement
-);
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      {/*replace this line with you component, for example "<Register/>" */}
-      <Table />
-      {/*Note: this won't actually won't be where your screen is going to live
-      this will probably be something like Routes, but for now this is how we can test locally. */}
-    </div>
+    <BrowserRouter>
+      <Navbar />
+
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/coins" element={<Coins />} />
+        <Route exact path="/compare" element={<Compare />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/register" element={<Register />} />
+        <Route exact path="/portfolio" element={<Portfolio />} />
+        <Route exact path="/learn" element={<Learn />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 export default App;
