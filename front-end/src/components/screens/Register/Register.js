@@ -1,4 +1,4 @@
-import './Register.css';
+import "./Register.css";
 import { Link } from "react-router-dom";
 import Navbar from "../../Navbar";
 import RegisterForm from "../../RegisterForm.js"
@@ -7,7 +7,7 @@ const Register = props => {
     return (
         <>
             <Navbar/>
-            <div className='container'>
+            <div className="container">
                 <div>
                     <h1 className="header">Welcome to Coin Master!</h1>
                 </div>
