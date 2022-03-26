@@ -20,25 +20,25 @@ function Home(props) {
         </div>
 
         <Link to="/coins">
-          <button type="button" class="btn btn-primary btn-lg">
+          <button type="button" class="btn btn-primary">
             Coins
           </button>
         </Link>
 
         <Link to="/compare">
-          <button type="button" class="btn btn-primary btn-lg">
+          <button type="button" class="btn btn-primary">
             Compare
           </button>
         </Link>
 
         <Link to="/learn">
-          <button type="button" class="btn btn-primary btn-lg">
+          <button type="button" class="btn btn-primary">
             Learn
           </button>
         </Link>
 
         <Link to="/portfolio">
-          <button type="button" class="btn btn-primary btn-lg">
+          <button type="button" class="btn btn-primary">
             Portfolio
           </button>
         </Link>
@@ -54,13 +54,13 @@ function Home(props) {
         <img src={home_pic_2} href="Home" />
 
         <Link to="/register">
-          <button type="button" class="btn btn-primary btn-lg">
+          <button type="button" class="btn btn-primary">
             Register
           </button>
         </Link>
 
         <Link to="/login">
-          <button type="button" class="btn btn-primary btn-lg">
+          <button type="button" class="btn btn-primary">
             Login
           </button>
         </Link>
