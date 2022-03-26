@@ -1,6 +1,7 @@
 import Navbar from "../../Navbar";
 import "./Portfolio.css";
 import React, { useState } from 'react';
+import { Outlet, Link } from "react-router-dom";
 
 function Portfolio(props){
 

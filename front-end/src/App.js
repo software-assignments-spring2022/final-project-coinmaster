@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //IMPORT YOUR MAIN COMPONENT HERE; 
 //FOR EXAMPLE IF YOU ARE WORKING ON REGISTER
 //import register from ....
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+//import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './components/screens/Home/Home'
 import Portfolio from './components/screens/Portfolio/Portfolio'
 import Login from './components/screens/Login/Login'
@@ -18,15 +18,16 @@ function App() {
     //   this will probably be something like Routes, but for now this is how we can test locally. */}
     //   <Login/>
     // </div>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Portfolio/>}>
-        <Route path="/gg" element={<Register />} 
+    <Home/>
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route path="/" element={<Portfolio/>}>
+    //     <Route path="/gg" element={<Register />} 
         
-        />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    //     />
+    //     </Route>
+    //   </Routes>
+    // </BrowserRouter>
   );
 }
 export default App;
