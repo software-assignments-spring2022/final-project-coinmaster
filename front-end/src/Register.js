@@ -1,12 +1,10 @@
-import "./Register.css";
+import "./components/screens/Register/Register.css";
 import { Link } from "react-router-dom";
-import Navbar from "../../Navbar";
-import RegisterForm from "../../RegisterForm.js"
+import RegisterForm from "./components/RegisterForm.js"
 
 const Register = props => {
     return (
         <>
-            <Navbar/>
             <div className="container">
                 <div>
                     <h1 className="header">Welcome to Coin Master!</h1>
@@ -14,7 +12,7 @@ const Register = props => {
                 <RegisterForm/>
                 <div className="footnote">
                     Already Have an Account?
-                    <Link to="/Login">
+                    <Link to="/login">
                         <a href="url" className="link-login">Login</a>
                     </Link>
                 </div>

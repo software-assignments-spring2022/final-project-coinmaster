@@ -1,12 +1,10 @@
-import "./Login.css";
+import "./components/screens/Login/Login.css";
 import { Link } from "react-router-dom";
-import Navbar from "../../Navbar.js";
-import LoginForm from "../../LoginForm.js"
+import LoginForm from "./components/LoginForm.js"
 
 const Login = props => {
     return (
         <>
-            <Navbar/>
             <div className="container">
                 <div>
                     <h1 className="header">Welcome to Coin Master!</h1>
@@ -14,7 +12,7 @@ const Login = props => {
                 <LoginForm/>
                 <div className="footnote">
                     Don't Have an Account?
-                    <Link to="/Register">
+                    <Link to="/register">
                         <a href="url" className="link-register">Register</a>
                     </Link>
                 </div>
