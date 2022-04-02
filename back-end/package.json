@@ -1,0 +1,12 @@
+{
+  "name": "package.json",
+  "version": "0.1.0",
+  "description": "The back-end of your project will live in this directory.",
+  "main": "Server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
