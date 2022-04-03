@@ -15,11 +15,10 @@ const register = () => {
         const confirm_password = req.body.confirm_password
         const email = req.body.email
         if(user_name == null || your_name == null || password == null || confirm_password == null || email == null){
-            msg = "error: field_empty"
+            return res.status(400).json("error: empty_field");
         }else if(password != confirm_password){
-            msg = "error: password_unmatched"
+            return res.status(400).json("error: unmatched_password");
         }else{
-            msg = "success"
             const user = {
                 user_id: next_id,
                 user_name: user_name,
@@ -30,10 +29,8 @@ const register = () => {
             users.push(user)
             current_user = user.user_id
             next_id++
+            return res.json("success");
         }
-        return res.json({
-            message: msg,
-          })
       })
 }
 
