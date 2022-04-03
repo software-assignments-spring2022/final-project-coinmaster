@@ -26,7 +26,7 @@ const RegisterForm = props => {
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" name="email" placeholder="Enter your email" />
             </Form.Group>
-            <SubmitBtn text="Register"/>
+            <SubmitBtn onclick="register()" text="Register"/>
         </Form>
     )
 }
