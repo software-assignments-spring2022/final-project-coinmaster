@@ -15,7 +15,7 @@ function Navbar(props) {
     //   </nav>
     // </div>
   <>
-  <div class="header"></div>
+  <div class="header"><div class="title">Coin Master</div></div>
   <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu"/>
   <label for="openSidebarMenu" class="sidebarIconToggle">
     <div class="spinner diagonal part-1"></div>
@@ -24,10 +24,10 @@ function Navbar(props) {
   </label>
   <div id="sidebarMenu">
     <ul class="sidebarMenuInner">
-      <li><a href="https://instagram.com/plavookac" target="_blank">Coins</a></li>
-      <li><a href="https://twitter.com/plavookac" target="_blank">Compare</a></li>
-      <li><a href="https://www.youtube.com/channel/UCDfZM0IK6RBgud8HYGFXAJg" target="_blank">Learn</a></li>
-      <li><a href="https://www.linkedin.com/in/plavookac/" target="_blank">Portfolio</a></li>
+      <li><a href="/coins">Coins</a></li>
+      <li><a href="/compare">Compare</a></li>
+      <li><a href="/learn">Learn</a></li>
+      <li><a href="/portfolio">Portfolio</a></li>
     </ul>
   </div>
   </>
