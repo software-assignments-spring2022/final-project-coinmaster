@@ -5,12 +5,40 @@ const path = require('path');
 // we will put some server logic here later...
 // export the express app we created to make it available to other modules
 const axios = require('axios');
-const morgan = require('morgan');
-const multer = require('multer');
+// const morgan = require('morgan');
+// const multer = require('multer');
+
 const users=[];
 current_user = null
 next_id = 0;
 
+// app.get("/", (req, res) => {
+//     res.send("Home")
+// })
+
+// app.get("/coins", (req, res) => {
+//     res.send("Coin")
+// })
+
+// app.get("/compare", (req, res) => {
+//     res.send("Compare")
+// })
+
+// app.get("/login", (req, res) => {
+//     res.send("Login")
+// })
+
+// app.get("/register", (req, res) => {
+//     res.send("Register")
+// })
+
+// app.get("/portfolio", (req, res) => {
+//     res.send("Portfolio")
+// })
+
+// app.get("/learn", (req, res) => {
+//     res.send("Learn")
+// })
 
 app.post("/register", (req, res) => {
     const user_name = req.body.user_name
