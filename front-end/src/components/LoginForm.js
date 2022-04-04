@@ -24,7 +24,7 @@ const LoginForm = props => {
             e.preventDefault();
             console.log(formData);
             const response = await axios.post(
-                '/login',
+                'http://localhost:3000/login',
                 formData
             )
         }catch (err){

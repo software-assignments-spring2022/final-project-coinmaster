@@ -26,7 +26,7 @@ const RegisterForm = props => {
             e.preventDefault();
             console.log(formData);
             const response = await axios.post(
-                '/register',
+                'http://localhost:3000/register',
                 formData
             )
         }catch (err){
