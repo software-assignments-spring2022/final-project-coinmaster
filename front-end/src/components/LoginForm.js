@@ -1,5 +1,6 @@
 import '../css/LoginForm.css';
 import React, { useState } from 'react';
+import axios from "axios";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -18,9 +19,17 @@ const LoginForm = props => {
         console.log(formData);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(formData);
+    const handleSubmit = async (e) => {
+        try{
+            e.preventDefault();
+            console.log(formData);
+            const response = await axios.post(
+                '/login',
+                formData
+            )
+        }catch (err){
+            console.log(err);
+        }
     };
     return (
         <Form className="login-form">
