@@ -1,6 +1,8 @@
 // import and instantiate express
-const express = require("express") // CommonJS import style!
-const app = express() // instantiate an Express object
+const express = require("express"); // CommonJS import style!
+const bodyParser = require("body-parser");
+const router = express.Router();
+const app = express(); // instantiate an Express object
 const path = require('path');
 // we will put some server logic here later...
 // export the express app we created to make it available to other modules
@@ -11,11 +13,15 @@ const axios = require('axios');
 const users=[];
 current_user = null
 next_id = 0;
+ app.get("/", (req, res) => {
+    res.send("Home")
+ })
 
-// app.get("/", (req, res) => {
-//     res.send("Home")
-// })
-
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+var cors = require('cors')
+app.use(cors())
+// app.use("/", router)
 // app.get("/coins", (req, res) => {
 //     res.send("Coin")
 // })
@@ -40,7 +46,9 @@ next_id = 0;
 //     res.send("Learn")
 // })
 
-app.post("/register", (req, res) => {
+app.post('/register', (req, res) => {
+    console.log(req)
+    console.log(req.body)
     const user_name = req.body.user_name
     const your_name = req.body.your_name
     const password = req.body.password
@@ -66,15 +74,15 @@ app.post("/register", (req, res) => {
 })
 
 app.post("/login", (req, res) => {
+    console.log(req)
+    console.log(req.body)
     const user_name = req.body.user_name
     const password = req.body.password
     if(user_name == '' || password == ''){
         return res.status(400).json({success: false, message: "At least one field is empty"});
-    }else if(password != confirm_password){
-        return res.status(400).json({success: false, message: "passwords do not match"});
     }else{
         //compare with database
-        return res.json({success: true, message: "register success"});
+        return res.json({success: true, message: "login success"});
     }
 })
 
