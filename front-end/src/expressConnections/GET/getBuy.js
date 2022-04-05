@@ -22,7 +22,7 @@ const GetBuy = () => {
       .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/buy`)
       .then(response => {
         // axios bundles up all response data in response.data property
-        const messages = response.data.messages
+        const messages = response.data
         setMessages(messages)
       })
       .catch(err => {
@@ -42,7 +42,7 @@ const GetBuy = () => {
     // set a timer to load data from server every n seconds
     const intervalHandle = setInterval(() => {
       fetchMessages()
-    }, 5000)
+    }, 500)
 
     // return a function that will be called when this component unloads
     return e => {
@@ -52,21 +52,10 @@ const GetBuy = () => {
   }, []) // putting a blank array as second argument will cause this function to run only once when component first loads
 
   return (
-    <>
-      
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      
-      {messages}
+    <>      
+    Buy Crypto: {messages.crypto}
+    <br></br>
+    Buy Quantity: {messages.quantity}
     </>
   )
 }

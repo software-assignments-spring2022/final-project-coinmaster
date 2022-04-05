@@ -58,14 +58,19 @@ app.get('/portfolio', async (req, res) => {
   }
 })
 
+let buyData = {
+  crypto: "Please Enter a Crypto",
+  quantity: "Please Enter a Quantity"
+};
 
 app.get('/buy', async (req, res) => {
   // load all messages from database
   try {
-    const messages = "this is from express - buy!"
+    const messages = buyData;
     res.json({
-      messages: messages,
-      body: 'all good',
+      crypto: messages.crypto,
+      quantity: messages.quantity,
+      status: 'all good',
     })
   } catch (err) {
     console.error(err)
@@ -76,13 +81,32 @@ app.get('/buy', async (req, res) => {
   }
 })
 
+// a route to handle logging out users
+app.post('/buy', async (req, res) => {
+  // try to save the message to the database
+
+  console.log(req.body);
+
+  buyData.crypto = req.body.crypto;
+  buyData.quantity = req.body.quantity;
+})
+
+
+
+
+let sellData = {
+  crypto: "Please Enter a Crypto",
+  quantity: "Please Enter a Quantity"
+};
+
 app.get('/sell', async (req, res) => {
   // load all messages from database
   try {
-    const messages = "this is from express - sell!"
+    const messages = sellData;
     res.json({
-      messages: messages,
-      body: 'all good',
+      crypto: messages.crypto,
+      quantity: messages.quantity,
+      status: 'all good',
     })
   } catch (err) {
     console.error(err)
@@ -91,6 +115,17 @@ app.get('/sell', async (req, res) => {
       status: 'failed to work',
     })
   }
+})
+
+
+// a route to handle logging out users
+app.post('/sell', async (req, res) => {
+  // try to save the message to the database
+
+  console.log(req.body);
+
+  sellData.crypto = req.body.crypto;
+  sellData.quantity = req.body.quantity;
 })
 
 /* // a route to handle logging out users
