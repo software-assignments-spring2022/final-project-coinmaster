@@ -108,30 +108,6 @@ next_id = 0;
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cors())
-// app.use("/", router)
-// app.get("/coins", (req, res) => {
-//     res.send("Coin")
-// })
-
-// app.get("/compare", (req, res) => {
-//     res.send("Compare")
-// })
-
-// app.get("/login", (req, res) => {
-//     res.send("Login")
-// })
-
-// app.get("/register", (req, res) => {
-//     res.send("Register")
-// })
-
-// app.get("/portfolio", (req, res) => {
-//     res.send("Portfolio")
-// })
-
-// app.get("/learn", (req, res) => {
-//     res.send("Learn")
-// })
 
 app.post('/register', (req, res) => {
     try{
