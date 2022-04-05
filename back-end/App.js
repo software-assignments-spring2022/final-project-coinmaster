@@ -28,6 +28,7 @@ app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming P
 /* const { Message } = require('./models/Message')
 const { User } = require('./models/User') */
 
+<<<<<<< Updated upstream
  app.get('/messages', async (req, res) => {
     // load all messages from database
     try {
@@ -36,12 +37,22 @@ const { User } = require('./models/User') */
       });
 
       console.log(data); */
+=======
+ app.get('/compare', async (req, res) => {
+    try {
+>>>>>>> Stashed changes
 
        axios
       .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
       .then(function (response){
+<<<<<<< Updated upstream
 
         const allCoins = [];
+=======
+ 
+      
+       const allCoins = [];
+>>>>>>> Stashed changes
         const coinNames = [];
         response.data.coins.forEach(coin=>{
 
@@ -52,7 +63,11 @@ const { User } = require('./models/User') */
             rank: coin.rank,
             marketCap: coin.market_cap
           }
+<<<<<<< Updated upstream
           //console.log(coinObj);
+=======
+        
+>>>>>>> Stashed changes
           allCoins.push(coinObj);
           coinNames.push(coinObj.name+", "+coinObj.symbol);
           
@@ -63,16 +78,25 @@ const { User } = require('./models/User') */
         res.json({
           messages: messages,
           names: coinNames,
+<<<<<<< Updated upstream
         })
+=======
+        }) 
+      }) 
+      
+      .catch(function (err){
+        console.log("axios error");
+>>>>>>> Stashed changes
       })
 
     } catch (err) {
-      console.error(err)
+      console.log("Error");
       res.status(400).json({
         error: err,
         status: 'failed to work',
       })
     } 
+<<<<<<< Updated upstream
 
    
   })
@@ -120,6 +144,11 @@ const { User } = require('./models/User') */
   */
 
 
+=======
+  })
+
+
+>>>>>>> Stashed changes
 /* // a route to handle logging out users
 app.get('/messages', async (req, res) => {
   // load all messages from database
