@@ -28,31 +28,15 @@ app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming P
 /* const { Message } = require('./models/Message')
 const { User } = require('./models/User') */
 
-<<<<<<< Updated upstream
- app.get('/messages', async (req, res) => {
-    // load all messages from database
-    try {
-      /* let data = await  CoinlibClient.coins.fetchInfo('BTC', {
-        pref: 'USD'
-      });
-
-      console.log(data); */
-=======
  app.get('/compare', async (req, res) => {
     try {
->>>>>>> Stashed changes
 
        axios
       .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
       .then(function (response){
-<<<<<<< Updated upstream
-
-        const allCoins = [];
-=======
  
       
        const allCoins = [];
->>>>>>> Stashed changes
         const coinNames = [];
         response.data.coins.forEach(coin=>{
 
@@ -63,11 +47,7 @@ const { User } = require('./models/User') */
             rank: coin.rank,
             marketCap: coin.market_cap
           }
-<<<<<<< Updated upstream
-          //console.log(coinObj);
-=======
-        
->>>>>>> Stashed changes
+         
           allCoins.push(coinObj);
           coinNames.push(coinObj.name+", "+coinObj.symbol);
           
@@ -78,15 +58,11 @@ const { User } = require('./models/User') */
         res.json({
           messages: messages,
           names: coinNames,
-<<<<<<< Updated upstream
-        })
-=======
         }) 
       }) 
       
       .catch(function (err){
         console.log("axios error");
->>>>>>> Stashed changes
       })
 
     } catch (err) {
@@ -96,59 +72,9 @@ const { User } = require('./models/User') */
         status: 'failed to work',
       })
     } 
-<<<<<<< Updated upstream
-
-   
   })
 
 
-  /*
-  app.get("/compare", async (req,res)=>{
-    try{
-      axios
-      .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
-      .then(function (response){
-
-        console.log(response);
-        const allCoins = [];
-        response.foreach(coin=>{
-
-          const coinObj = {
-            symbol: response.data.symbol,
-            name: response.data.name,
-            price: response.data.price,
-            rank: response.data.rank,
-            marketCap: response.data.market_cap
-          }
-          console.log(coinObj);
-          allCoins.add(coinObj);
-        })
-
-        const messages = allCoins;
-        res.json({
-          messages: messages,
-          //body: 'all good',
-        })
-      })
-
-    }
-
-    catch (err) {
-      console.error(err)
-      res.status(400).json({
-        error: err,
-        status: 'failed to work',
-      })
-    }
-  })
-  */
-
-
-=======
-  })
-
-
->>>>>>> Stashed changes
 /* // a route to handle logging out users
 app.get('/messages', async (req, res) => {
   // load all messages from database
