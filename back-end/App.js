@@ -25,7 +25,7 @@ const { User } = require('./models/User') */
 app.get('/messages', async (req, res) => {
     // load all messages from database
     try {
-      const messages = "this is from express!"
+      const messages = "this is from express - messages!"
       res.json({
         messages: messages,
         body: 'all good',
@@ -37,7 +37,60 @@ app.get('/messages', async (req, res) => {
         status: 'failed to work',
       })
     }
-  })
+})
+  
+
+app.get('/portfolio', async (req, res) => {
+  // load all messages from database
+  try {
+    const messages = "this is from express - portfolio!"
+    res.json({
+      messages: messages,
+      body: 'all good',
+    })
+  } catch (err) {
+    console.error(err)
+    res.status(400).json({
+      error: err,
+      status: 'failed to work',
+    })
+  }
+})
+
+
+app.get('/buy', async (req, res) => {
+  // load all messages from database
+  try {
+    const messages = "this is from express - buy!"
+    res.json({
+      messages: messages,
+      body: 'all good',
+    })
+  } catch (err) {
+    console.error(err)
+    res.status(400).json({
+      error: err,
+      status: 'failed to work',
+    })
+  }
+})
+
+app.get('/sell', async (req, res) => {
+  // load all messages from database
+  try {
+    const messages = "this is from express - sell!"
+    res.json({
+      messages: messages,
+      body: 'all good',
+    })
+  } catch (err) {
+    console.error(err)
+    res.status(400).json({
+      error: err,
+      status: 'failed to work',
+    })
+  }
+})
 
 /* // a route to handle logging out users
 app.get('/messages', async (req, res) => {

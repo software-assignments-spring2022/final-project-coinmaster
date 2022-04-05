@@ -9,6 +9,8 @@ import Register from "./Register";
 import Portfolio from "./Portfolio";
 import Learn from "./Learn";
 import Messages from "./Messages";
+import Buy from "./Buy";
+import Sell from "./Sell";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -30,6 +32,8 @@ function App() {
         <Route exact path="/portfolio" element={<Portfolio />} />
         <Route exact path="/learn" element={<Learn />} />
         <Route exact path="/messages" element={<Messages />} />
+        <Route exact path="/buy" element={<Buy />} />
+        <Route exact path="/sell" element={<Sell />} />
         
       </Routes>
     </BrowserRouter>
