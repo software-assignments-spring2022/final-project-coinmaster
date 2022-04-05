@@ -4,6 +4,11 @@ const morgan = require('morgan') // middleware for nice logging of incoming HTTP
 const cors = require('cors') // middleware for enabling CORS (Cross-Origin Resource Sharing) requests.
 /* const mongoose = require('mongoose') */
 
+//Using Coinlib API, setting API key 
+const Coinlib = require('coinlib-api');
+const CoinlibClient = new Coinlib("c547247f9214255e");
+CoinlibClient.setKey("c547247f9214255e");
+
 const app = express() // instantiate an Express object
 app.use(morgan('dev', { skip: (req, res) => process.env.NODE_ENV === 'test' })) // log all incoming requests, except when in unit test mode.  morgan has a few logging default styles - dev is a nice concise color-coded style
 app.use(cors()) // allow cross-origin resource sharing
@@ -30,6 +35,11 @@ app.get('/messages', async (req, res) => {
         messages: messages,
         body: 'all good',
       })
+      let data = await  CoinlibClient.coins.fetchInfo('BTC', {
+        pref: 'USD'
+      });
+
+      console.log(data);
     } catch (err) {
       console.error(err)
       res.status(400).json({
