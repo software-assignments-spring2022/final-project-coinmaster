@@ -6,6 +6,7 @@ const cors = require('cors') // middleware for enabling CORS (Cross-Origin Resou
 
 //Using Coinlib API, setting API key 
 const Coinlib = require('coinlib-api');
+const { default: axios } = require('axios');
 const CoinlibClient = new Coinlib("c547247f9214255e");
 CoinlibClient.setKey("c547247f9214255e");
 
@@ -35,11 +36,29 @@ app.get('/messages', async (req, res) => {
         messages: messages,
         body: 'all good',
       })
-      let data = await  CoinlibClient.coins.fetchInfo('BTC', {
+      /* let data = await  CoinlibClient.coins.fetchInfo('BTC', {
         pref: 'USD'
       });
 
-      console.log(data);
+      console.log(data); */
+
+      axios
+
+      .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC")
+      .then(function (response){
+
+        const coinObj = {
+          symbol: response.data.symbol,
+          name: response.data.name,
+          price: response.data.price,
+          rank: response.data.rank,
+          marketCap: response.data.market_cap
+        }
+        console.log(coinObj);
+      })
+
+      
+
     } catch (err) {
       console.error(err)
       res.status(400).json({
