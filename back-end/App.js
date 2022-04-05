@@ -28,36 +28,43 @@ app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming P
 /* const { Message } = require('./models/Message')
 const { User } = require('./models/User') */
 
-app.get('/messages', async (req, res) => {
+ app.get('/messages', async (req, res) => {
     // load all messages from database
     try {
-      const messages = "this is from express!"
-      res.json({
-        messages: messages,
-        body: 'all good',
-      })
       /* let data = await  CoinlibClient.coins.fetchInfo('BTC', {
         pref: 'USD'
       });
 
       console.log(data); */
 
-      axios
-
-      .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC")
+       axios
+      .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
       .then(function (response){
 
-        const coinObj = {
-          symbol: response.data.symbol,
-          name: response.data.name,
-          price: response.data.price,
-          rank: response.data.rank,
-          marketCap: response.data.market_cap
-        }
-        console.log(coinObj);
-      })
+        const allCoins = [];
+        const coinNames = [];
+        response.data.coins.forEach(coin=>{
 
-      
+          const coinObj = {
+            symbol: coin.symbol,
+            name: coin.name,
+            price: coin.price,
+            rank: coin.rank,
+            marketCap: coin.market_cap
+          }
+          //console.log(coinObj);
+          allCoins.push(coinObj);
+          coinNames.push(coinObj.name+", "+coinObj.symbol);
+          
+        })
+
+        console.log(coinNames);
+        const messages = allCoins;
+        res.json({
+          messages: messages,
+          names: coinNames,
+        })
+      })
 
     } catch (err) {
       console.error(err)
@@ -65,8 +72,53 @@ app.get('/messages', async (req, res) => {
         error: err,
         status: 'failed to work',
       })
+    } 
+
+   
+  })
+
+
+  /*
+  app.get("/compare", async (req,res)=>{
+    try{
+      axios
+      .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+      .then(function (response){
+
+        console.log(response);
+        const allCoins = [];
+        response.foreach(coin=>{
+
+          const coinObj = {
+            symbol: response.data.symbol,
+            name: response.data.name,
+            price: response.data.price,
+            rank: response.data.rank,
+            marketCap: response.data.market_cap
+          }
+          console.log(coinObj);
+          allCoins.add(coinObj);
+        })
+
+        const messages = allCoins;
+        res.json({
+          messages: messages,
+          //body: 'all good',
+        })
+      })
+
+    }
+
+    catch (err) {
+      console.error(err)
+      res.status(400).json({
+        error: err,
+        status: 'failed to work',
+      })
     }
   })
+  */
+
 
 /* // a route to handle logging out users
 app.get('/messages', async (req, res) => {
