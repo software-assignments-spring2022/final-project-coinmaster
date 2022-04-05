@@ -8,6 +8,7 @@ import Login from "./Login";
 import Register from "./Register";
 import Portfolio from "./Portfolio";
 import Learn from "./Learn";
+import Messages from "./Messages";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -28,6 +29,8 @@ function App() {
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/portfolio" element={<Portfolio />} />
         <Route exact path="/learn" element={<Learn />} />
+        <Route exact path="/messages" element={<Messages />} />
+        
       </Routes>
     </BrowserRouter>
   );
