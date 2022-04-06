@@ -1,4 +1,3 @@
-import Navbar from "../../Navbar";
 import "./Portfolio.css";
 import React, { useState } from "react";
 
