@@ -1,15 +1,16 @@
 import '../css/RegisterForm.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
+import axios from "axios"
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-const initialFormData = Object.freeze({
+const initialFormData = {
     user_name: "",
     your_name: "",
     password: "",
     confirm_password: "",
     email: "",
-});
+};
 const RegisterForm = props => {
     const [formData, updateFormData] = React.useState(initialFormData);
 
@@ -20,10 +21,17 @@ const RegisterForm = props => {
         });
         console.log(formData);
     };
-
     const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(formData);
+        try{
+            e.preventDefault();
+            console.log(formData);
+            const response = axios.post(
+                `${process.env.REACT_APP_SERVER_HOSTNAME}/register`,
+                formData
+            )
+        }catch (err){
+            console.log(err);
+        }
     };
     return (
         <Form className="register-form">
