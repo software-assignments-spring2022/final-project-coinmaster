@@ -19,12 +19,12 @@ const LoginForm = props => {
         console.log(formData);
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         try{
             e.preventDefault();
             console.log(formData);
-            const response = await axios.post(
-                'http://localhost:3000/login',
+            const response = axios.post(
+                `${process.env.REACT_APP_SERVER_HOSTNAME}/login`,
                 formData
             )
         }catch (err){

@@ -22,7 +22,7 @@ const GetSell = () => {
       .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/sell`)
       .then(response => {
         // axios bundles up all response data in response.data property
-        const messages = response.data.messages
+        const messages = response.data
         setMessages(messages)
       })
       .catch(err => {
@@ -42,7 +42,7 @@ const GetSell = () => {
     // set a timer to load data from server every n seconds
     const intervalHandle = setInterval(() => {
       fetchMessages()
-    }, 5000)
+    }, 500)
 
     // return a function that will be called when this component unloads
     return e => {
@@ -53,20 +53,9 @@ const GetSell = () => {
 
   return (
     <>
-      
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      
-      {messages}
+    Sell Crypto: {messages.crypto}
+    <br></br>
+    Sell Quantity: {messages.quantity}
     </>
   )
 }

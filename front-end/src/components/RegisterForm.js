@@ -21,12 +21,12 @@ const RegisterForm = props => {
         });
         console.log(formData);
     };
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         try{
             e.preventDefault();
             console.log(formData);
-            const response = await axios.post(
-                'http://localhost:3000/register',
+            const response = axios.post(
+                `${process.env.REACT_APP_SERVER_HOSTNAME}/register`,
                 formData
             )
         }catch (err){

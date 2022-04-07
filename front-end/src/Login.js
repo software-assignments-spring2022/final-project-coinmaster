@@ -7,7 +7,7 @@ const Login = props => {
         <>
             <div className="container">
                 <div>
-                    <h1 className="header">Welcome to Coin Master!</h1>
+                    <h1>Welcome to Coin Master!</h1>
                 </div>
                 <LoginForm/>
                 <div className="footnote">
