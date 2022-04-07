@@ -7,10 +7,10 @@ import axios from 'axios';
 function Home(props) {
 
   const [cryptoData, setCryptoData] = useState([
-    { symbol: "ETH", name: "Ethereum", rank: 2, price: "0.078420138035523", market_cap: "7847729.8474137", volume_24h: "260650.1638446", delta_24h: "5.91"},
-    { symbol: "BIT", name: "Bitcoin", rank: 1, price: "0.003513413523", market_cap: "337729.8474137", volume_24h: "341650.1638446", delta_24h: "6.91"},
+    { symbol: "ETH", name: "Ethereum", rank: 2, price: "0.078420138035523", market_cap: "7847729.8474137"},
+    { symbol: "BIT", name: "Bitcoin", rank: 1, price: "0.003513413523", market_cap: "337729.8474137"},
   ]);
-  const [columns,setColumns] = useState(["SYMBOL","NAME","RANK", "PRICE", "MARKET CAP", "VOLUME 24H", "DELTA 24H"])
+  const [columns,setColumns] = useState(["SYMBOL","NAME","RANK", "PRICE", "MARKET CAP"])
 
   return (
     <>
