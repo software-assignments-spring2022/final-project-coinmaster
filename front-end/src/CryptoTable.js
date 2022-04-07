@@ -38,9 +38,7 @@ function CryptoTable(props) {
                     <Td>{crypto.name}</Td>  
                     <Td>{crypto.rank}</Td>  
                     <Td>{crypto.price}</Td>
-                    <Td>{crypto.market_cap}</Td>  
-                    <Td>{crypto.volume_24h}</Td>  
-                    <Td>{crypto.delta_24h}</Td>   
+                    <Td>{crypto.market_cap}</Td>   
                 </Tr>  
                 ))}  
             </Tbody>
