@@ -8,9 +8,11 @@ require('dotenv').config({ silent: true }) // load environmental variables from 
 const port = process.env.PORT || 3000
 
 // call a function to start listening to the port
-const listener = server.listen(port, function () {
-  console.log(`Server running on port: ${port}`)
-})
+if (require.main === module) {
+  const listener = server.listen(port, function () {
+    console.log(`Server running on port: ${port}`)
+  })
+}
 
 // a function to stop listening to the port
 const close = () => {
