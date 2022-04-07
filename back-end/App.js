@@ -22,15 +22,6 @@ app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming P
 /* const { Message } = require('./models/Message')
 const { User } = require('./models/User') */
 
-const Coinlib = require('coinlib-api');
- 
-//2. Initiate the Coinlib API Client with your API key
-const CoinlibClient = new Coinlib("c547247f9214255e");
-
-CoinlibClient.setKey("c547247f9214255e");
- 
-//3. Make calls
-
 app.get('/messages', async (req, res) => {
     // load all messages from database
     try {
@@ -57,19 +48,13 @@ app.get('/portfolio', async (req, res) => {
       messages: messages,
       body: 'all good',
     })
-    
   } catch (err) {
-    console.log("Catch");
     console.error(err)
     res.status(400).json({
       error: err,
       status: 'failed to work',
     })
   }
-  let data = await CoinlibClient.coins.fetchInfo('BTC', {
-    pref: 'USD'
-  });
-  console.log(data);
 })
 
 
