@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Compare from "../../Compare.js"
 
 
 const CompareData = () => {
   const [messages, setMessages] = useState([])
+  const [names, setNames] = useState([]);
   const [error, setError] = useState('')
 
 
@@ -14,8 +16,10 @@ const CompareData = () => {
       .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/compare`)
       .then(response => {
         
-        const messages = response.data;
+        const messages = response.data.messages;
         setMessages(messages);
+        const names = response.data.names;
+        setNames(names);
       })
       .catch(err => {
         setError(err)
@@ -41,7 +45,7 @@ const CompareData = () => {
 
   return (
       <>
-      {messages}
+        <Compare />
       </>
     
   )
