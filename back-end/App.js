@@ -24,7 +24,6 @@ app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming P
 const { User } = require('./models/User') */
 
 app.get('/messages', async (req, res) => {
-    // load all messages from database
     try {
       const messages = "this is from express - messages!"
       res.json({
@@ -39,10 +38,9 @@ app.get('/messages', async (req, res) => {
       })
     }
 })
-  
 
+//REQUESTS FOR PORTFOLIO PAGE
 app.get('/portfolio', async (req, res) => {
-  // load all messages from database
   try {
     const messages = "this is from express - portfolio!"
     res.json({
@@ -58,13 +56,14 @@ app.get('/portfolio', async (req, res) => {
   }
 })
 
+
+//REQUESTS FOR BUY PAGE
 let buyData = {
   crypto: "Please Enter a Crypto",
   quantity: "Please Enter a Quantity"
 };
 
 app.get('/buy', async (req, res) => {
-  // load all messages from database
   try {
     const messages = buyData;
     res.json({
@@ -81,9 +80,7 @@ app.get('/buy', async (req, res) => {
   }
 })
 
-// a route to handle logging out users
 app.post('/buy', async (req, res) => {
-  // try to save the message to the database
 
   console.log(req.body);
 
@@ -92,15 +89,13 @@ app.post('/buy', async (req, res) => {
 })
 
 
-
-
+//REQUESTS FOR SELL PAGE
 let sellData = {
   crypto: "Please Enter a Crypto",
   quantity: "Please Enter a Quantity"
 };
 
 app.get('/sell', async (req, res) => {
-  // load all messages from database
   try {
     const messages = sellData;
     res.json({
@@ -118,9 +113,7 @@ app.get('/sell', async (req, res) => {
 })
 
 
-// a route to handle logging out users
 app.post('/sell', async (req, res) => {
-  // try to save the message to the database
 
   console.log(req.body);
 
@@ -128,64 +121,55 @@ app.post('/sell', async (req, res) => {
   sellData.quantity = req.body.quantity;
 })
 
-/* // a route to handle logging out users
-app.get('/messages', async (req, res) => {
-  // load all messages from database
+//REQUESTS FOR COMPARE PAGE
+app.get('/compare', async (req, res) => {
   try {
-    const messages = await Message.find({})
-    res.json({
-      messages: messages,
-      status: 'all good',
+
+     axios
+    .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    .then(function (response){
+
+    
+     const allCoins = [];
+      const coinNames = [];
+      response.data.coins.forEach(coin=>{
+
+        const coinObj = {
+          symbol: coin.symbol,
+          name: coin.name,
+          price: coin.price,
+          rank: coin.rank,
+          marketCap: coin.market_cap
+        }
+       
+        allCoins.push(coinObj);
+        coinNames.push(coinObj.name+", "+coinObj.symbol);
+        
+      })
+
+      console.log(coinNames);
+      const messages = allCoins;
+      res.json({
+        messages: messages,
+        names: coinNames,
+      }) 
+    }) 
+    
+    .catch(function (err){
+      console.log("axios error");
     })
+
   } catch (err) {
-    console.error(err)
+    console.log("Error");
     res.status(400).json({
       error: err,
-      status: 'failed to retrieve messages from the database',
+      status: 'failed to work',
     })
-  }
+  } 
 })
 
-// a route to handle logging out users
-app.post('/messages/save', async (req, res) => {
-  // try to save the message to the database
-  try {
-    const message = await Message.create({
-      name: req.body.name,
-      message: req.body.message,
-    })
-    return res.json({
-      message: message, // return the message we just saved
-      status: 'all good',
-    })
-  } catch (err) {
-    console.error(err)
-    return res.status(400).json({
-      error: err,
-      status: 'failed to save the message to the database',
-    })
-  }
-}) */
 
-// export the express app we created to make it available to other modules
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// OLD CODE
-
+//REQUESTS FOR REGISTER PAGE
 const users=[];
 current_user = null
 next_id = 0;
@@ -232,6 +216,7 @@ app.post('/register', (req, res) => {
     }
 })
 
+//REQUESTS FOR LOGIN PAGE
 app.post("/login", (req, res) => {
     try{
         console.log(req)
