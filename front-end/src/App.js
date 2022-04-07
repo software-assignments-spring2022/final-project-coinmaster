@@ -3,7 +3,8 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./Home";
 import Coins from "./Coins";
-import Compare from "./Compare";
+//import Compare from "./Compare";
+import Compare from "./expressConnections/GET/getCompare"
 import Login from "./Login";
 import Register from "./Register";
 import Portfolio from "./Portfolio";
