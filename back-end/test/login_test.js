@@ -25,6 +25,7 @@ describe('post request to login page with all fields', () => {
     })
 })
 
+
 describe('post request to login page with empty fields', () => { 
     it('it should successfully post the empty username and password to backend and receive a http 400 status code', (done) => {
         const test_user = {
