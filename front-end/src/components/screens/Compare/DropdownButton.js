@@ -4,45 +4,40 @@ import axios from "axios";
 import { useState, useEffect } from 'react';
 
 
-function Button (coin, setCoin){
+function Button (coin, setCoin, coinNames){
 
-    const [coinNames, setCoinNames] = useState([]);
-    const [error, setError] = useState('');
+     /* const [coinNames, setCoinNames] = useState([]);
+    const [error, setError] = useState(''); */
 
-    const fetchData = () => {
+   // const fetchData = () => {
    
-        axios
+        /* axios
           .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/compare`)
           .then(response => {
             
-            /* const messages = response.data.messages;
-            setMessages(messages); */
             const coinNames = response.data.names;
             setCoinNames(coinNames);
           })
           .catch(err => {
             setError(err)
           })
-      }
+      } */
 
-      useEffect(() => {
-        // fetch messages this once
+   /*    useEffect(() => {
         fetchData()
     
-        // set a timer to load data from server every n seconds
         const intervalHandle = setInterval(() => {
           fetchData()
         }, 10000)
     
-        // return a function that will be called when this component unloads
         return e => {
-          // clear the timer, so we don't still load messages when this component is not loaded anymore
+          
           clearInterval(intervalHandle)
         } 
-      }, []) // putting a blank array as second argument will cause this function to run only once when component first loads
+      }, [])  */
     
 
-
+ 
     return (
 
         <div class = "dropdown">
