@@ -27,7 +27,7 @@ describe('post request to buy data with all fields', () => {
 })
 
 
-describe('post request to login page with empty fields', () => { 
+describe('post request to buy data with empty fields', () => { 
     it('it should successfully post the empty crypto and quantity to backend and receive a http 400 status code', (done) => {
         const test_user = {
             crypto: "",

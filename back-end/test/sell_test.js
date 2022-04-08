@@ -4,7 +4,7 @@ const server = require('../app');
 const should = chai.should();
 chai.use(chaiHttp);
 
-describe('post request to buy data with all fields', () => { 
+describe('post request to sell data with all fields', () => { 
     it('it should successfully post the crypto and quantity to backend and receive a http 200 status code', (done) => {
         const test_sell = {
             crypto: "test",
@@ -27,7 +27,7 @@ describe('post request to buy data with all fields', () => {
 })
 
 
-describe('post request to login page with empty fields', () => { 
+describe('post request to sell data with empty fields', () => { 
     it('it should successfully post the empty crypto and quantity to backend and receive a http 400 status code', (done) => {
         const test_sell = {
             crypto: "",
