@@ -5,6 +5,12 @@ const cors = require('cors') // middleware for enabling CORS (Cross-Origin Resou
 const bodyParser = require("body-parser"); // parsing posted json body
 /* const mongoose = require('mongoose') */
 
+//Using Coinlib API, setting API key 
+const Coinlib = require('coinlib-api');
+const { default: axios } = require('axios');
+const CoinlibClient = new Coinlib("c547247f9214255e");
+CoinlibClient.setKey("c547247f9214255e");
+
 const app = express() // instantiate an Express object
 app.use(morgan('dev', { skip: (req, res) => process.env.NODE_ENV === 'test' })) // log all incoming requests, except when in unit test mode.  morgan has a few logging default styles - dev is a nice concise color-coded style
 app.use(cors()) // allow cross-origin resource sharing
@@ -122,7 +128,7 @@ app.post('/sell', async (req, res) => {
 })
 
 //REQUESTS FOR COMPARE PAGE
-app.get('/compare', async (req, res) => {
+ app.get('/compare', async (req, res) => {
   try {
 
      axios
@@ -166,8 +172,7 @@ app.get('/compare', async (req, res) => {
       status: 'failed to work',
     })
   } 
-})
-
+}) 
 
 //REQUESTS FOR REGISTER PAGE
 const users=[];
