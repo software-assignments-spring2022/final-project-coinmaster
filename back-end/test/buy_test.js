@@ -35,7 +35,7 @@ describe('post request to login page with empty fields', () => {
         }
         chai.request(server) 
         .post('/buy') 
-        .send(test_user)
+        .send(test_buy)
         .end((err, res) => { 
             res.should.have.status(400); 
             res.body.should.be.a("object") 
