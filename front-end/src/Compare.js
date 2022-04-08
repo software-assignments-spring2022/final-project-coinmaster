@@ -54,9 +54,9 @@ class CoinCompare {
 
   function Compare(){
 
-    const [coin1,setCoin1] = useState("Coin #1");
-    const [coin2,setCoin2] = useState("Coin #2");
-
+    const [coin1, setCoin1] = useState("Coin #1");
+    const [coin2, setCoin2] = useState("Coin #2");
+    
     return (
       <>
         <br></br>
@@ -86,4 +86,4 @@ class CoinCompare {
     );
   }
 
-  export default Compare;
+export default Compare;
