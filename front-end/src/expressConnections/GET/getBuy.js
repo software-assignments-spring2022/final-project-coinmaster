@@ -1,13 +1,18 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import CryptoTable from "../../components/CryptoTable"
 
 /**
  * A React component that shows a form the user can use to create a new message, as well as a list of any pre-existing messages.
  * @param {*} param0 an object holding any props passed to this component from its parent component
  * @returns The contents of this component, in JSX form.
  */
+
+
 const GetBuy = () => {
   const [messages, setMessages] = useState([])
+  //const [cryptoTableData, setCryptoTableData]  = useState('')
+  const [tableColumns, setTableColumns] = useState(["SYMBOL", "NAME", "RANK", "PRICE", "MARKET CAP"])
   const [loaded, setLoaded] = useState(false)
   const [error, setError] = useState('')
   const [feedback, setFeedback] = useState('')
@@ -24,6 +29,8 @@ const GetBuy = () => {
         // axios bundles up all response data in response.data property
         const messages = response.data
         setMessages(messages)
+
+        //setCryptoTableData(messages.cryptoData);
       })
       .catch(err => {
         setError(err)
@@ -34,8 +41,8 @@ const GetBuy = () => {
       })
   }
 
-  // set up loading data from server when the component first loads
-  useEffect(() => {
+    // set up loading data from server when the component first loads
+    useEffect(() => {
     // fetch messages this once
     fetchMessages()
 
@@ -52,7 +59,15 @@ const GetBuy = () => {
   }, []) // putting a blank array as second argument will cause this function to run only once when component first loads
 
   return (
-    <>      
+    <>
+      
+      Buy Crypto:
+      {messages.cryptoData}
+      <br></br>
+
+    
+    {/* <CryptoTable data={messages.cryptoData} columns={tableColumns}/> */}
+
     Buy Crypto: {messages.crypto}
     <br></br>
     Buy Quantity: {messages.quantity}

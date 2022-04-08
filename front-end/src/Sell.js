@@ -3,6 +3,9 @@ import "./App.css";
 import GetSell from "./expressConnections/GET/getSell";
 import SellForm from "./expressConnections/POST/sellForm";
 
+import CryptoTable from "./components/CryptoTable"
+
+
 export default function CoinPage() {
   return (
     <div>

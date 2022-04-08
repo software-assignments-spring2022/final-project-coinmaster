@@ -1,7 +1,9 @@
-import "./css/CryptoTable.css";
+import "../css/CryptoTable.css";
 import React, { useEffect } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
+
+
 
 
 function CryptoTable(props) {
@@ -19,7 +21,9 @@ function CryptoTable(props) {
         }
         coin = curr.children[0].textContent.slice(6);
         console.log(coin);
-        }
+    }
+    
+
     
     return (
         <>

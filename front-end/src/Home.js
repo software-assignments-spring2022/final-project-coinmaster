@@ -1,5 +1,5 @@
 import "./css/Home.css";
-import CryptoTable from "./CryptoTable"
+import CryptoTable from "./components/CryptoTable"
 import { Link } from "react-router-dom";
 import React, {useState} from "react";
 import axios from 'axios';

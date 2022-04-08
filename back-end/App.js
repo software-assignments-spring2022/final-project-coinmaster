@@ -62,11 +62,17 @@ app.get('/portfolio', async (req, res) => {
   }
 })
 
+const cryptoData = [
+  { symbol: "ETH", name: "Ethereum", rank: 2, price: "0.078420138035523", market_cap: "7847729.8474137"},
+  { symbol: "BIT", name: "Bitcoin", rank: 1, price: "0.003513413523", market_cap: "337729.8474137"},
+];
+
 
 //REQUESTS FOR BUY PAGE
 let buyData = {
   crypto: "Please Enter a Crypto",
-  quantity: "Please Enter a Quantity"
+  quantity: "Please Enter a Quantity",
+  cryptoData: cryptoData
 };
 
 app.get('/buy', async (req, res) => {
@@ -75,6 +81,7 @@ app.get('/buy', async (req, res) => {
     res.json({
       crypto: messages.crypto,
       quantity: messages.quantity,
+      cryptoData: 1,
       status: 'all good',
     })
   } catch (err) {
@@ -127,6 +134,46 @@ app.post('/sell', async (req, res) => {
   sellData.quantity = req.body.quantity;
 })
 
+
+// TESTING
+
+// a route to handle logging out users
+app.get('/coinTable', async (req, res) => {
+  // load all messages from database
+  try {
+    const messages = sellData;
+    res.json({
+      crypto: messages.crypto,
+      quantity: messages.quantity,
+      status: 'all good',
+    })
+  } catch (err) {
+    console.error(err)
+    res.status(400).json({
+      error: err,
+      status: 'failed to work',
+    })
+  }
+})
+
+// a route to handle logging out users
+app.post('/coinTable', async (req, res) => {
+  // try to save the message to the database
+
+  console.log(req.body);
+
+  sellData.crypto = req.body.crypto;
+  sellData.quantity = req.body.quantity;
+})
+
+
+
+
+
+
+/* a route to handle logging out users
+app.get('/messages', async (req, res) => {
+  // load all messages from database
 //REQUESTS FOR COMPARE PAGE
  app.get('/compare', async (req, res) => {
   try {
@@ -242,6 +289,6 @@ app.post("/login", (req, res) => {
         })
     }
 })
+*/
 
-
-module.exports = app // CommonJS export style!
+module.exports = app // CommonJS export style! 
