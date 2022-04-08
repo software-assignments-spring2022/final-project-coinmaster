@@ -15,7 +15,7 @@ describe('get request to get API data with all fields from API', () => {
         }
         chai.request(server) 
         .get('/buy') 
-        .send(test_buy)
+        .query(test_buy)
         .end((err, res) => { 
             res.should.have.status(200); 
             res.body.should.be.a("object") 
@@ -45,7 +45,7 @@ describe('get request to get API data with all fields from API', () => {
         }
         chai.request(server) 
         .get('/sell') 
-        .send(test_buy)
+        .query(test_buy)
         .end((err, res) => { 
             res.should.have.status(200); 
             res.body.should.be.a("object") 
