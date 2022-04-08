@@ -171,9 +171,6 @@ app.post('/coinTable', async (req, res) => {
 
 
 
-/* a route to handle logging out users
-app.get('/messages', async (req, res) => {
-  // load all messages from database
 //REQUESTS FOR COMPARE PAGE
  app.get('/compare', async (req, res) => {
   try {
@@ -209,7 +206,7 @@ app.get('/messages', async (req, res) => {
     }) 
     
     .catch(function (err){
-      console.log("axios error");
+      console.log("axios error or api request limit reached ");
     })
 
   } catch (err) {
@@ -289,6 +286,6 @@ app.post("/login", (req, res) => {
         })
     }
 })
-*/
+
 
 module.exports = app // CommonJS export style! 
