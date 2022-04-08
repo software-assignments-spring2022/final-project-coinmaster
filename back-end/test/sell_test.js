@@ -11,7 +11,7 @@ describe('post request to buy data with all fields', () => {
             quantity: 10,
         }
         chai.request(server) 
-        .post('/buy') 
+        .post('/sell') 
         .send(test_sell)
         .end((err, res) => { 
             res.should.have.status(200); 
@@ -34,7 +34,7 @@ describe('post request to login page with empty fields', () => {
             quantity: "",
         }
         chai.request(server) 
-        .post('/buy') 
+        .post('/sell') 
         .send(test_sell)
         .end((err, res) => { 
             res.should.have.status(400); 
