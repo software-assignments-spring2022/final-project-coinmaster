@@ -17,10 +17,8 @@ describe('post request to sell data with all fields', () => {
             res.should.have.status(200); 
             res.body.should.be.a("object") 
             res.body.should.have.property("success")
-            res.body.should.have.property("crypto")
-            res.body.should.have.property("quantity") 
             res.body.success.should.eql(true) 
-            res.body.message.should.eql("login success") 
+            res.body.message.should.eql("sell data post success") 
             done() 
         })
     })
@@ -40,8 +38,6 @@ describe('post request to sell data with empty fields', () => {
             res.should.have.status(400); 
             res.body.should.be.a("object") 
             res.body.should.have.property("success")
-            res.body.should.have.property("crypto")
-            res.body.should.have.property("quantity") 
             res.body.success.should.eql(false) 
             res.body.message.should.eql("At least one field is empty") 
             done() 

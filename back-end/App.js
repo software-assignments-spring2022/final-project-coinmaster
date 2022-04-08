@@ -170,11 +170,23 @@ app.get('/buy', async (req, res) => {
 })
 
 app.post('/buy', async (req, res) => {
-
-  console.log(req.body);
-
-  buyData.crypto = req.body.crypto;
-  buyData.quantity = req.body.quantity;
+  try{
+    console.log(req)
+    console.log(req.body)
+    buyData.crypto = req.body.crypto;
+    buyData.quantity = req.body.quantity;
+    if(buyData.crypto == '' || buyData.quantity == ''){
+        return res.status(400).json({success: false, message: "At least one field is empty"});
+    }else{
+        return res.json({success: true, message: "buy data post success"});
+    }
+  }catch(err){
+      console.error(err)
+      return res.status(400).json({
+          error: err,
+          status: 'failed to post buy data',
+      })
+  }
 })
 
 
@@ -244,11 +256,23 @@ app.get('/sell', async (req, res) => {
 
 
 app.post('/sell', async (req, res) => {
-
-  console.log(req.body);
-
-  sellData.crypto = req.body.crypto;
-  sellData.quantity = req.body.quantity;
+  try{
+    console.log(req)
+    console.log(req.body)
+    sellData.crypto = req.body.crypto;
+    sellData.quantity = req.body.quantity;
+    if(sellData.crypto == '' || sellData.quantity == ''){
+        return res.status(400).json({success: false, message: "At least one field is empty"});
+    }else{
+        return res.json({success: true, message: "sell data post success"});
+    }
+  }catch(err){
+      console.error(err)
+      return res.status(400).json({
+          error: err,
+          status: 'failed to post sell data',
+      })
+  }
 })
 
 
