@@ -5,6 +5,10 @@ import LoginForm from "./components/LoginForm.js"
 const Login = props => {
     return (
         <>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
             <div className="container">
                 <div>
                     <h1>Welcome to Coin Master!</h1>

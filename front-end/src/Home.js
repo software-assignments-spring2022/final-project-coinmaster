@@ -3,20 +3,22 @@ import CryptoTable from "./components/CryptoTable"
 import { Link } from "react-router-dom";
 import React, {useState} from "react";
 import axios from 'axios';
+import { useEffect } from 'react'
 
-function Home(props) {
+/* const [cryptoData, setCryptoData] = useState([
+  { symbol: "ETH", name: "Ethereum", rank: 2, price: "0.078420138035523", market_cap: "7847729.8474137"},
+  { symbol: "BIT", name: "Bitcoin", rank: 1, price: "0.003513413523", market_cap: "337729.8474137"},
+]);
+const [columns,setColumns] = useState(["SYMBOL","NAME","RANK", "PRICE", "MARKET CAP"]) */
 
-  const [cryptoData, setCryptoData] = useState([
-    { symbol: "ETH", name: "Ethereum", rank: 2, price: "0.078420138035523", market_cap: "7847729.8474137"},
-    { symbol: "BIT", name: "Bitcoin", rank: 1, price: "0.003513413523", market_cap: "337729.8474137"},
-  ]);
-  const [columns,setColumns] = useState(["SYMBOL","NAME","RANK", "PRICE", "MARKET CAP"])
+const Home = (props) => {
+
 
   return (
     <>
       <div className="Home">
-        <div className="first-row">
-          <CryptoTable data={cryptoData} columns={columns}/>
+            <div className="first-row">
+{/*           <CryptoTable data={cryptoData} columns={columns}/> */}
         </div >
         <div className="first-row">
         <div className="section-one">
@@ -52,7 +54,7 @@ function Home(props) {
             </div>
           </div>
         </div>
-      </div>
+        </div>
     </div>
     </>
   );

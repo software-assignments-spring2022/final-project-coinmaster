@@ -57,9 +57,10 @@ class CoinCompare {
     const [coin1,setCoin1] = useState("Coin #1");
     const [coin2,setCoin2] = useState("Coin #2");
 
-    return(
-
-        <>
+    return (
+      <>
+        <br></br>
+        <br></br>
         <div className = 'compare'>
             
             <h3>Comparison Tool</h3>

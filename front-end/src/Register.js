@@ -5,6 +5,10 @@ import RegisterForm from "./components/RegisterForm.js"
 const Register = props => {
     return (
         <>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
             <div className="container">
                 <div>
                     <h1>Welcome to Coin Master!</h1>

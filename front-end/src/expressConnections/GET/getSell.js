@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import CryptoTable from "../../components/CryptoTable"
 
 /**
  * A React component that shows a form the user can use to create a new message, as well as a list of any pre-existing messages.
@@ -8,6 +9,8 @@ import axios from 'axios'
  */
 const GetSell = () => {
   const [messages, setMessages] = useState([])
+  const [cryptoTableData, setCryptoTableData]  = useState([])
+  const [tableColumns, setTableColumns] = useState(["SYMBOL", "NAME", "RANK", "PRICE", "MARKET CAP"])
   const [loaded, setLoaded] = useState(false)
   const [error, setError] = useState('')
   const [feedback, setFeedback] = useState('')
@@ -23,6 +26,20 @@ const GetSell = () => {
       .then(response => {
         // axios bundles up all response data in response.data property
         const messages = response.data
+
+        let cryptoTableData = [];
+    
+        messages.cryptoData.map((element) => {
+          cryptoTableData.push ({
+            symbol: element.symbol,
+            name:element.name,
+            rank: element.rank,
+            price: element.price,
+            market_cap:element.market_cap
+          })
+        })
+
+        setCryptoTableData(cryptoTableData);
         setMessages(messages)
       })
       .catch(err => {
@@ -42,7 +59,7 @@ const GetSell = () => {
     // set a timer to load data from server every n seconds
     const intervalHandle = setInterval(() => {
       fetchMessages()
-    }, 500)
+    }, 500000000000000)
 
     // return a function that will be called when this component unloads
     return e => {
@@ -52,11 +69,14 @@ const GetSell = () => {
   }, []) // putting a blank array as second argument will cause this function to run only once when component first loads
 
   return (
+
     <>
-    Sell Crypto: {messages.crypto}
-    <br></br>
-    Sell Quantity: {messages.quantity}
-    </>
+            <br></br>
+      <CryptoTable data={cryptoTableData} columns={tableColumns} />
+      Sell Crypto: {messages.crypto}
+      <br></br>
+      Sell Quantity: {messages.quantity}
+      </>
   )
 }
 

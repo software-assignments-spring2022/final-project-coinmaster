@@ -1,5 +1,7 @@
 import "./Portfolio.css";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 
 function Portfolio(props) {
   const [ownedCryptos, setOwnedCryptos] = useState([
@@ -35,12 +37,14 @@ function Portfolio(props) {
           </tbody>
         </table>
         <div className="buttons">
-          <button type="button" class="btn btn-primary btn-lg">
+
+{/*           <button type="button" class="btn btn-primary btn-lg">
             Buy{" "}
           </button>
           <button type="button" class="btn btn-primary btn-lg">
             Sell
-          </button>
+          </button> */}
+
         </div>
         <h1>Your Statistics</h1>
         <table class="table">
