@@ -56,16 +56,13 @@ app.get('/portfolio', async (req, res) => {
   }
 })
 
-<<<<<<< HEAD
 const cryptoData = [
   { symbol: "ETH", name: "Ethereum", rank: 2, price: "0.078420138035523", market_cap: "7847729.8474137"},
   { symbol: "BIT", name: "Bitcoin", rank: 1, price: "0.003513413523", market_cap: "337729.8474137"},
 ];
 
-=======
 
 //REQUESTS FOR BUY PAGE
->>>>>>> 5e2c477b892bf1b85a827dd4188865caed352583
 let buyData = {
   crypto: "Please Enter a Crypto",
   quantity: "Please Enter a Quantity",
@@ -131,7 +128,6 @@ app.post('/sell', async (req, res) => {
   sellData.quantity = req.body.quantity;
 })
 
-<<<<<<< HEAD
 
 // TESTING
 
@@ -167,13 +163,13 @@ app.post('/coinTable', async (req, res) => {
 
 
 
-/* // a route to handle logging out users
+
+
+/* a route to handle logging out users
 app.get('/messages', async (req, res) => {
   // load all messages from database
-=======
 //REQUESTS FOR COMPARE PAGE
 app.get('/compare', async (req, res) => {
->>>>>>> 5e2c477b892bf1b85a827dd4188865caed352583
   try {
 
      axios
@@ -288,6 +284,6 @@ app.post("/login", (req, res) => {
         })
     }
 })
+*/
 
-
-module.exports = app // CommonJS export style!
+module.exports = app // CommonJS export style! 
