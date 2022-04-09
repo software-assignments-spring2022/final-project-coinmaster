@@ -19,17 +19,14 @@ describe('get request to get API data with all fields from API', () => {
         .query(test_buy)
         .end((err, res) => { 
             res.should.have.status(200); 
-            res.body.should.be.a("object") 
+            res.body.should.be.a("object")
+            res.body.should.have.property("success")
             res.body.should.have.property("crypto")
             res.body.should.have.property("quantity")
             res.body.should.have.property("cryptoData")
             res.body.should.have.property("status")
+            res.body.success.should.eql(true)
             expect(res.body.cryptoData).to.be.an('array');
-            // res.body.cryptoData.should.have.property("symbol")
-            // res.body.cryptoData.should.have.property("name")
-            // res.body.cryptoData.should.have.property("price")
-            // res.body.cryptoData.should.have.property("rank")
-            // res.body.cryptoData.should.have.property("market_cap")
             done() 
         })
     })
@@ -49,17 +46,14 @@ describe('get request to get API data with all fields from API', () => {
         .query(test_buy)
         .end((err, res) => { 
             res.should.have.status(200); 
-            res.body.should.be.a("object") 
+            res.body.should.be.a("object")
+            res.body.should.have.property("success") 
             res.body.should.have.property("crypto")
             res.body.should.have.property("quantity")
             res.body.should.have.property("cryptoData")
             res.body.should.have.property("status")
+            res.body.success.should.eql(true)
             expect(res.body.cryptoData).to.be.an('array');
-            // res.body.cryptoData.should.have.property("symbol")
-            // res.body.cryptoData.should.have.property("name")
-            // res.body.cryptoData.should.have.property("price")
-            // res.body.cryptoData.should.have.property("rank")
-            // res.body.cryptoData.should.have.property("market_cap")
             done() 
         })
     })

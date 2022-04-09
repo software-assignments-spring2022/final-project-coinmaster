@@ -33,8 +33,9 @@ app.get('/messages', async (req, res) => {
     try {
       const messages = "this is from express - messages!"
       res.json({
+        success: true,
         messages: messages,
-        body: 'all good',
+        status: 'all good',
       })
     } catch (err) {
       console.error(err)
@@ -50,8 +51,9 @@ app.get('/portfolio', async (req, res) => {
   try {
     const messages = "this is from express - portfolio! (Demonstartion of Back-End Connection - Awaiting Database)"
     res.json({
+      success: true,
       messages: messages,
-      body: 'all good',
+      status: 'all good',
     })
   } catch (err) {
     console.error(err)
@@ -148,6 +150,7 @@ app.get('/buy', async (req, res) => {
 
       const messages = buyData;
       res.json({
+        success: true,
         crypto: messages.crypto,
         quantity: messages.quantity,
         cryptoData: allCoins,
@@ -233,6 +236,7 @@ app.get('/sell', async (req, res) => {
 
       const messages = sellData;
       res.json({
+        success: true,
         crypto: messages.crypto,
         quantity: messages.quantity,
         cryptoData: allCoins,
@@ -284,6 +288,7 @@ app.get('/coinTable', async (req, res) => {
   try {
     const messages = sellData;
     res.json({
+      success: true,
       crypto: messages.crypto,
       quantity: messages.quantity,
       status: 'all good',
