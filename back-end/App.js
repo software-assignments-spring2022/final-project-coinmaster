@@ -176,7 +176,7 @@ app.post('/coinTable', async (req, res) => {
   try {
 
      axios
-    .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    .get("https://coinlib.io/api/v1/coin?key=9810ec37c3769c55&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
     .then(function (response){
 
     
@@ -189,11 +189,11 @@ app.post('/coinTable', async (req, res) => {
           name: coin.name,
           price: coin.price,
           rank: coin.rank,
-          marketCap: coin.market_cap
+          market_cap: coin.market_cap
         }
        
         allCoins.push(coinObj);
-        coinNames.push(coinObj.name+", "+coinObj.symbol);
+        coinNames.push(coinObj.name);
         
       })
 
