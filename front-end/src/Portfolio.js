@@ -3,6 +3,7 @@ import Porfolio from "./components/screens/Portfolio/Portfolio";
 import GetPortfolio from "./expressConnections/GET/getPortfolio";
 
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Portfolio(props) {
   const [ownedCryptos, setOwnedCryptos] = useState([
@@ -15,8 +16,21 @@ function Portfolio(props) {
 
   return (
     <div>
+
+      <br></br>
       <GetPortfolio />
       <Porfolio />
+      
+      
+      <Link to="/buy">
+          <button className="btn btn-dark btn-lg">Buy</button>
+      </Link>
+
+      <Link to="/sell">
+          <button className="btn btn-dark btn-lg">Sell</button>
+      </Link>
+
+
     </div>
   );
 }

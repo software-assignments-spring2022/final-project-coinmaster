@@ -11,7 +11,7 @@ import CryptoTable from "../../components/CryptoTable"
 
 const GetBuy = () => {
   const [messages, setMessages] = useState([])
-  //const [cryptoTableData, setCryptoTableData]  = useState('')
+  const [cryptoTableData, setCryptoTableData]  = useState([])
   const [tableColumns, setTableColumns] = useState(["SYMBOL", "NAME", "RANK", "PRICE", "MARKET CAP"])
   const [loaded, setLoaded] = useState(false)
   const [error, setError] = useState('')
@@ -28,10 +28,38 @@ const GetBuy = () => {
       .then(response => {
         // axios bundles up all response data in response.data property
         const messages = response.data
+
+        let cryptoTableData = [];
+    
+        messages.cryptoData.map((element) => {
+          cryptoTableData.push ({
+            symbol: element.symbol,
+            name:element.name,
+            rank: element.rank,
+            price: element.price,
+            market_cap:element.market_cap
+          })
+        })
+
+
+        let wanted_1 = "Bitcoin";
+        let wanted_2 = "Tether";
+
+        function filterByCoin(check_coin) {
+          if ( check_coin.name == wanted_1 || check_coin.name == wanted_2) {
+            return true
+          }
+        }
+        
+        let filteredCryptoTableData = cryptoTableData.filter(filterByCoin)
+
+        setCryptoTableData(cryptoTableData);
+        //setCryptoTableData(filteredCryptoTableData);
         setMessages(messages)
 
         //setCryptoTableData(messages.cryptoData);
       })
+      
       .catch(err => {
         setError(err)
       })
@@ -49,7 +77,7 @@ const GetBuy = () => {
     // set a timer to load data from server every n seconds
     const intervalHandle = setInterval(() => {
       fetchMessages()
-    }, 500)
+    }, 500000000000000)
 
     // return a function that will be called when this component unloads
     return e => {
@@ -60,14 +88,12 @@ const GetBuy = () => {
 
   return (
     <>
-      
-      Buy Crypto:
-      {messages.cryptoData}
-      <br></br>
-
     
-    {/* <CryptoTable data={messages.cryptoData} columns={tableColumns}/> */}
+{/*       {messages.cryptoData}
+      <br></br> */}
 
+    <br></br>
+    <CryptoTable data={cryptoTableData} columns={tableColumns}/>
     Buy Crypto: {messages.crypto}
     <br></br>
     Buy Quantity: {messages.quantity}

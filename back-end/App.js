@@ -6,10 +6,10 @@ const bodyParser = require("body-parser"); // parsing posted json body
 /* const mongoose = require('mongoose') */
 
 //Using Coinlib API, setting API key 
-const Coinlib = require('coinlib-api');
+//const Coinlib = require('coinlib-api');
 const { default: axios } = require('axios');
-const CoinlibClient = new Coinlib("c547247f9214255e");
-CoinlibClient.setKey("c547247f9214255e");
+//const CoinlibClient = new Coinlib("c547247f9214255e");
+//CoinlibClient.setKey("c547247f9214255e");
 
 const app = express() // instantiate an Express object
 app.use(morgan('dev', { skip: (req, res) => process.env.NODE_ENV === 'test' })) // log all incoming requests, except when in unit test mode.  morgan has a few logging default styles - dev is a nice concise color-coded style
@@ -33,8 +33,9 @@ app.get('/messages', async (req, res) => {
     try {
       const messages = "this is from express - messages!"
       res.json({
+        success: true,
         messages: messages,
-        body: 'all good',
+        status: 'all good',
       })
     } catch (err) {
       console.error(err)
@@ -48,10 +49,11 @@ app.get('/messages', async (req, res) => {
 //REQUESTS FOR PORTFOLIO PAGE
 app.get('/portfolio', async (req, res) => {
   try {
-    const messages = "this is from express - portfolio!"
+    const messages = "this is from express - portfolio! (Demonstartion of Back-End Connection - Awaiting Database)"
     res.json({
+      success: true,
       messages: messages,
-      body: 'all good',
+      status: 'all good',
     })
   } catch (err) {
     console.error(err)
@@ -62,11 +64,49 @@ app.get('/portfolio', async (req, res) => {
   }
 })
 
-const cryptoData = [
-  { symbol: "ETH", name: "Ethereum", rank: 2, price: "0.078420138035523", market_cap: "7847729.8474137"},
-  { symbol: "BIT", name: "Bitcoin", rank: 1, price: "0.003513413523", market_cap: "337729.8474137"},
-];
 
+
+/* const apiFunction = async () => {
+  await axios
+  .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+  .then(function (response){
+
+    const allCoins = [];
+    const coinNames = [];
+
+    response.data.coins.forEach(coin=>{
+      const coinObj = {
+        symbol: coin.symbol,
+        name: coin.name,
+        price: coin.price,
+        rank: coin.rank,
+        marketCap: coin.market_cap
+      }
+     
+      allCoins.push(coinObj);
+      coinNames.push(coinObj.name+", "+coinObj.symbol);
+      
+    })
+
+    console.log(coinNames);
+    const messages = allCoins;
+
+    const toReturn = {
+      allCoins: allCoins,
+      coinNames: coinNames
+    }
+
+    return (allCoins);
+  }) 
+  .catch(function (err){
+    console.log("axios error");
+  })
+} */
+
+const cryptoData = [
+  { symbol: "WAITING", name: "Ethereum", rank: 2, price: "0.078420138035523", market_cap: "7847729.8474137"},
+  { symbol: "WAITING", name: "Bitcoin", rank: 1, price: "0.003513413523", market_cap: "337729.8474137"},
+];
 
 //REQUESTS FOR BUY PAGE
 let buyData = {
@@ -77,13 +117,52 @@ let buyData = {
 
 app.get('/buy', async (req, res) => {
   try {
-    const messages = buyData;
-    res.json({
-      crypto: messages.crypto,
-      quantity: messages.quantity,
-      cryptoData: 1,
-      status: 'all good',
+    await axios
+    //.get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    .get("https://coinlib.io/api/v1/coin?key=1ba60195f39ff3a1&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    .then(function (response){
+  
+      const allCoins = [];
+      const coinNames = [];
+  
+      response.data.coins.forEach(coin=>{
+        const coinObj = {
+          symbol: coin.symbol,
+          name: coin.name,
+          price: coin.price,
+          rank: coin.rank,
+          market_cap: coin.market_cap
+        }
+       
+        allCoins.push(coinObj);
+        coinNames.push(coinObj.name+", "+coinObj.symbol);
+        
+      })
+  
+      //console.log(coinNames);
+      console.log(allCoins);
+ /*     const messages = allCoins;
+  
+       const toReturn = {
+        allCoins: allCoins,
+        coinNames: coinNames
+      } */
+
+      const messages = buyData;
+      res.json({
+        success: true,
+        crypto: messages.crypto,
+        quantity: messages.quantity,
+        cryptoData: allCoins,
+        status: 'all good',
+      })
+  
+  /*     return (allCoins); */
+    }) 
+    .catch(function (err){
+      console.log("axios error");
     })
+
   } catch (err) {
     console.error(err)
     res.status(400).json({
@@ -94,28 +173,82 @@ app.get('/buy', async (req, res) => {
 })
 
 app.post('/buy', async (req, res) => {
-
-  console.log(req.body);
-
-  buyData.crypto = req.body.crypto;
-  buyData.quantity = req.body.quantity;
+  try{
+    console.log(req)
+    console.log(req.body)
+    buyData.crypto = req.body.crypto;
+    buyData.quantity = req.body.quantity;
+    if(buyData.crypto == '' || buyData.quantity == ''){
+        return res.status(400).json({success: false, message: "At least one field is empty"});
+    }else{
+        return res.json({success: true, message: "buy data post success"});
+    }
+  }catch(err){
+      console.error(err)
+      return res.status(400).json({
+          error: err,
+          status: 'failed to post buy data',
+      })
+  }
 })
 
 
 //REQUESTS FOR SELL PAGE
 let sellData = {
   crypto: "Please Enter a Crypto",
-  quantity: "Please Enter a Quantity"
+  quantity: "Please Enter a Quantity",
+  cryptoData: cryptoData
 };
 
 app.get('/sell', async (req, res) => {
   try {
-    const messages = sellData;
-    res.json({
-      crypto: messages.crypto,
-      quantity: messages.quantity,
-      status: 'all good',
+
+    await axios
+    //.get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    .get("https://coinlib.io/api/v1/coin?key=1ba60195f39ff3a1&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    .then(function (response){
+  
+      const allCoins = [];
+      const coinNames = [];
+  
+      response.data.coins.forEach(coin=>{
+        const coinObj = {
+          symbol: coin.symbol,
+          name: coin.name,
+          price: coin.price,
+          rank: coin.rank,
+          market_cap: coin.market_cap
+        }
+       
+        allCoins.push(coinObj);
+        coinNames.push(coinObj.name+", "+coinObj.symbol);
+        
+      })
+  
+      //console.log(coinNames);
+      console.log(allCoins);
+ /*     const messages = allCoins;
+  
+       const toReturn = {
+        allCoins: allCoins,
+        coinNames: coinNames
+      } */
+
+      const messages = sellData;
+      res.json({
+        success: true,
+        crypto: messages.crypto,
+        quantity: messages.quantity,
+        cryptoData: allCoins,
+        status: 'all good',
+      })
+  
+  /*     return (allCoins); */
+    }) 
+    .catch(function (err){
+      console.log("axios error");
     })
+
   } catch (err) {
     console.error(err)
     res.status(400).json({
@@ -127,11 +260,23 @@ app.get('/sell', async (req, res) => {
 
 
 app.post('/sell', async (req, res) => {
-
-  console.log(req.body);
-
-  sellData.crypto = req.body.crypto;
-  sellData.quantity = req.body.quantity;
+  try{
+    console.log(req)
+    console.log(req.body)
+    sellData.crypto = req.body.crypto;
+    sellData.quantity = req.body.quantity;
+    if(sellData.crypto == '' || sellData.quantity == ''){
+        return res.status(400).json({success: false, message: "At least one field is empty"});
+    }else{
+        return res.json({success: true, message: "sell data post success"});
+    }
+  }catch(err){
+      console.error(err)
+      return res.status(400).json({
+          error: err,
+          status: 'failed to post sell data',
+      })
+  }
 })
 
 
@@ -143,6 +288,7 @@ app.get('/coinTable', async (req, res) => {
   try {
     const messages = sellData;
     res.json({
+      success: true,
       crypto: messages.crypto,
       quantity: messages.quantity,
       status: 'all good',
@@ -165,10 +311,6 @@ app.post('/coinTable', async (req, res) => {
   sellData.crypto = req.body.crypto;
   sellData.quantity = req.body.quantity;
 })
-
-
-
-
 
 
 //REQUESTS FOR COMPARE PAGE

@@ -16,7 +16,6 @@ export default function CoinPage() {
       <br></br>
       <br></br>
       <br></br>
-      <br></br>
 
       <SellForm />
       <GetSell />

@@ -57,15 +57,7 @@ const GetPortfolio = () => {
       <br></br>
       <br></br>
       <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      
+
       {messages}
     </>
   )

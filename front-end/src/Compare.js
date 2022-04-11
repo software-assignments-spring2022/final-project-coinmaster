@@ -59,8 +59,9 @@ import axios from "axios"
 
 
     return(
-
-        <>
+      <>
+        <br></br>
+        <br></br>
         <div className = 'compare'>
           <br></br>
           <br></br>
@@ -87,4 +88,4 @@ import axios from "axios"
     );
   }
 
-  export default Compare;
+export default Compare;
