@@ -1,27 +1,33 @@
-function Table(coin1, coin2, propertiesToCompare){
+import "../../../css/CryptoTable.css";
+import React, { useEffect } from 'react';
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 
-    return(
-        <table className="table table-hover">
-        <thead class="table-light">
-          <tr>
-              <th></th>
-              <th>{coin1}</th>
-              <th>{coin2}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {propertiesToCompare.map((val, key) => {
-            return (
-              <tr key={key}>
-                {Object.values(val).map((headerValue) => {
-                  return <td>{headerValue}</td>;
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    );
+function CompareTable(props) {
+  
+    return (
+        <>
+        <Table>
+            <Thead>
+                <Tr>
+                {props.columns.map((columns, index) => (  
+                    <Th>{columns}</Th>
+                ))}  
+                </Tr>
+            </Thead>
+            <Tbody>
+                <Tr>
+                    <Td id='symbol'>{props.data.symbol}</Td>  
+                    <Td>{props.data.name}</Td>  
+                    <Td>{props.data.rank}</Td>  
+                    <Td>{props.data.price}</Td>
+                    <Td>{props.data.market_cap}</Td>   
+                </Tr>  
+            </Tbody>
+        </Table>
+        </>
+    )
 }
-export default Table;
+
+export default CompareTable;
