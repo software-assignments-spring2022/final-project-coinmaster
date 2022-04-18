@@ -3,7 +3,7 @@ const express = require('express') // CommonJS import style!
 const morgan = require('morgan') // middleware for nice logging of incoming HTTP requests
 const cors = require('cors') // middleware for enabling CORS (Cross-Origin Resource Sharing) requests.
 const bodyParser = require("body-parser"); // parsing posted json body
-/* const mongoose = require('mongoose') */
+const mongoose = require('mongoose')
 
 //Using Coinlib API, setting API key 
 //const Coinlib = require('coinlib-api');
@@ -20,14 +20,71 @@ app.use(express.json()) // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming POST data
 
 // connect to database
-/* mongoose
+mongoose
   .connect(`${process.env.DB_CONNECTION_STRING}`)
   .then(data => console.log(`Connected to MongoDB`))
-  .catch(err => console.error(`Failed to connect to MongoDB: ${err}`)) */
+  .catch(err => console.error(`Failed to connect to MongoDB: ${err}`))
 
 // load the dataabase models we want to deal with
-/* const { Message } = require('./models/Message')
-const { User } = require('./models/User') */
+const { Portfolio } = require('./database/Portfolio')
+const { User } = require('./database/users')
+
+
+// USE THIS TO FIND FROM DATABSE - PUT IN CURLY BRASES IF YOU WANT TO FIND A SPECIFIC THING
+// THESE MUST BE IN A ASYNC FUNCTION
+app.get('/getFromDatabaseExample', async (req, res) => {
+  // load all messages from database
+  try {
+    const coins = await Portfolio.find({})      // depending on which you need
+    const users = await User.find({})           // depending on which you need
+    res.json({
+
+      // USING WHAT YOU WANT TO SEND BACK AS JSON FROM DATABASE (ex. change messages to coins / users)
+      messages: messages,
+      status: 'all good',
+    })
+  } catch (err) {
+    console.error(err)
+    res.status(400).json({
+      error: err,
+      status: 'failed to retrieve messages from the database',
+    })
+  }
+})
+
+app.post('/getFromDatabaseExample/save', async (req, res) => {
+  // try to save the message to the database
+  try {
+
+    // USING WHAT YOU WANT TO ADD BACK AS JSON FROM DATABASE (ex. change messages to coins / users) (Pick what you need to Create)
+    // SHOULD BE SAME AS SCHEMA THAT YOU CREATE
+    // const User = await User.create({
+    const coins = await Portfolio.create({
+      name: req.body.name,
+      message: req.body.message,
+    })
+    return res.json({
+      message: message, // return the message we just saved
+      status: 'all good',
+    })
+  } catch (err) {
+    console.error(err)
+    return res.status(400).json({
+      error: err,
+      status: 'failed to save the message to the database',
+    })
+  }
+})
+
+
+
+
+
+
+
+
+
+
 
 app.get('/messages', async (req, res) => {
     try {
