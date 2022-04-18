@@ -12,10 +12,8 @@ const initialFormData = {
     email: "",
 };
 
-var initialErrorMessage;
 const RegisterForm = props => {
     const [formData, updateFormData] = React.useState(initialFormData);
-    const [errorMessage] = React.useState(initialErrorMessage);
 
     const handleChange = (e) => {
         updateFormData({
