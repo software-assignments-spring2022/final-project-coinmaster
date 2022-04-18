@@ -29,6 +29,8 @@ mongoose
 const { Portfolio } = require('./database/Portfolio')
 const { User } = require('./database/users')
 
+//express validator
+const { check, validationResult } = require('express-validator');
 
 // USE THIS TO FIND FROM DATABSE - PUT IN CURLY BRASES IF YOU WANT TO FIND A SPECIFIC THING
 // THESE MUST BE IN A ASYNC FUNCTION
@@ -426,93 +428,100 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cors())
 
-app.post('/register', async (req, res) => {
-    try{
-        console.log(req)
-        console.log(req.body)
-        const user_name = req.body.user_name
-        const your_name = req.body.your_name
-        const password = req.body.password
-        const confirm_password = req.body.confirm_password
-        const email = req.body.email
-        if(user_name == '' || your_name == '' || password == '' || confirm_password == '' || email == ''){
-            return res.status(400).json({success: false, message: "At least one field is empty"});
-        }else if(password != confirm_password){
-            return res.status(400).json({success: false, message: "passwords do not match"});
-        }else{
-            // try to save the message to the database
-            //TODO: hash password
-            var coins = [];
-            var stats = {
-              net_profit: 0,
-              all_time_high: 0,
-              fifty_two_week_high: 0,
-              account_age: 0,
+app.post(
+          '/register',
+          check('user_name', 'username is required').notEmpty(),
+          check('your_name', 'your name is required').notEmpty(),
+          check('password', 'password is required').notEmpty(),
+          check('confirm_password', 'must enter password again').notEmpty(),
+          check('email', 'email is required').notEmpty(),
+          check('password', 'password must be at least 8 characters').isLength({ min: 8 }),
+          check('password').custom((value,{req}) => {
+            if (value !== req.body.confirm_password) {
+                throw new Error("passwords must match");
+            } else {
+                return value;
             }
-            try {
-              const users = await User.find({user_name: user_name})
-              if(users.length != 0){
-                return res.status(400).json({ error: err, status: 'failed to save the register info to the database',})
-              }else{
-                const user = await User.create({
-                  user_name: user_name,
-                  your_name: your_name,
-                  password: password,
-                  email: email,
-                  coins: coins,
-                  stats: stats,
+          }),
+          check("email", "email must be valid").isEmail(),
+          async (req, res) => {
+            try{
+                const errors = validationResult(req);
+                if (!errors.isEmpty()) {
+                  throw new Error(errors.array()[0].msg);
+                }
+                console.log(req.body)
+                const user_name = req.body.user_name
+                const your_name = req.body.your_name
+                const password = req.body.password
+                const email = req.body.email
+                // try to save the message to the database
+                //TODO: hash password
+                var coins = [];
+                var stats = {
+                  net_profit: 0,
+                  all_time_high: 0,
+                  fifty_two_week_high: 0,
+                  account_age: 0,
+                }
+                const users = await User.find({user_name: user_name})
+                if(users.length != 0){
+                  throw new Error("duplicate username");
+                }else{
+                  const user = await User.create({
+                    user_name: user_name,
+                    your_name: your_name,
+                    password: password,
+                    email: email,
+                    coins: coins,
+                    stats: stats,
+                  })
+                  return res.json({success: true, message: "register info successfully saved to database"});
+                }
+            }catch(err){
+                console.error(err)
+                return res.status(400).json({
+                    error: err,
+                    message: err.message,
                 })
-                return res.json({success: true, message: "register info successfully saved to database"});
-              }
-            }catch (err) {
-              console.error(err)
-              return res.status(400).json({
-                error: err,
-                status: 'failed to save the register info to the database',
-              })
             }
-        }
-    }catch(err){
-        console.error(err)
-        return res.status(400).json({
-            error: err,
-            status: 'failed to register',
-        })
-    }
-})
+          }     
+        )
 
 //REQUESTS FOR LOGIN PAGE
-app.post("/login", async (req, res) => {
-    try{
-        console.log(req)
-        console.log(req.body)
-        const user_name = req.body.user_name
-        const password = req.body.password
-        if(user_name == '' || password == ''){
-            return res.status(400).json({success: false, message: "At least one field is empty"});
-        }else{
-            //compare with database
-            const users = await User.find({user_name: user_name})
-            if(users.length != 0){
-              if(users[0].password == password){
-                return res.json({success: true, message: "login success"});
-              }else{
-                return res.status(400).json({success: false, message: "password does not match"});
+app.post(
+          "/login",
+          check('user_name', 'username is required').notEmpty(),
+          check('password', 'password is required').notEmpty(),
+          async (req, res) => {
+            try{
+              const errors = validationResult(req);
+              if (!errors.isEmpty()) {
+                throw new Error(errors.array()[0].msg);
               }
-            }else{
-              return res.status(400).json({
-                success: false,
-                message: 'username does not exist',
-            })
+                console.log(req)
+                console.log(req.body)
+                const user_name = req.body.user_name
+                const password = req.body.password
+                //compare with database
+                const users = await User.find({user_name: user_name})
+                if(users.length != 0){
+                  if(users[0].password == password){
+                    return res.json({success: true, message: "login success"});
+                  }else{
+                    throw new Error("incorrect password");
+                  }
+                }else{
+                  throw new Error("username does not exist");
+                }
+            }catch(err){
+                console.error(err)
+                return res.status(400).json({
+                    error: err,
+                    message: err.message,
+                })
             }
-        }
-    }catch(err){
-        console.error(err)
-        return res.status(400).json({
-            error: err,
-            status: 'failed to login',
-        })
-    }
-})
+          }
+        )
 
 module.exports = app // CommonJS export style! 
