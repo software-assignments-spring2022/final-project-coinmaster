@@ -433,17 +433,17 @@ app.post(
           check('user_name', 'username is required').notEmpty(),
           check('your_name', 'your name is required').notEmpty(),
           check('password', 'password is required').notEmpty(),
-          check('confirm_password', 'Must enter password again').notEmpty(),
+          check('confirm_password', 'must enter password again').notEmpty(),
           check('email', 'email is required').notEmpty(),
-          check('password', 'password must be at 8 characters long').isLength({ min: 8 }),
-          check('password', 'password must match').custom((value,{req}) => {
+          check('password', 'password must be at least 8 characters').isLength({ min: 8 }),
+          check('password').custom((value,{req}) => {
             if (value !== req.body.confirm_password) {
                 throw new Error("passwords must match");
             } else {
                 return value;
             }
           }),
-          check('email', 'email must be valid').isEmail(),
+          check("email", "email must be valid").isEmail(),
           async (req, res) => {
             try{
                 const errors = validationResult(req);
@@ -466,7 +466,7 @@ app.post(
                 }
                 const users = await User.find({user_name: user_name})
                 if(users.length != 0){
-                  throw new Error('duplicate username');
+                  throw new Error("duplicate username");
                 }else{
                   const user = await User.create({
                     user_name: user_name,

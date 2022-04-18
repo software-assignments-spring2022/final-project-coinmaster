@@ -2,3 +2,10 @@
     padding-left: 20px;
     padding-right: 20px;
   }
+.warning{
+  text-align: left;
+  color: red;
+}
+.hidden{
+  display: none;
+}
