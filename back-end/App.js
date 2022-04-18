@@ -240,7 +240,7 @@ app.post('/buy', async (req, res) => {
     if(buyData.crypto == '' || buyData.quantity == ''){
       throw new Error("At least one field is empty");
     }else{
-      throw new Error("buy data post success");
+      return res.json({success: true, message: "buy data post success"});
     }
   }catch(err){
       console.error(err)
@@ -327,7 +327,7 @@ app.post('/sell', async (req, res) => {
     if(sellData.crypto == '' || sellData.quantity == ''){
       throw new Error("At least one field is empty");
     }else{
-      throw new Error("sell data post success");
+      return res.json({success: true, message: "sell data post success"});
     }
   }catch(err){
       console.error(err)
