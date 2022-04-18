@@ -43,13 +43,13 @@ app.get('/getFromDatabaseExample', async (req, res) => {
 
       // USING WHAT YOU WANT TO SEND BACK AS JSON FROM DATABASE (ex. change messages to coins / users)
       messages: messages,
-      status: 'all good',
+      message: 'all good',
     })
   } catch (err) {
     console.error(err)
     res.status(400).json({
       error: err,
-      status: 'failed to retrieve messages from the database',
+      message: 'failed to retrieve messages from the database',
     })
   }
 })
@@ -67,13 +67,13 @@ app.post('/getFromDatabaseExample/save', async (req, res) => {
     })
     return res.json({
       message: message, // return the message we just saved
-      status: 'all good',
+      message: 'all good',
     })
   } catch (err) {
     console.error(err)
     return res.status(400).json({
       error: err,
-      status: 'failed to save the message to the database',
+      message: 'failed to save the message to the database',
     })
   }
 })
@@ -94,13 +94,13 @@ app.get('/messages', async (req, res) => {
       res.json({
         success: true,
         messages: messages,
-        status: 'all good',
+        message: 'all good',
       })
     } catch (err) {
       console.error(err)
       res.status(400).json({
         error: err,
-        status: 'failed to work',
+        message: 'failed to work',
       })
     }
 })
@@ -112,13 +112,13 @@ app.get('/portfolio', async (req, res) => {
     res.json({
       success: true,
       messages: messages,
-      status: 'all good',
+      message: 'all good',
     })
   } catch (err) {
     console.error(err)
     res.status(400).json({
       error: err,
-      status: 'failed to work',
+      message: 'failed to work',
     })
   }
 })
@@ -213,7 +213,7 @@ app.get('/buy', async (req, res) => {
         crypto: messages.crypto,
         quantity: messages.quantity,
         cryptoData: allCoins,
-        status: 'all good',
+        message: 'all good',
       })
   
   /*     return (allCoins); */
@@ -226,7 +226,7 @@ app.get('/buy', async (req, res) => {
     console.error(err)
     res.status(400).json({
       error: err,
-      status: 'failed to work',
+      message: 'failed to work',
     })
   }
 })
@@ -238,15 +238,15 @@ app.post('/buy', async (req, res) => {
     buyData.crypto = req.body.crypto;
     buyData.quantity = req.body.quantity;
     if(buyData.crypto == '' || buyData.quantity == ''){
-        return res.status(400).json({success: false, message: "At least one field is empty"});
+      throw new Error("At least one field is empty");
     }else{
-        return res.json({success: true, message: "buy data post success"});
+      throw new Error("buy data post success");
     }
   }catch(err){
       console.error(err)
       return res.status(400).json({
           error: err,
-          status: 'failed to post buy data',
+          message: err.message,
       })
   }
 })
@@ -299,7 +299,7 @@ app.get('/sell', async (req, res) => {
         crypto: messages.crypto,
         quantity: messages.quantity,
         cryptoData: allCoins,
-        status: 'all good',
+        message: 'all good',
       })
   
   /*     return (allCoins); */
@@ -312,7 +312,7 @@ app.get('/sell', async (req, res) => {
     console.error(err)
     res.status(400).json({
       error: err,
-      status: 'failed to work',
+      message: err.message,
     })
   }
 })
@@ -325,15 +325,15 @@ app.post('/sell', async (req, res) => {
     sellData.crypto = req.body.crypto;
     sellData.quantity = req.body.quantity;
     if(sellData.crypto == '' || sellData.quantity == ''){
-        return res.status(400).json({success: false, message: "At least one field is empty"});
+      throw new Error("At least one field is empty");
     }else{
-        return res.json({success: true, message: "sell data post success"});
+      throw new Error("sell data post success");
     }
   }catch(err){
       console.error(err)
       return res.status(400).json({
           error: err,
-          status: 'failed to post sell data',
+          message: err.message,
       })
   }
 })
@@ -350,13 +350,13 @@ app.get('/coinTable', async (req, res) => {
       success: true,
       crypto: messages.crypto,
       quantity: messages.quantity,
-      status: 'all good',
+      message: 'all good',
     })
   } catch (err) {
     console.error(err)
     res.status(400).json({
       error: err,
-      status: 'failed to work',
+      message: 'failed to work',
     })
   }
 })
@@ -414,7 +414,7 @@ app.post('/coinTable', async (req, res) => {
     console.log("Error");
     res.status(400).json({
       error: err,
-      status: 'failed to work',
+      message: 'failed to work',
     })
   } 
 }) 
