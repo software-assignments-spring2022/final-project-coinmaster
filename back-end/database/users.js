@@ -19,6 +19,9 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    coins: [{
+      type: String,
+    }]
     // handle: {
     //   type: String,
     //   required: true,
