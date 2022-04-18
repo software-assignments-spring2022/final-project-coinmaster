@@ -442,6 +442,7 @@ app.post('/register', async (req, res) => {
         }else{
             // try to save the message to the database
             //TODO: hash password
+            var coins = [];
             try {
               const users = await User.find({user_name: user_name})
               if(users.length != 0){
@@ -452,6 +453,7 @@ app.post('/register', async (req, res) => {
                   your_name: your_name,
                   password: password,
                   email: email,
+                  coins: coins,
                 })
                 return res.json({success: true, message: "register info successfully saved to database"});
               }
