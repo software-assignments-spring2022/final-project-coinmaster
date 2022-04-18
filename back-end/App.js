@@ -418,9 +418,6 @@ app.post('/coinTable', async (req, res) => {
 }) 
 
 //REQUESTS FOR REGISTER PAGE
-const users=[];
-current_user = null
-next_id = 0;
  app.get("/", (req, res) => {
     res.send("Home")
  })
@@ -429,7 +426,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cors())
 
-app.post('/register', (req, res) => {
+app.post('/register', async (req, res) => {
     try{
         console.log(req)
         console.log(req.body)
@@ -443,17 +440,28 @@ app.post('/register', (req, res) => {
         }else if(password != confirm_password){
             return res.status(400).json({success: false, message: "passwords do not match"});
         }else{
-            const user = {
-                user_id: next_id,
-                user_name: user_name,
-                your_name: your_name,
-                password: password,
-                email: email,
+            // try to save the message to the database
+            //TODO: hash password
+            try {
+              const users = await User.find({user_name: user_name})
+              if(users.length != 0){
+                return res.status(400).json({ error: err, status: 'failed to save the register info to the database',})
+              }else{
+                const user = await User.create({
+                  user_name: user_name,
+                  your_name: your_name,
+                  password: password,
+                  email: email,
+                })
+                return res.json({success: true, message: "register info successfully saved to database"});
+              }
+            }catch (err) {
+              console.error(err)
+              return res.status(400).json({
+                error: err,
+                status: 'failed to save the register info to the database',
+              })
             }
-            users.push(user)
-            current_user = user.user_id
-            next_id++
-            return res.json({success: true, message: "register success"});
         }
     }catch(err){
         console.error(err)
@@ -465,7 +473,7 @@ app.post('/register', (req, res) => {
 })
 
 //REQUESTS FOR LOGIN PAGE
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
     try{
         console.log(req)
         console.log(req.body)
@@ -475,7 +483,19 @@ app.post("/login", (req, res) => {
             return res.status(400).json({success: false, message: "At least one field is empty"});
         }else{
             //compare with database
-            return res.json({success: true, message: "login success"});
+            const users = await User.find({user_name: user_name})
+            if(users.length != 0){
+              if(users[0].password == password){
+                return res.json({success: true, message: "login success"});
+              }else{
+                return res.status(400).json({success: false, message: "password does not match"});
+              }
+            }else{
+              return res.status(400).json({
+                success: false,
+                message: 'username does not exist',
+            })
+            }
         }
     }catch(err){
         console.error(err)
@@ -485,6 +505,5 @@ app.post("/login", (req, res) => {
         })
     }
 })
-
 
 module.exports = app // CommonJS export style! 
