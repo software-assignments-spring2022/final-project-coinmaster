@@ -20,16 +20,17 @@ const LoginForm = props => {
     };
 
     const handleSubmit = (e) => {
-        try{
+
             e.preventDefault();
             console.log(formData);
             const response = axios.post(
                 `${process.env.REACT_APP_SERVER_HOSTNAME}/login`,
                 formData
-            )
-        }catch (err){
-            console.log(err);
-        }
+            ).catch(function (err) {
+                if (err.response) {
+                  console.log(err.response.data.message);
+                }
+              });
     };
     return (
         <Form className="login-form">

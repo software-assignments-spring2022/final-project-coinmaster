@@ -445,16 +445,15 @@ app.post(
           }),
           check('email', 'email must be valid').isEmail(),
           async (req, res) => {
-            const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-              return res.status(400).json({ errors: errors.array() });
-            }
             try{
+                const errors = validationResult(req);
+                if (!errors.isEmpty()) {
+                  throw new Error(errors.array()[0].msg);
+                }
                 console.log(req.body)
                 const user_name = req.body.user_name
                 const your_name = req.body.your_name
                 const password = req.body.password
-                const confirm_password = req.body.confirm_password
                 const email = req.body.email
                 // try to save the message to the database
                 //TODO: hash password
@@ -467,7 +466,7 @@ app.post(
                 }
                 const users = await User.find({user_name: user_name})
                 if(users.length != 0){
-                  return res.status(400).json({ error: err, status: 'duplicate username',})
+                  throw new Error('duplicate username');
                 }else{
                   const user = await User.create({
                     user_name: user_name,
@@ -483,7 +482,7 @@ app.post(
                 console.error(err)
                 return res.status(400).json({
                     error: err,
-                    status: 'failed to save register info to database',
+                    message: err.message,
                 })
             }
           }     
@@ -495,11 +494,11 @@ app.post(
           check('user_name', 'username is required').notEmpty(),
           check('password', 'password is required').notEmpty(),
           async (req, res) => {
-            const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-              return res.status(400).json({ errors: errors.array() });
-            }
             try{
+              const errors = validationResult(req);
+              if (!errors.isEmpty()) {
+                throw new Error(errors.array()[0].msg);
+              }
                 console.log(req)
                 console.log(req.body)
                 const user_name = req.body.user_name
@@ -510,19 +509,16 @@ app.post(
                   if(users[0].password == password){
                     return res.json({success: true, message: "login success"});
                   }else{
-                    return res.status(400).json({success: false, message: "password does not match"});
+                    throw new Error("incorrect password");
                   }
                 }else{
-                  return res.status(400).json({
-                    success: false,
-                    message: 'username does not exist',
-                })
+                  throw new Error("username does not exist");
                 }
             }catch(err){
                 console.error(err)
                 return res.status(400).json({
                     error: err,
-                    status: 'failed to login',
+                    message: err.message,
                 })
             }
           }

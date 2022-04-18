@@ -11,8 +11,11 @@ const initialFormData = {
     confirm_password: "",
     email: "",
 };
+
+var initialErrorMessage;
 const RegisterForm = props => {
     const [formData, updateFormData] = React.useState(initialFormData);
+    const [errorMessage] = React.useState(initialErrorMessage);
 
     const handleChange = (e) => {
         updateFormData({
@@ -22,25 +25,25 @@ const RegisterForm = props => {
         console.log(formData);
     };
     const handleSubmit = (e) => {
-        try{
             e.preventDefault();
             console.log(formData);
             const response = axios.post(
                 `${process.env.REACT_APP_SERVER_HOSTNAME}/register`,
                 formData
-            )
-        }catch (err){
-            console.log(err);
-        }
+            ).catch(function (err) {
+                if (err.response) {
+                  console.log(err.response.data.message);
+                }
+              });
     };
     return (
         <Form className="register-form">
             <Form.Group className="mb-3">
-                <Form.Label>Name</Form.Label>
+                <Form.Label>Username</Form.Label>
                 <Form.Control name="user_name" placeholder="Enter your name" onChange={handleChange}/>
             </Form.Group>
             <Form.Group className="mb-3">
-                <Form.Label>Username</Form.Label>
+                <Form.Label>Your Name</Form.Label>
                 <Form.Control name="your_name" placeholder="Enter your username" onChange={handleChange}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
