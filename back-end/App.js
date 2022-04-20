@@ -4,6 +4,8 @@ const morgan = require('morgan') // middleware for nice logging of incoming HTTP
 const cors = require('cors') // middleware for enabling CORS (Cross-Origin Resource Sharing) requests.
 const bodyParser = require("body-parser"); // parsing posted json body
 const mongoose = require('mongoose')
+bcrypt = require('bcrypt'),
+SALT_WORK_FACTOR = 10;
 
 //Using Coinlib API, setting API key 
 //const Coinlib = require('coinlib-api');
@@ -453,10 +455,9 @@ app.post(
                 console.log(req.body)
                 const user_name = req.body.user_name
                 const your_name = req.body.your_name
-                const password = req.body.password
+                var password = req.body.password
                 const email = req.body.email
                 // try to save the message to the database
-                //TODO: hash password
                 var coins = [];
                 var stats = {
                   net_profit: 0,
@@ -468,10 +469,12 @@ app.post(
                 if(users.length != 0){
                   throw new Error("duplicate username");
                 }else{
+                  const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
+                  const hashed_password = await bcrypt.hash(password,salt);
                   const user = await User.create({
                     user_name: user_name,
                     your_name: your_name,
-                    password: password,
+                    password: hashed_password,
                     email: email,
                     coins: coins,
                     stats: stats,
@@ -506,7 +509,8 @@ app.post(
                 //compare with database
                 const users = await User.find({user_name: user_name})
                 if(users.length != 0){
-                  if(users[0].password == password){
+                  const result = await bcrypt.compare(password, users[0].password)
+                  if(result){
                     return res.json({success: true, message: "login success"});
                   }else{
                     throw new Error("incorrect password");
