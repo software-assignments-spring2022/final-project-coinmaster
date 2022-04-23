@@ -78,15 +78,6 @@ export default function CoinPage() {
   }, []) // putting a blank array as second argument will cause this function to run only once when component first loads
   
 
-
-
-
-
-
-
-
-
-
   return (
     <div>
       <div className="App">
