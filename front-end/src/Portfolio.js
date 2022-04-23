@@ -14,6 +14,11 @@ function Portfolio(props) {
   const [yearHigh, setYearHigh] = useState("9.23%");
   const [accountAge, setAccountAge] = useState("6 years");
 
+  function handleLogout() {
+    console.log('User is logged out.');
+  }
+
+
   return (
     <div>
 
@@ -30,7 +35,7 @@ function Portfolio(props) {
       <Link to="/sell">
           <button className="btn btn-dark btn-lg">Sell</button>
       </Link>
-
+      <button onClick={handleLogout}>logout</button>
 
     </div>
   );

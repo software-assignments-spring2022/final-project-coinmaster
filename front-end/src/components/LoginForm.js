@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 const initialFormData = Object.freeze({
     user_name: "",
     password: "",
+    loginState: new Boolean(false),
 });
 const LoginForm = props => {
     const [formData, updateFormData] = React.useState(initialFormData);
@@ -19,8 +20,13 @@ const LoginForm = props => {
         console.log(formData);
     };
 
+    const handleLogout = () => {
+        console.log("User is logged out.")
+      };
+
     const handleSubmit = (e) => {
             e.preventDefault();
+            formData.loginState = true
             console.log(formData);
             const response = axios.post(
                 `${process.env.REACT_APP_SERVER_HOSTNAME}/login`,
@@ -62,6 +68,15 @@ const LoginForm = props => {
                 }
               });
     };
+
+    if (formData.loginState==true) {
+        return (
+          <div>
+            loggged in
+            <button onClick={handleLogout}>logout</button>
+          </div>
+        );
+      }
     return (
         <Form className="login-form">
             <Form.Group className="mb-3">
