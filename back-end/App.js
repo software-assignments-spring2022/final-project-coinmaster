@@ -104,6 +104,9 @@ app.get('/messages', async (req, res) => {
 app.get('/portfolio', async (req, res) => {
   try {
 
+
+    console.log(currentUser);
+
     const messages = "this is from express - portfolio! (Demonstartion of Back-End Connection - Awaiting Database)"
 
     const response = await Portfolio.find({})      // depending on which you need
@@ -501,7 +504,9 @@ app.post(
                 })
             }
           }     
-        )
+)
+        
+let currentUser = "logged-out";
 
 //REQUESTS FOR LOGIN PAGE
 app.post(
@@ -522,7 +527,8 @@ app.post(
                 const users = await User.find({user_name: user_name})
                 if(users.length != 0){
                   const result = await bcrypt.compare(password, users[0].password)
-                  if(result){
+                  if (result) {
+                    currentUser = user_name;
                     return res.json({success: true, message: "login success"});
                   }else{
                     throw new Error("incorrect password");
