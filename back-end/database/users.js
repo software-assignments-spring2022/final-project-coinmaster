@@ -22,7 +22,7 @@ const userSchema = new Schema(
     },
     coins: [{
       symbol:{type: String,required: true},
-      quantity:{type: String,required: true}
+      quantity:{type: Number,required: true}
     }],
     stats: {
       type: [{
@@ -31,7 +31,13 @@ const userSchema = new Schema(
         fifty_two_week_high: {type: Number, required: true},
         account_age: {type: Number, required: true},
       }]
-    }
+    },
+    transactions: [{
+      symbol:{type: String,required: true},
+      price:{type: Number,required: true},
+      quantity:{type: Number,required: true},
+      timestamp:{type: Date, default: Date.now, required: true},
+    }],
 
     // handle: {
     //   type: String,

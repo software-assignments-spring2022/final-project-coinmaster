@@ -390,13 +390,14 @@ app.post(
                 var password = req.body.password
                 const email = req.body.email
                 // try to save the message to the database
-                var coins = [];
+                var coins = []
                 var stats = {
                   net_profit: 0,
                   all_time_high: 0,
                   fifty_two_week_high: 0,
                   account_age: 0,
                 }
+                var transactions = []
                 const users = await User.find({user_name: user_name})
                 if(users.length != 0){
                   throw new Error("duplicate username");
@@ -410,6 +411,7 @@ app.post(
                     email: email,
                     coins: coins,
                     stats: stats,
+                    transactions: transactions,
                   })
                   return res.json({success: true, message: "register info successfully saved to database"});
                 }
