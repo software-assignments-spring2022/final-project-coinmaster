@@ -6,12 +6,9 @@ const bodyParser = require("body-parser"); // parsing posted json body
 const mongoose = require('mongoose')
 bcrypt = require('bcrypt'),
 SALT_WORK_FACTOR = 10;
+let currentUser = "logged-out";
 
-//Using Coinlib API, setting API key 
-//const Coinlib = require('coinlib-api');
 const { default: axios } = require('axios');
-//const CoinlibClient = new Coinlib("c547247f9214255e");
-//CoinlibClient.setKey("c547247f9214255e");
 
 const app = express() // instantiate an Express object
 app.use(morgan('dev', { skip: (req, res) => process.env.NODE_ENV === 'test' })) // log all incoming requests, except when in unit test mode.  morgan has a few logging default styles - dev is a nice concise color-coded style
@@ -34,56 +31,10 @@ const { User } = require('./database/users')
 //express validator
 const { check, validationResult } = require('express-validator');
 
-// USE THIS TO FIND FROM DATABSE - PUT IN CURLY BRASES IF YOU WANT TO FIND A SPECIFIC THING
-// THESE MUST BE IN A ASYNC FUNCTION
-app.get('/getFromDatabaseExample', async (req, res) => {
-  // load all messages from database
-  try {
-    const coins = await Portfolio.find({})      // depending on which you need
-    const users = await User.find({})           // depending on which you need
-    res.json({
-
-      // USING WHAT YOU WANT TO SEND BACK AS JSON FROM DATABASE (ex. change messages to coins / users)
-      messages: messages,
-      message: 'all good',
-    })
-  } catch (err) {
-    console.error(err)
-    res.status(400).json({
-      error: err,
-      message: 'failed to retrieve messages from the database',
-    })
-  }
-})
-
-app.post('/getFromDatabaseExample/save', async (req, res) => {
-  // try to save the message to the database
-  try {
-
-    // USING WHAT YOU WANT TO ADD BACK AS JSON FROM DATABASE (ex. change messages to coins / users) (Pick what you need to Create)
-    // SHOULD BE SAME AS SCHEMA THAT YOU CREATE
-    // const User = await User.create({
-    const coins = await Portfolio.create({
-      name: req.body.name,
-      message: req.body.message,
-    })
-    return res.json({
-      message: message, // return the message we just saved
-      message: 'all good',
-    })
-  } catch (err) {
-    console.error(err)
-    return res.status(400).json({
-      error: err,
-      message: 'failed to save the message to the database',
-    })
-  }
-})
 
 
 app.get('/messages', async (req, res) => {
   try {
-      
 
       const messages = "this is from express - messages!"
       res.json({
@@ -103,14 +54,15 @@ app.get('/messages', async (req, res) => {
 //REQUESTS FOR PORTFOLIO PAGE
 app.get('/portfolio', async (req, res) => {
   try {
-
-
     console.log(currentUser);
 
     const messages = "this is from express - portfolio! (Demonstartion of Back-End Connection - Awaiting Database)"
 
-    const response = await Portfolio.find({})      // depending on which you need
-
+    //if there is a user logged in, then show their coin portfolio 
+    if(currentUser.toString()!=="logged-out"){
+      const user = await User.findOne({user_name: currentUser});
+      const response = user.coins;
+    
     console.log(response);
 
     const allCoins = [];
@@ -119,7 +71,7 @@ app.get('/portfolio', async (req, res) => {
 
       const coinObj = {
         symbol: coin.symbol,
-        buyPrice: coin.buyPrice,
+        buyPrice: 100,
         quantity: coin.quantity,
       }
      
@@ -130,6 +82,7 @@ app.get('/portfolio', async (req, res) => {
     console.log(allCoins)
 
     res.json(allCoins)
+  }
     
   } catch (err) {
     console.error(err)
@@ -140,44 +93,6 @@ app.get('/portfolio', async (req, res) => {
   }
 })
 
-
-
-/* const apiFunction = async () => {
-  await axios
-  .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
-  .then(function (response){
-
-    const allCoins = [];
-    const coinNames = [];
-
-    response.data.coins.forEach(coin=>{
-      const coinObj = {
-        symbol: coin.symbol,
-        name: coin.name,
-        price: coin.price,
-        rank: coin.rank,
-        marketCap: coin.market_cap
-      }
-     
-      allCoins.push(coinObj);
-      coinNames.push(coinObj.name+", "+coinObj.symbol);
-      
-    })
-
-    console.log(coinNames);
-    const messages = allCoins;
-
-    const toReturn = {
-      allCoins: allCoins,
-      coinNames: coinNames
-    }
-
-    return (allCoins);
-  }) 
-  .catch(function (err){
-    console.log("axios error");
-  })
-} */
 
 const cryptoData = [
   { symbol: "WAITING", name: "Ethereum", rank: 2, price: "0.078420138035523", market_cap: "7847729.8474137"},
@@ -193,6 +108,7 @@ let buyData = {
 
 app.get('/buy', async (req, res) => {
   try {
+    console.log(currentUser);
     await axios
     //.get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
     .get("https://coinlib.io/api/v1/coin?key=1ba60195f39ff3a1&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
@@ -215,14 +131,7 @@ app.get('/buy', async (req, res) => {
         
       })
   
-      //console.log(coinNames);
       console.log(allCoins);
- /*     const messages = allCoins;
-  
-       const toReturn = {
-        allCoins: allCoins,
-        coinNames: coinNames
-      } */
 
       const messages = buyData;
       res.json({
@@ -233,7 +142,6 @@ app.get('/buy', async (req, res) => {
         message: 'all good',
       })
   
-  /*     return (allCoins); */
     }) 
     .catch(function (err){
       console.log("axios error");
@@ -250,13 +158,17 @@ app.get('/buy', async (req, res) => {
 
 app.post('/buy', async (req, res) => {
   try{
-    console.log(req)
-    console.log(req.body)
+
     buyData.crypto = req.body.crypto;
     buyData.quantity = req.body.quantity;
     if(buyData.crypto == '' || buyData.quantity == ''){
       throw new Error("At least one field is empty");
     }else{
+      const user = {user_name: currentUser}
+      const newCoin= {symbol:buyData.crypto, quantity: buyData.quantity}
+      console.log(user);
+      //find the user in database and update their coin array to include new purchase 
+      await User.findOneAndUpdate(user, {$push: {coins:newCoin}}, {new:true})
       return res.json({success: true, message: "buy data post success"});
     }
   }catch(err){
@@ -276,7 +188,7 @@ let sellData = {
   cryptoData: cryptoData
 };
 
-app.get('/sell', async (req, res) => {          // JINU JINJU JINJU PLEASE DONT CHNAGE THIS RN
+app.get('/sell', async (req, res) => {        
   try {
 
     await axios
@@ -301,14 +213,7 @@ app.get('/sell', async (req, res) => {          // JINU JINJU JINJU PLEASE DONT 
         
       })
   
-      //console.log(coinNames);
       console.log(allCoins);
- /*     const messages = allCoins;
-  
-       const toReturn = {
-        allCoins: allCoins,
-        coinNames: coinNames
-      } */
 
       const messages = sellData;
       res.json({
@@ -318,8 +223,6 @@ app.get('/sell', async (req, res) => {          // JINU JINJU JINJU PLEASE DONT 
         cryptoData: allCoins,
         message: 'all good',
       })
-  
-  /*     return (allCoins); */
     }) 
     .catch(function (err){
       console.log("axios error");
@@ -337,13 +240,27 @@ app.get('/sell', async (req, res) => {          // JINU JINJU JINJU PLEASE DONT 
 
 app.post('/sell', async (req, res) => {
   try{
-    console.log(req)
-    console.log(req.body)
     sellData.crypto = req.body.crypto;
     sellData.quantity = req.body.quantity;
     if(sellData.crypto == '' || sellData.quantity == ''){
       throw new Error("At least one field is empty");
     }else{
+
+      const user = await User.findOne({user_name:currentUser});
+       console.log("User coins: ",user.coins);
+
+       //if the user has the coin they want to sell, and if they have sufficient quantity, update the quantity
+       user.coins.forEach(c=>{
+         if(c.symbol===sellData.crypto){
+           if(c.quantity>=sellData.quantity){
+             c.quantity= c.quantity - sellData.quantity;
+           }
+         }
+       })
+       
+       user.save();
+       console.log("updated coins: ", user.coins);
+
       return res.json({success: true, message: "sell data post success"});
     }
   }catch(err){
@@ -467,7 +384,7 @@ app.post(
                 if (!errors.isEmpty()) {
                   throw new Error(errors.array()[0].msg);
                 }
-                console.log(req.body)
+                //console.log(req.body)
                 const user_name = req.body.user_name
                 const your_name = req.body.your_name
                 var password = req.body.password
@@ -506,7 +423,7 @@ app.post(
           }     
 )
         
-let currentUser = "logged-out";
+
 
 //REQUESTS FOR LOGIN PAGE
 app.post(
@@ -519,8 +436,6 @@ app.post(
               if (!errors.isEmpty()) {
                 throw new Error(errors.array()[0].msg);
               }
-                console.log(req)
-                console.log(req.body)
                 const user_name = req.body.user_name
                 const password = req.body.password
                 //compare with database
@@ -529,7 +444,7 @@ app.post(
                   const result = await bcrypt.compare(password, users[0].password)
                   if (result) {
                     currentUser = user_name;
-                    return res.json({success: true, message: "login success"});
+                    return res.json({success: true, message: "login success", user_name: user_name});
                   }else{
                     throw new Error("incorrect password");
                   }

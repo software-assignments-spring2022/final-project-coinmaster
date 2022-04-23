@@ -21,18 +21,8 @@ const userSchema = new Schema(
       required: true,
     },
     coins: [{
-      symbol:{
-        type: String,
-        required: true,
-      },
-      buyPrice:{
-        type: String,
-        required: true,
-      },
-      Quantity:{
-        type: String,
-        required: true,
-      }
+      symbol:{type: String,required: true},
+      quantity:{type: String,required: true}
     }],
     stats: {
       type: [{
