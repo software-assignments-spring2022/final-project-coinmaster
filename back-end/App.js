@@ -31,51 +31,6 @@ const { User } = require('./database/users')
 //express validator
 const { check, validationResult } = require('express-validator');
 
-// USE THIS TO FIND FROM DATABSE - PUT IN CURLY BRASES IF YOU WANT TO FIND A SPECIFIC THING
-// THESE MUST BE IN A ASYNC FUNCTION
-app.get('/getFromDatabaseExample', async (req, res) => {
-  // load all messages from database
-  try {
-    const coins = await Portfolio.find({})      // depending on which you need
-    const users = await User.find({})           // depending on which you need
-    res.json({
-
-      // USING WHAT YOU WANT TO SEND BACK AS JSON FROM DATABASE (ex. change messages to coins / users)
-      messages: messages,
-      message: 'all good',
-    })
-  } catch (err) {
-    console.error(err)
-    res.status(400).json({
-      error: err,
-      message: 'failed to retrieve messages from the database',
-    })
-  }
-})
-
-app.post('/getFromDatabaseExample/save', async (req, res) => {
-  // try to save the message to the database
-  try {
-
-    // USING WHAT YOU WANT TO ADD BACK AS JSON FROM DATABASE (ex. change messages to coins / users) (Pick what you need to Create)
-    // SHOULD BE SAME AS SCHEMA THAT YOU CREATE
-    // const User = await User.create({
-    const coins = await Portfolio.create({
-      name: req.body.name,
-      message: req.body.message,
-    })
-    return res.json({
-      message: message, // return the message we just saved
-      message: 'all good',
-    })
-  } catch (err) {
-    console.error(err)
-    return res.status(400).json({
-      error: err,
-      message: 'failed to save the message to the database',
-    })
-  }
-})
 
 
 app.get('/messages', async (req, res) => {
