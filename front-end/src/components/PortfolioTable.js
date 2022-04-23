@@ -34,7 +34,7 @@ function PortfolioTable(props) {
                 {props.data.map((crypto, index) => (  
                 <Tr data-index={index} onClick = {select}>  
                     <Td id='symbol'>{crypto.symbol}</Td>  
-                    <Td>{crypto.buyPrice}</Td>
+                    {/* <Td>{crypto.buyPrice}</Td> */}                  
                     <Td>{crypto.quantity}</Td>   
                 </Tr>  
                 ))}  

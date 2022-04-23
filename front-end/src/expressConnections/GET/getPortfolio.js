@@ -14,7 +14,7 @@ const GetPortfolio = () => {
   const [error, setError] = useState('')
   const [feedback, setFeedback] = useState('')
   const [cryptoTableData, setCryptoTableData]  = useState([])
-  const [tableColumns, setTableColumns] = useState(["SYMBOL", "BUY PRICE", "QUANTITY"])
+  const [tableColumns, setTableColumns] = useState(["SYMBOL",/*  "BUY PRICE", */ "QUANTITY"])
 
   /**
    * A nested function that fetches messages from the back-end server.
@@ -36,7 +36,7 @@ const GetPortfolio = () => {
         messages.map((element) => {
           cryptoTableData.push ({
             symbol: element.symbol,
-            buyPrice: element.buyPrice,
+            //buyPrice: element.buyPrice,
             quantity: element.quantity,
           })
         })
