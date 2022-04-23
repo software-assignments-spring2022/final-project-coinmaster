@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
+import PortfolioTable from "../../components/PortfolioTable"
+
 /**
  * A React component that shows a form the user can use to create a new message, as well as a list of any pre-existing messages.
  * @param {*} param0 an object holding any props passed to this component from its parent component
@@ -11,6 +13,8 @@ const GetPortfolio = () => {
   const [loaded, setLoaded] = useState(false)
   const [error, setError] = useState('')
   const [feedback, setFeedback] = useState('')
+  const [cryptoTableData, setCryptoTableData]  = useState([])
+  const [tableColumns, setTableColumns] = useState(["SYMBOL", "BUY PRICE", "QUANTITY"])
 
   /**
    * A nested function that fetches messages from the back-end server.
@@ -22,8 +26,25 @@ const GetPortfolio = () => {
       .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/portfolio`)
       .then(response => {
         // axios bundles up all response data in response.data property
-        const messages = response.data.messages
-        setMessages(messages)
+ 
+        const messages = response.data
+
+        let cryptoTableData = [];
+
+        // element.changeTHIS (to what we end up calling these things)
+    
+        messages.map((element) => {
+          cryptoTableData.push ({
+            symbol: element.symbol,
+            buyPrice: element.buyPrice,
+            quantity: element.quantity,
+          })
+        })
+
+        console.log(cryptoTableData);
+
+        setCryptoTableData(cryptoTableData);
+        //setMessages(messages)
       })
       .catch(err => {
         setError(err)
@@ -53,12 +74,12 @@ const GetPortfolio = () => {
 
   return (
     <>
-      
+          
       <br></br>
       <br></br>
       <br></br>
 
-      {messages}
+      <PortfolioTable data={cryptoTableData} columns={tableColumns}/>
     </>
   )
 }

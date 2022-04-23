@@ -81,21 +81,14 @@ app.post('/getFromDatabaseExample/save', async (req, res) => {
 })
 
 
-
-
-
-
-
-
-
-
-
 app.get('/messages', async (req, res) => {
-    try {
+  try {
+      
+
       const messages = "this is from express - messages!"
       res.json({
         success: true,
-        messages: messages,
+        yourCoins: yourCoins,
         message: 'all good',
       })
     } catch (err) {
@@ -110,12 +103,31 @@ app.get('/messages', async (req, res) => {
 //REQUESTS FOR PORTFOLIO PAGE
 app.get('/portfolio', async (req, res) => {
   try {
+
     const messages = "this is from express - portfolio! (Demonstartion of Back-End Connection - Awaiting Database)"
-    res.json({
-      success: true,
-      messages: messages,
-      message: 'all good',
+
+    const response = await Portfolio.find({})      // depending on which you need
+
+    console.log(response);
+
+    const allCoins = [];
+
+    response.forEach(coin => {
+
+      const coinObj = {
+        symbol: coin.symbol,
+        buyPrice: coin.buyPrice,
+        quantity: coin.quantity,
+      }
+     
+      allCoins.push(coinObj);
+
     })
+
+    console.log(allCoins)
+
+    res.json(allCoins)
+    
   } catch (err) {
     console.error(err)
     res.status(400).json({
@@ -261,7 +273,7 @@ let sellData = {
   cryptoData: cryptoData
 };
 
-app.get('/sell', async (req, res) => {
+app.get('/sell', async (req, res) => {          // JINU JINJU JINJU PLEASE DONT CHNAGE THIS RN
   try {
 
     await axios

@@ -2,7 +2,6 @@ import "./Portfolio.css";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-
 function Portfolio(props) {
   const [ownedCryptos, setOwnedCryptos] = useState([
     ["1", "Lorem", "$100.00", "$100M"],

@@ -3,11 +3,15 @@ const Schema = mongoose.Schema
 
 const portfolioSchema = new Schema(
   {
-    name: {
+    symbol: {
       type: String,
       required: true,
     },
-    message: {
+    buyPrice: {
+      type: String,
+      required: true,
+    },
+    quantity: {
       type: String,
       required: true,
     },

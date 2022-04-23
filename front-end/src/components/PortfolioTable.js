@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
-function CryptoTable(props) {
+function PortfolioTable(props) {
     var coin = "";
     const select = (Tr) => {
         const curr = Tr.currentTarget;
@@ -34,10 +34,8 @@ function CryptoTable(props) {
                 {props.data.map((crypto, index) => (  
                 <Tr data-index={index} onClick = {select}>  
                     <Td id='symbol'>{crypto.symbol}</Td>  
-                    <Td>{crypto.name}</Td>  
-                    <Td>{crypto.rank}</Td>  
-                    <Td>{crypto.price}</Td>
-                    <Td>{crypto.market_cap}</Td>   
+                    <Td>{crypto.buyPrice}</Td>
+                    <Td>{crypto.quantity}</Td>   
                 </Tr>  
                 ))}  
             </Tbody>
@@ -46,4 +44,4 @@ function CryptoTable(props) {
     )
 }
 
-export default CryptoTable;
+export default PortfolioTable;
