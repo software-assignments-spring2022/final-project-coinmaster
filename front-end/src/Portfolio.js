@@ -19,8 +19,9 @@ function Portfolio(props) {
 
       <br></br>
       <GetPortfolio />
-      <Porfolio />
-      
+
+
+      {/* <Porfolio /> */}
       
       <Link to="/buy">
           <button className="btn btn-dark btn-lg">Buy</button>
