@@ -3,6 +3,8 @@ import "./App.css";
 import GetSell from "./expressConnections/GET/getSell";
 import SellForm from "./expressConnections/POST/sellForm";
 
+import Portfolio from "./expressConnections/GET/getPortfolio"
+
 import CryptoTable from "./components/CryptoTable"
 
 
@@ -18,6 +20,9 @@ export default function CoinPage() {
       <br></br>
 
       <SellForm />
+
+      <Portfolio/>
+
       <GetSell />
 
     </div>
