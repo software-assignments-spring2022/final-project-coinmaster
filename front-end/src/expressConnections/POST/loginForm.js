@@ -17,11 +17,12 @@ const LoginForm = props => {
         ...formData,
         [e.target.name]: e.target.value.trim()
         });
-        console.log(formData);
+        //console.log(formData);
     };
 
     const handleLogout = () => {
         console.log("User is logged out.")
+        localStorage.setItem('user', undefined)
       };
 
     const handleSubmit = (e) => {
@@ -37,11 +38,9 @@ const LoginForm = props => {
                     document.querySelectorAll(".warning").forEach(curr => {
                         curr.classList.add("hidden")
                     })
-                   
-                   localStorage.setItem('user', response.data.user)
-                   console.log(response.data)
-
-                    //window.location.href = '/portfolio'
+                                      
+                   localStorage.setItem('user', response.data.user[0])
+                    window.location.href = '/portfolio'
                } 
             })
             .catch(function (err) {

@@ -34,7 +34,7 @@ const RegisterForm = props => {
                     document.querySelectorAll(".warning").forEach(curr => {
                         curr.classList.add("hidden")
                     })
-                    window.location.href = '/portfolio'
+                    window.location.href = '/login'
                 } 
              })
             .catch(function (err) {
