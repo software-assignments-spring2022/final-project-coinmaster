@@ -445,8 +445,11 @@ app.post(
                 if(users.length != 0){
                   const result = await bcrypt.compare(password, users[0].password)
                   if (result) {
-                    currentUser = user_name;
-                    return res.json({success: true, message: "login success", user_name: user_name});
+
+                    console.log(users);
+                    //currentUser = user_name;
+                    //return res.json({success: true, message: "login success", user_name: user_name});
+                    return res.json({success: true, message: "login success", user: users});
                   }else{
                     throw new Error("incorrect password");
                   }

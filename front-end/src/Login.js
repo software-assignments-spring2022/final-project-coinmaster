@@ -1,6 +1,6 @@
 import "./components/screens/Login/Login.css";
 import { Link } from "react-router-dom";
-import LoginForm from "./components/LoginForm.js"
+import LoginForm from "./expressConnections/POST/loginForm"
 
 const Login = props => {
     return (

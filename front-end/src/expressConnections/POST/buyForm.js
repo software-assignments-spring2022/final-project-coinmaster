@@ -10,7 +10,10 @@ const BuyForm = ({ setError, setFeedback, addMessageToList }) => {
   // create a state variable for each form field
   const [crypto, setName] = useState('')
   const [quantity, setMessage] = useState('')
-
+  const [user, setUser] = useState(localStorage.getItem("user"))
+  const [email, setEmail] = useState(localStorage.getItem("user").email)
+  const [username, setUsername] = useState(localStorage.getItem("user").user_name)
+  const [realName, setrealName] = useState(localStorage.getItem("user").your_name)
   /**
    * A nested function that is called when the user submits the form to save a new Message.
    * @param {*} e
