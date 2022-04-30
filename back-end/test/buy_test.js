@@ -2,6 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../app');
 const should = chai.should();
+const expect = chai.expect;
 chai.use(chaiHttp);
 
 describe('post request to buy data with all fields', () => { 
@@ -34,12 +35,9 @@ describe('post request to buy data with empty fields', () => {
         chai.request(server) 
         .post('/buy') 
         .send(test_buy)
-        .end((err, res) => { 
-            res.should.have.status(400); 
+        .end((err, res) => {
             res.body.should.be.a("object") 
-            res.body.should.have.property("success")
-            res.body.success.should.eql(false) 
-            res.body.message.should.eql("At least one field is empty") 
+            expect(res).to.have.status(400) 
             done() 
         })
     })
