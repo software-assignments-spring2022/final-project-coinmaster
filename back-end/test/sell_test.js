@@ -26,6 +26,21 @@ chai.use(chaiHttp);
 // })
 
 
+describe('get request to sell data', () => { 
+    it('it should successfully get sell page receive a http 200 status code', (done) => {
+        chai.request(server) 
+        .get('/sell') 
+        .end((err, res) => { 
+            res.should.have.status(200); 
+            res.body.should.be.a("object") 
+            res.body.should.have.property("success")
+            res.body.success.should.eql(true) 
+            res.body.message.should.eql("all good") 
+            done() 
+        })
+    })
+})
+
 describe('post request to sell data with empty fields', () => { 
     it('it should successfully post the empty crypto and quantity to backend and receive a http 400 status code', (done) => {
         const test_sell = {
