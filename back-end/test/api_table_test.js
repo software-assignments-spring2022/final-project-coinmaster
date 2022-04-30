@@ -1,9 +1,9 @@
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-const server = require('../app');
-const should = chai.should();
-const expect = chai.expect;
-chai.use(chaiHttp);
+// const chai = require('chai');
+// const chaiHttp = require('chai-http');
+// const server = require('../app');
+// const should = chai.should();
+// const expect = chai.expect;
+// chai.use(chaiHttp);
 
 // TESTING FROM BUY ROUTE
 // describe('get request to get API data with all fields from API', () => { 
