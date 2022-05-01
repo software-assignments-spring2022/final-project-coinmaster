@@ -48,6 +48,9 @@ app.post('/portfolio', async (req, res) => {
     
     console.log(response);
 
+    if(response.length!==0){
+
+    
     const allCoins = [];
     response.forEach(coin => {
       const coinObj = {
@@ -62,12 +65,13 @@ app.post('/portfolio', async (req, res) => {
     console.log(allCoins)
     res.json(allCoins)
   }
+  }
     
   } catch (err) {
     console.error(err)
     res.status(400).json({
       error: err,
-      message: 'failed to work',
+      message: err.message,
     })
   }
 })
@@ -89,8 +93,8 @@ app.get('/buy', async (req, res) => {
   try {
     //console.log(currentUser);
     await axios
-    //.get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
-    .get("https://coinlib.io/api/v1/coin?key=1ba60195f39ff3a1&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    // .get("https://coinlib.io/api/v1/coin?key=1ba60195f39ff3a1&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
     .then(function (response){
   
       const allCoins = [];
@@ -204,8 +208,8 @@ app.get('/sell', async (req, res) => {
   try {
 
     await axios
-    //.get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
-    .get("https://coinlib.io/api/v1/coin?key=1ba60195f39ff3a1&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    // .get("https://coinlib.io/api/v1/coin?key=1ba60195f39ff3a1&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
     .then(function (response){
   
       const allCoins = [];
@@ -269,12 +273,17 @@ app.post('/sell', async (req, res) => {
          if(c.symbol===sellData.crypto){
            if(c.quantity>=sellData.quantity){
              c.quantity= c.quantity - sellData.quantity;
+             //delete coin from array if they sell all units
+             if(c.quantity===0){
+               user.coins.remove(c);
+             }
              validQuantity = true;
            }
            validCoin= true;
          }
        })
 
+       //send front-end success/failure messages
        if(validCoin===true){
          if(validQuantity===true){
            user.save();

@@ -25,7 +25,7 @@ describe('get request to get API data with all fields from API', () => {
             res.body.should.have.property("quantity")
             res.body.should.have.property("cryptoData")
             res.body.success.should.eql(true)
-            expect(res.body.cryptoData).to.be.an('array');
+            expect(res.body.cryptoData).to.be.an('array')
             done() 
         })
     })
@@ -51,7 +51,7 @@ describe('get request to get API data with all fields from API', () => {
             res.body.should.have.property("quantity")
             res.body.should.have.property("cryptoData")
             res.body.success.should.eql(true)
-            expect(res.body.cryptoData).to.be.an('array');
+            expect(res.body.cryptoData).to.be.an('array')
             done() 
         })
     })
