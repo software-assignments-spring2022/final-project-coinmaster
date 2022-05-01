@@ -13,8 +13,6 @@ describe('get request to buy data', () => {
             res.should.have.status(200); 
             res.body.should.be.a("object") 
             res.body.should.have.property("success")
-            res.body.should.have.property("crypto")
-            res.body.should.have.property("quantity")
             res.body.should.have.property("message")
             res.body.success.should.eql(true) 
             res.body.message.should.eql("all good")
