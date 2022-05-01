@@ -32,25 +32,6 @@ const { User } = require('./database/users')
 const { check, validationResult } = require('express-validator');
 
 
-
-/* app.get('/messages', async (req, res) => {
-  try {
-
-      const messages = "this is from express - messages!"
-      res.json({
-        success: true,
-        yourCoins: yourCoins,
-        message: 'all good',
-      })
-    } catch (err) {1` 
-      console.error(err)
-      res.status(400).json({
-        error: err,
-        message: 'failed to work',
-      })
-    }
-})
- */
 //REQUESTS FOR PORTFOLIO PAGE
 app.post('/portfolio', async (req, res) => {
   try {
