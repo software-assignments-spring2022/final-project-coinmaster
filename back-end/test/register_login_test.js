@@ -193,16 +193,16 @@ describe('post request to login page with all fields', () => {
 
 // //portfolio
 // TESTING FROM PORTFOLIO ROUTE
-describe('get request to portfolio page', () => { 
-    it('it should successfully get the message from backend on portfolio route and receive a http 200 status code', (done) => {
-        chai.request(server) 
-        .get('/portfolio') 
-        .end((err, res) => { 
-            res.should.have.status(200);
-            done() 
-        })
-    })
-})
+// describe('get request to portfolio page', () => { 
+//     it('it should successfully get the message from backend on portfolio route and receive a http 200 status code', (done) => {
+//         chai.request(server) 
+//         .get('/portfolio') 
+//         .end((err, res) => { 
+//             res.should.have.status(200);
+//             done() 
+//         })
+//     })
+// })
 
 
 describe('post request to login page with empty username', () => { 
