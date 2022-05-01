@@ -1,5 +1,6 @@
 import '../../css/LoginForm.css';
-import React, { useState } from 'react';
+import React from 'react';
+import {useState,  useEffect} from 'react';
 import axios from "axios";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -22,7 +23,14 @@ const LoginForm = props => {
 
     const handleLogout = () => {
         console.log("User is logged out.")
-        localStorage.setItem('user', undefined)
+
+            // SHOULD LOG OUT BE HERE?
+
+            localStorage.removeItem('user')
+            localStorage.removeItem('email')
+            localStorage.removeItem('user_name')
+            localStorage.removeItem('your_name')
+            localStorage.removeItem('loggedIn')
       };
 
     const handleSubmit = (e) => {
@@ -39,7 +47,12 @@ const LoginForm = props => {
                         curr.classList.add("hidden")
                     })
                                       
-                   localStorage.setItem('user', response.data.user[0])
+                   localStorage.setItem('user', response.data.user[0].user)
+                   localStorage.setItem('email', response.data.user[0].email)
+                   localStorage.setItem('user_name', response.data.user[0].user_name)
+                   localStorage.setItem('your_name', response.data.user[0].your_name)
+                   localStorage.setItem('loggedIn', true)
+ 
                     window.location.href = '/portfolio'
                } 
             })
