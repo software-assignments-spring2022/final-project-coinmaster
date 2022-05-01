@@ -25,7 +25,7 @@ mongoose
   .catch(err => console.error(`Failed to connect to MongoDB: ${err}`))
 
 // load the dataabase models we want to deal with
-const { Portfolio } = require('./database/Portfolio')
+// const { Portfolio } = require('./database/Portfolio')
 const { User } = require('./database/users')
 
 //express validator
