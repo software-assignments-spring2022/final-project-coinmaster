@@ -32,16 +32,14 @@ function Navbar(props) {
   <div id="sidebarMenu">
         <ul class="sidebarMenuInner">
 
-          {!loggedIn && <li><a href="/login">Login</a></li>}
+      {!loggedIn && <li><a href="/login">Login</a></li>}
+      {loggedIn && <li>Welcome {user_name}!</li>}
           
-          {!loggedIn && <li><a href="/login">Login</a></li>}   
-          {loggedIn && <li>Welcome {user_name}!</li>}
-
-      <li><a href="/coins">Coins</a></li>
-      <li><a href="/compare">Compare</a></li>
+      {loggedIn && <li><a href="/portfolio">Portfolio</a></li>}
+      {loggedIn && <li><a href="/buy">Buy</a> / <a href="/sell">Sell</a> </li>}
+      <li><a href="/coins">All Coins</a></li>
+      <li><a href="/compare">Compare Coins</a></li>
       <li><a href="/learn">Learn</a></li>
-      <li><a href="/portfolio">Portfolio</a></li>
-          
       {loggedIn && <li><a href="/logout">Logout</a></li>}
           
     </ul>
