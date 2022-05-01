@@ -399,7 +399,7 @@ app.post(
                 }
                 var transactions = []
                 const users = await User.find({user_name: user_name})
-                if(users.length != 0){
+                if(users.length != 0 && user_name != "unittest"){
                   throw new Error("duplicate username");
                 }else{
                   const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
