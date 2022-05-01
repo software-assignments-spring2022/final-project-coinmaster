@@ -179,7 +179,23 @@ app.post('/buy', async (req, res) => {
       if(validCoin===true){
         //find the user in database and update their coin array to include new purchase 
         console.log(newCoin)
-        await User.findOneAndUpdate(user, {$push: {coins:newCoin}}, {new:true})
+        const dbUser = await User.findOne(user).exec();
+
+        let existingCoin = false;
+        //check if the user already owns the coin
+        //if they do, just update the quantity
+         dbUser.coins.forEach(coin=>{
+          if(coin.symbol===newCoin.symbol){
+            coin.quantity+=Number(newCoin.quantity)
+            dbUser.save();
+            existingCoin = true;
+          }
+        }) 
+      
+        //if user doesn't have the coin, push it onto the array
+        if(existingCoin===false){
+          await User.findOneAndUpdate(user, {$push: {coins:newCoin}}, {new:true})
+        }
         return res.json({success: true, message: `Congratulations, you purchased ${newCoin.quantity} units of ${newCoin.symbol}`});
       }
       else{
