@@ -52,7 +52,7 @@ const { check, validationResult } = require('express-validator');
 })
  */
 //REQUESTS FOR PORTFOLIO PAGE
-app.get('/portfolio', async (req, res) => {
+app.post('/portfolio', async (req, res) => {
   try {
 
     userName = req.body.user;
@@ -61,7 +61,7 @@ app.get('/portfolio', async (req, res) => {
     //const messages = "this is from express - portfolio! (Demonstartion of Back-End Connection - Awaiting Database)"
 
     //if there is a user logged in, then show their coin portfolio 
-    if(userName==null){
+    if(userName!==null){
       const user = await User.findOne({user_name: userName}).exec();
       const response = user.coins;
     
@@ -228,7 +228,7 @@ app.get('/sell', async (req, res) => {
         
       })
   
-      console.log(allCoins);
+      //console.log(allCoins);
 
       const messages = sellData;
       res.json({
@@ -266,8 +266,8 @@ app.post('/sell', async (req, res) => {
        console.log("User coins: ",user.coins);
 
        //if the user has the coin they want to sell, and if they have sufficient quantity, update the quantity
-       const validCoin = false;
-       const validQuantity = false;
+       let validCoin = false;
+       let validQuantity = false;
        user.coins.forEach(c=>{
          if(c.symbol===sellData.crypto){
            if(c.quantity>=sellData.quantity){
