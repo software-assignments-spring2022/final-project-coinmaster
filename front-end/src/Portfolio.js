@@ -2,6 +2,8 @@ import "./App.css";
 import Porfolio from "./components/screens/Portfolio/Portfolio";
 import GetPortfolio from "./expressConnections/GET/getPortfolio";
 
+import "./portfolio.css"
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -21,15 +23,12 @@ function Portfolio(props) {
       <GetPortfolio />
 
 
-      {/* <Porfolio /> */}
-    
-      <Link to="/buy">
-          <button className="btn btn-dark btn-lg">Buy</button>
-      </Link>
+      <div className = "PortfolioInLine">
+        <Link to="/buy"> <button className="PortfolioButton btn btn-dark btn ">Buy</button> </Link>
 
-      <Link to="/sell">
-          <button className="btn btn-dark btn-lg">Sell</button>
-      </Link>
+        <Link to="/sell"> <button className="PortfolioButton btn btn-dark btn">Sell</button> </Link>
+        
+</div>
 
     </div>
   );
