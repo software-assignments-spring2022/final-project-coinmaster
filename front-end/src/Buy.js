@@ -1,12 +1,10 @@
 import "./App.css";
-//import Buy from "./components/screens/Buy/Buy";
 import GetBuy from "./expressConnections/GET/getBuy";
 import BuyForm from "./expressConnections/POST/buyForm";
 
+import React from "react";
 
-import React, {useState} from "react";
-
-export default function CoinPage() {
+export default function BuyPage() {
 
   return (
     <div>
@@ -15,7 +13,10 @@ export default function CoinPage() {
       <br></br>
 
       <br></br>
+      <h3 className="text">Buy:</h3>
       <BuyForm/>
+      <br></br>
+      <h3 className="text">Coins:</h3>
       <GetBuy />
     </div>
   );
