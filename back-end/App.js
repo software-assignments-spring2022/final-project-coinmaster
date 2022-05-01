@@ -33,42 +33,42 @@ const { check, validationResult } = require('express-validator');
 
 
 
-// app.get('/messages', async (req, res) => {
-//   try {
+/* app.get('/messages', async (req, res) => {
+  try {
 
-//       const messages = "this is from express - messages!"
-//       res.json({
-//         success: true,
-//         yourCoins: yourCoins,
-//         message: 'all good',
-//       })
-//     } catch (err) {
-//       console.error(err)
-//       res.status(400).json({
-//         error: err,
-//         message: 'failed to work',
-//       })
-//     }
-// })
-
+      const messages = "this is from express - messages!"
+      res.json({
+        success: true,
+        yourCoins: yourCoins,
+        message: 'all good',
+      })
+    } catch (err) {1` 
+      console.error(err)
+      res.status(400).json({
+        error: err,
+        message: 'failed to work',
+      })
+    }
+})
+ */
 //REQUESTS FOR PORTFOLIO PAGE
 app.get('/portfolio', async (req, res) => {
   try {
-    console.log(currentUser);
 
-    const messages = "this is from express - portfolio! (Demonstartion of Back-End Connection - Awaiting Database)"
+    userName = req.body.user;
+    //console.log(currentUser);
+
+    //const messages = "this is from express - portfolio! (Demonstartion of Back-End Connection - Awaiting Database)"
 
     //if there is a user logged in, then show their coin portfolio 
-    if(currentUser.toString()!=="logged-out"){
-      const user = await User.findOne({user_name: currentUser});
+    if(userName==null){
+      const user = await User.findOne({user_name: userName}).exec();
       const response = user.coins;
     
     console.log(response);
 
     const allCoins = [];
-
     response.forEach(coin => {
-
       const coinObj = {
         symbol: coin.symbol,
         buyPrice: 100,
@@ -76,11 +76,9 @@ app.get('/portfolio', async (req, res) => {
       }
      
       allCoins.push(coinObj);
-
     })
 
     console.log(allCoins)
-
     res.json(allCoins)
   }
     
@@ -108,7 +106,7 @@ let buyData = {
 
 app.get('/buy', async (req, res) => {
   try {
-    console.log(currentUser);
+    //console.log(currentUser);
     await axios
     //.get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
     .get("https://coinlib.io/api/v1/coin?key=1ba60195f39ff3a1&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
@@ -159,17 +157,34 @@ app.get('/buy', async (req, res) => {
 app.post('/buy', async (req, res) => {
   try{
 
+    const coins = ["BTC","ETH","USDT","BNB","USDC","SOL","XRP","ADA","LUNA","AVAX"];
     buyData.crypto = req.body.crypto;
     buyData.quantity = req.body.quantity;
+    userName = req.body.user;
     if(buyData.crypto == '' || buyData.quantity == ''){
       throw new Error("At least one field is empty");
     }else{
-      const user = {user_name: currentUser}
+      const user = {user_name: userName}
       const newCoin= {symbol:buyData.crypto, quantity: buyData.quantity}
       console.log(user);
-      //find the user in database and update their coin array to include new purchase 
-      await User.findOneAndUpdate(user, {$push: {coins:newCoin}}, {new:true})
-      return res.json({success: true, message: "buy data post success"});
+      console.log(newCoin)
+      //check if user input is a valid coin 
+      let validCoin = false;
+      coins.forEach(c=>{
+        if(newCoin.symbol===c){
+          validCoin = true;
+        }
+      });
+
+      if(validCoin===true){
+        //find the user in database and update their coin array to include new purchase 
+        console.log(newCoin)
+        await User.findOneAndUpdate(user, {$push: {coins:newCoin}}, {new:true})
+        return res.json({success: true, message: `Congratulations, you purchased ${newCoin.quantity} units of ${newCoin.symbol}`});
+      }
+      else{
+        return res.json({success: false, message: "That is not a valid coin"});
+      }
     }
   }catch(err){
       console.error(err)
@@ -242,26 +257,44 @@ app.post('/sell', async (req, res) => {
   try{
     sellData.crypto = req.body.crypto;
     sellData.quantity = req.body.quantity;
+    userName= req.body.user;
     if(sellData.crypto == '' || sellData.quantity == ''){
       throw new Error("At least one field is empty");
     }else{
 
-      const user = await User.findOne({user_name:currentUser});
+      const user = await User.findOne({user_name: userName}).exec();
        console.log("User coins: ",user.coins);
 
        //if the user has the coin they want to sell, and if they have sufficient quantity, update the quantity
+       const validCoin = false;
+       const validQuantity = false;
        user.coins.forEach(c=>{
          if(c.symbol===sellData.crypto){
            if(c.quantity>=sellData.quantity){
              c.quantity= c.quantity - sellData.quantity;
+             validQuantity = true;
            }
+           validCoin= true;
          }
        })
-       
-       user.save();
-       console.log("updated coins: ", user.coins);
 
-      return res.json({success: true, message: "sell data post success"});
+       if(validCoin===true){
+         if(validQuantity===true){
+           user.save();
+           res.json({success: true, message: `Congratulations, you sold ${sellData.quantity} units of ${sellData.crypto}`})
+         }
+         else{
+           res.json({success: false, message: `Sorry, you do not have ${sellData.quantity} units of ${sellData.crypto} to sell`})
+         }
+       }
+       else{
+         res.json({success: false, message: `Sorry, you do not own any units of ${sellData.crypto}`})
+       }
+       
+       
+       //console.log("updated coins: ", user.coins);
+
+      //return res.json({success: true, message: "sell data post success"});
     }
   }catch(err){
       console.error(err)
