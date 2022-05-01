@@ -14,6 +14,7 @@ describe('get request to compare', () => {
             res.body.should.be.a("object") 
             res.body.should.have.property("messages")
             res.body.should.have.property("names")
+            expect(res.body.names).to.be.an('array')
             done() 
         })
     })
