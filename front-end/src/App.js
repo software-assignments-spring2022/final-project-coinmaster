@@ -11,13 +11,15 @@ import Learn from "./Learn";
 import Messages from "./Messages";
 import Buy from "./Buy";
 import Sell from "./Sell";
+import Logout from "./components/logout";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 //routing
-import React from "react";
+import { React, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+
 
 function App() {
   return (
@@ -28,6 +30,7 @@ function App() {
         <Route exact path="/coins" element={<Coins />} />
         <Route exact path="/compare" element={<Compare />} />
         <Route exact path="/login" element={<Login />} />
+        <Route exact path="/logout" element={<Logout />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/portfolio" element={<Portfolio />} />
         <Route exact path="/learn" element={<Learn />} />
