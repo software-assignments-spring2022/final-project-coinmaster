@@ -1,9 +1,24 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const server = require('../app');
+const server = require('../App');
 const should = chai.should();
 const expect = chai.expect;
 chai.use(chaiHttp);
+
+describe('get request to buy data', () => { 
+    it('it should successfully get the buy page and receive a http 200 status code', (done) => {
+        chai.request(server) 
+        .get('/buy') 
+        .end((err, res) => { 
+            res.should.have.status(200); 
+            res.body.should.be.a("object") 
+            res.body.should.have.property("success")
+            res.body.success.should.eql(true) 
+            res.body.message.should.eql("all good") 
+            done() 
+        })
+    })
+})
 
 describe('post request to buy data with all fields', () => { 
     it('it should successfully post the crypto and quantity to backend and receive a http 200 status code', (done) => {

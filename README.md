@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/software-assignments-spring2022/final-project-coinmaster/tree/master.svg?style=shield)](https://circleci.com/gh/software-assignments-spring2022/your-repo-name-here/tree/master)
 # CoinMaster:moneybag:
 
 ## Description of project

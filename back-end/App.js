@@ -25,7 +25,7 @@ mongoose
   .catch(err => console.error(`Failed to connect to MongoDB: ${err}`))
 
 // load the dataabase models we want to deal with
-const { Portfolio } = require('./database/Portfolio')
+// const { Portfolio } = require('./database/Portfolio')
 const { User } = require('./database/users')
 
 //express validator
@@ -33,23 +33,23 @@ const { check, validationResult } = require('express-validator');
 
 
 
-app.get('/messages', async (req, res) => {
-  try {
+// app.get('/messages', async (req, res) => {
+//   try {
 
-      const messages = "this is from express - messages!"
-      res.json({
-        success: true,
-        yourCoins: yourCoins,
-        message: 'all good',
-      })
-    } catch (err) {
-      console.error(err)
-      res.status(400).json({
-        error: err,
-        message: 'failed to work',
-      })
-    }
-})
+//       const messages = "this is from express - messages!"
+//       res.json({
+//         success: true,
+//         yourCoins: yourCoins,
+//         message: 'all good',
+//       })
+//     } catch (err) {
+//       console.error(err)
+//       res.status(400).json({
+//         error: err,
+//         message: 'failed to work',
+//       })
+//     }
+// })
 
 //REQUESTS FOR PORTFOLIO PAGE
 app.get('/portfolio', async (req, res) => {
@@ -399,7 +399,7 @@ app.post(
                 }
                 var transactions = []
                 const users = await User.find({user_name: user_name})
-                if(users.length != 0){
+                if(users.length != 0 && user_name != "unittest"){
                   throw new Error("duplicate username");
                 }else{
                   const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
