@@ -16,6 +16,8 @@ const GetPortfolio = () => {
   const [cryptoTableData, setCryptoTableData]  = useState([])
   const [tableColumns, setTableColumns] = useState(["SYMBOL",/*  "BUY PRICE", */ "QUANTITY"])
 
+  const [user_name, setUsername] = useState(localStorage.getItem("user_name"))
+
   
 
   /**
@@ -25,7 +27,10 @@ const GetPortfolio = () => {
     // setMessages([])
     // setLoaded(false)
     axios
-      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/portfolio`)
+      
+      .post(`${process.env.REACT_APP_SERVER_HOSTNAME}/portfolio`,{
+        user: user_name
+      })
       .then(response => {
         // axios bundles up all response data in response.data property
  

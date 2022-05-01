@@ -32,27 +32,8 @@ const { User } = require('./database/users')
 const { check, validationResult } = require('express-validator');
 
 
-
-/* app.get('/messages', async (req, res) => {
-  try {
-
-      const messages = "this is from express - messages!"
-      res.json({
-        success: true,
-        yourCoins: yourCoins,
-        message: 'all good',
-      })
-    } catch (err) {1` 
-      console.error(err)
-      res.status(400).json({
-        error: err,
-        message: 'failed to work',
-      })
-    }
-})
- */
 //REQUESTS FOR PORTFOLIO PAGE
-app.get('/portfolio', async (req, res) => {
+app.post('/portfolio', async (req, res) => {
   try {
 
     userName = req.body.user;
@@ -61,12 +42,15 @@ app.get('/portfolio', async (req, res) => {
     //const messages = "this is from express - portfolio! (Demonstartion of Back-End Connection - Awaiting Database)"
 
     //if there is a user logged in, then show their coin portfolio 
-    if(userName==null){
+    if(userName!==null){
       const user = await User.findOne({user_name: userName}).exec();
       const response = user.coins;
     
     console.log(response);
 
+    if(response.length!==0){
+
+    
     const allCoins = [];
     response.forEach(coin => {
       const coinObj = {
@@ -80,6 +64,7 @@ app.get('/portfolio', async (req, res) => {
 
     console.log(allCoins)
     res.json(allCoins)
+  }
   }
     
   } catch (err) {
@@ -179,7 +164,23 @@ app.post('/buy', async (req, res) => {
       if(validCoin===true){
         //find the user in database and update their coin array to include new purchase 
         console.log(newCoin)
-        await User.findOneAndUpdate(user, {$push: {coins:newCoin}}, {new:true})
+        const dbUser = await User.findOne(user).exec();
+
+        let existingCoin = false;
+        //check if the user already owns the coin
+        //if they do, just update the quantity
+         dbUser.coins.forEach(coin=>{
+          if(coin.symbol===newCoin.symbol){
+            coin.quantity+=Number(newCoin.quantity)
+            dbUser.save();
+            existingCoin = true;
+          }
+        }) 
+      
+        //if user doesn't have the coin, push it onto the array
+        if(existingCoin===false){
+          await User.findOneAndUpdate(user, {$push: {coins:newCoin}}, {new:true})
+        }
         return res.json({success: true, message: `Congratulations, you purchased ${newCoin.quantity} units of ${newCoin.symbol}`});
       }
       else{
@@ -228,7 +229,7 @@ app.get('/sell', async (req, res) => {
         
       })
   
-      console.log(allCoins);
+      //console.log(allCoins);
 
       const messages = sellData;
       res.json({
@@ -266,18 +267,23 @@ app.post('/sell', async (req, res) => {
        console.log("User coins: ",user.coins);
 
        //if the user has the coin they want to sell, and if they have sufficient quantity, update the quantity
-       const validCoin = false;
-       const validQuantity = false;
+       let validCoin = false;
+       let validQuantity = false;
        user.coins.forEach(c=>{
          if(c.symbol===sellData.crypto){
            if(c.quantity>=sellData.quantity){
              c.quantity= c.quantity - sellData.quantity;
+             //delete coin from array if they sell all units
+             if(c.quantity===0){
+               user.coins.remove(c);
+             }
              validQuantity = true;
            }
            validCoin= true;
          }
        })
 
+       //send front-end success/failure messages
        if(validCoin===true){
          if(validQuantity===true){
            user.save();
