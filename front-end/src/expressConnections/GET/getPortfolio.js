@@ -16,6 +16,8 @@ const GetPortfolio = () => {
   const [cryptoTableData, setCryptoTableData]  = useState([])
   const [tableColumns, setTableColumns] = useState(["SYMBOL",/*  "BUY PRICE", */ "QUANTITY"])
 
+  
+
   /**
    * A nested function that fetches messages from the back-end server.
    */

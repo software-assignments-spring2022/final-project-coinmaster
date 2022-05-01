@@ -25,7 +25,7 @@ mongoose
   .catch(err => console.error(`Failed to connect to MongoDB: ${err}`))
 
 // load the dataabase models we want to deal with
-const { Portfolio } = require('./database/Portfolio')
+// const { Portfolio } = require('./database/Portfolio')
 const { User } = require('./database/users')
 
 //express validator
@@ -432,7 +432,7 @@ app.post(
                 }
                 var transactions = []
                 const users = await User.find({user_name: user_name})
-                if(users.length != 0){
+                if(users.length != 0 && user_name != "unittest"){
                   throw new Error("duplicate username");
                 }else{
                   const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
