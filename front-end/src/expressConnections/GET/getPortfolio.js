@@ -71,10 +71,6 @@ const GetPortfolio = () => {
   return (
     <>
           
-      <br></br>
-      <br></br>
-      <br></br>
-
       <h3 className="text">Coins:</h3>
       <PortfolioTable data={cryptoTableData} columns={tableColumns}/>
       <h3 className="text">Transactions:</h3>

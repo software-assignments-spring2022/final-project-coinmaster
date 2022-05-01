@@ -29,13 +29,15 @@ function Portfolio(props) {
       {!loggedIn && login()}
 
       { loggedIn && (<h2>Current Portfolio</h2>)}
-      { loggedIn && (<h5>Your Name: {your_name}</h5>)}
-      { loggedIn && (<h5>Username: {user_name}</h5>)}
-      { loggedIn && (<h5>Email: {email}</h5>)}
+      <div className = "ProfileDetails">
+      { loggedIn && (<h5><strong>Full Name: </strong>{your_name}</h5>)}
+      { loggedIn && (<h5><strong>Username: </strong> {user_name}</h5>)}
+        {loggedIn && (<h5><strong>Email: </strong>{email}</h5>)}
+      </div>
       { loggedIn && (<GetPortfolio />)}
       { loggedIn && (<div className="PortfolioInLine">
-        <Link to="/buy"> <button className="PortfolioButton btn btn-dark btn ">Buy</button> </Link>
-        <Link to="/sell"> <button className="PortfolioButton btn btn-dark btn">Sell</button> </Link> </div>)}
+        <Link to="/buy"> <button className="PortfolioButton btn btn-success btn ">Buy</button> </Link>
+        <Link to="/sell"> <button className="PortfolioButton btn btn-danger btn">Sell</button> </Link> </div>)}
       </div>
   );
 }
