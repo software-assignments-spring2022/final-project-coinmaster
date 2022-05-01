@@ -5,27 +5,6 @@ const should = chai.should();
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-// describe('post request to sell data with all fields', () => { 
-//     it('it should successfully post the crypto and quantity to backend and receive a http 200 status code', (done) => {
-//         const test_sell = {
-//             crypto: "test",
-//             quantity: 10,
-//         }
-//         chai.request(server) 
-//         .post('/sell') 
-//         .send(test_sell)
-//         .end((err, res) => { 
-//             res.should.have.status(200); 
-//             res.body.should.be.a("object") 
-//             res.body.should.have.property("success")
-//             res.body.success.should.eql(true) 
-//             res.body.message.should.eql("sell data post success") 
-//             done() 
-//         })
-//     })
-// })
-
-
 describe('get request to sell data', () => { 
     it('it should successfully get sell page receive a http 200 status code', (done) => {
         chai.request(server) 
@@ -34,8 +13,13 @@ describe('get request to sell data', () => {
             res.should.have.status(200); 
             res.body.should.be.a("object") 
             res.body.should.have.property("success")
+            res.body.should.have.property("crypto")
+            res.body.should.have.property("quantity")
+            res.body.should.have.property("cryptoData")
+            res.body.should.have.property("message")
             res.body.success.should.eql(true) 
-            res.body.message.should.eql("all good") 
+            res.body.message.should.eql("all good")
+            expect(res.body.cryptoData).to.be.an('array')
             done() 
         })
     })
@@ -51,7 +35,10 @@ describe('post request to sell data with empty crypto name', () => {
         .post('/sell') 
         .send(test_sell)
         .end((err, res) => {
-            res.body.should.be.a("object") 
+            res.body.should.be.a("object")
+            res.body.should.have.property("error")
+            res.body.should.have.property("message")
+            res.body.message.should.eql("At least one field is empty") 
             expect(res).to.have.status(400)
             done() 
         })
@@ -68,7 +55,10 @@ describe('post request to sell data with empty quantity', () => {
         .post('/sell') 
         .send(test_sell)
         .end((err, res) => {
-            res.body.should.be.a("object") 
+            res.body.should.be.a("object")
+            res.body.should.have.property("error")
+            res.body.should.have.property("message")
+            res.body.message.should.eql("At least one field is empty")  
             expect(res).to.have.status(400)
             done() 
         })
@@ -85,7 +75,10 @@ describe('post request to sell data with empty fields', () => {
         .post('/sell') 
         .send(test_sell)
         .end((err, res) => {
-            res.body.should.be.a("object") 
+            res.body.should.be.a("object")
+            res.body.should.have.property("error")
+            res.body.should.have.property("message")
+            res.body.message.should.eql("At least one field is empty") 
             expect(res).to.have.status(400)
             done() 
         })
