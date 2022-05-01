@@ -6,7 +6,7 @@
   "scripts": {
     "start": "set NODE_ENV=production && node ./server",
     "dev": "set NODE_ENV=development && nodemon ./server",
-    "test": "nyc mocha"
+    "test": "nyc mocha --exit"
   },
   "keywords": [],
   "author": "",

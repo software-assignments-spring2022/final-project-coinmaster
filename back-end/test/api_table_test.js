@@ -21,8 +21,6 @@ describe('get request to get API data with all fields from API', () => {
             res.should.have.status(200); 
             res.body.should.be.a("object")
             res.body.should.have.property("success")
-            res.body.should.have.property("crypto")
-            res.body.should.have.property("quantity")
             res.body.should.have.property("cryptoData")
             res.body.success.should.eql(true)
             expect(res.body.cryptoData).to.be.an('array')
@@ -47,8 +45,6 @@ describe('get request to get API data with all fields from API', () => {
             res.should.have.status(200); 
             res.body.should.be.a("object")
             res.body.should.have.property("success") 
-            res.body.should.have.property("crypto")
-            res.body.should.have.property("quantity")
             res.body.should.have.property("cryptoData")
             res.body.success.should.eql(true)
             expect(res.body.cryptoData).to.be.an('array')
