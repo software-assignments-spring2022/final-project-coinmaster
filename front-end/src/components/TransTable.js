@@ -4,8 +4,7 @@ import React, { useEffect } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
-
-function PortfolioTable(props) {
+function TransTable(props) {
     var coin = "";
     const select = (Tr) => {
         const curr = Tr.currentTarget;
@@ -34,13 +33,11 @@ function PortfolioTable(props) {
             </Thead>
             <Tbody>
                 {props.data.map((crypto, index) => (  
-                <Tr data-index={index} onClick = {select}> 
-                {/* {Object.values(crypto).forEach((element)=>{
-                    {console.log(element)}
-                    <Td id= {element}> {element}</Td>
-                })}  */}
-                    <Td id='symbol'>{crypto.symbol}</Td>                   
-                    <Td>{crypto.quantity}</Td>   
+                <Tr data-index={index} onClick = {select}>  
+                    <Td id='symbol'>{crypto.symbol}</Td>  
+                    <Td>{crypto.type}</Td>  
+                    <Td>{crypto.quantity}</Td>  
+                    <Td>{crypto.timestamp}</Td> 
                 </Tr>  
                 ))}  
             </Tbody>
@@ -49,4 +46,4 @@ function PortfolioTable(props) {
     )
 }
 
-export default PortfolioTable;
+export default TransTable;

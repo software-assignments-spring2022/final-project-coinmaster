@@ -1,5 +1,5 @@
  import "./App.css";
-import Porfolio from "./components/screens/Portfolio/Portfolio";
+ import "./css/Portfolio.css"
 import GetPortfolio from "./expressConnections/GET/getPortfolio";
 
 import "./portfolio.css"

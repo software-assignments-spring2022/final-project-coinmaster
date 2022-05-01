@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import axios from 'axios'
+import "../../css/Portfolio.css"
 
-const SellForm = ({setFeedback, addMessageToList }) => {
+const SellForm = () => {
   // create a state variable for each form field
   const [crypto, setName] = useState('')
   const [quantity, setQuantity] = useState('')
@@ -22,7 +23,6 @@ const SellForm = ({setFeedback, addMessageToList }) => {
       })
 
       .then(response => {
-        //addMessageToList(response.data.message)
         setSuccess(response.data.success);
         setMessage(response.data.message);
 
@@ -41,8 +41,8 @@ const SellForm = ({setFeedback, addMessageToList }) => {
   return (
     <div>
 
-    <form className="MessageForm-form" onSubmit={submitForm}>
-      <input
+    <form id="sellForm" className="MessageForm-form" onSubmit={submitForm}>
+      <input 
         type="text"
         placeholder="Sell Stock"
         value={crypto}
@@ -64,11 +64,12 @@ const SellForm = ({setFeedback, addMessageToList }) => {
       <input type="submit" disabled={!crypto || !quantity} value="Sell" />
       </form>
       
+      <div className="text">
       {message}
+      </div>
 
       </div>
   )
 }
 
-// make this component available to be imported into any other file
 export default SellForm

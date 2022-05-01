@@ -33,15 +33,12 @@ const userSchema = new Schema(
     },
     transactions: [{
       symbol:{type: String,required: true},
-      price:{type: Number,required: true},
+      type: {type: String, required: true},
+      //price:{type: Number,required: true},
       quantity:{type: Number,required: true},
-      timestamp:{type: Date, default: Date.now, required: true},
+      timestamp:{type: String, default: new Date().toDateString() + ", "+ new Date().toTimeString().split(' ')[0], required: true},
     }],
 
-    // handle: {
-    //   type: String,
-    //   required: true,
-    // },
   },
   {
     timestamps: true,
