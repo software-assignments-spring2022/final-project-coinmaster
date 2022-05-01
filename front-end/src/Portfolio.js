@@ -1,5 +1,5 @@
-import "./App.css";
-import Porfolio from "./components/screens/Portfolio/Portfolio";
+ import "./App.css";
+ import "./css/Portfolio.css"
 import GetPortfolio from "./expressConnections/GET/getPortfolio";
 
 import "./portfolio.css"
@@ -8,30 +8,39 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Portfolio(props) {
-  const [ownedCryptos, setOwnedCryptos] = useState([
-    ["1", "Lorem", "$100.00", "$100M"],
-  ]);
-  const [netProfit, setNetProfit] = useState("5.34%");
-  const [allTimeHigh, setAllTimeHigh] = useState("12.44%");
-  const [yearHigh, setYearHigh] = useState("9.23%");
-  const [accountAge, setAccountAge] = useState("6 years");
+  const [user, setUser] = useState(localStorage.getItem("user"))
+  const [email, setEmail] = useState(localStorage.getItem("email"))
+  const [user_name, setUsername] = useState(localStorage.getItem("user_name"))
+  const [your_name, setrealName] = useState(localStorage.getItem("your_name"))
+  const [loggedIn, setLoginIn] = useState(localStorage.getItem("loggedIn"))
+
+
+  const login = () => {
+    window.location.href = '/login'
+  }
 
   return (
     <div>
 
       <br></br>
-      <GetPortfolio />
+      <br></br>
+      <br></br>
 
+      {!loggedIn && login()}
 
-      <div className = "PortfolioInLine">
-        <Link to="/buy"> <button className="PortfolioButton btn btn-dark btn ">Buy</button> </Link>
-
-        <Link to="/sell"> <button className="PortfolioButton btn btn-dark btn">Sell</button> </Link>
-        
-</div>
-
-    </div>
+      { loggedIn && (<h2>Current Portfolio</h2>)}
+      <div className = "ProfileDetails">
+      { loggedIn && (<h5><strong>Full Name: </strong>{your_name}</h5>)}
+      { loggedIn && (<h5><strong>Username: </strong> {user_name}</h5>)}
+        {loggedIn && (<h5><strong>Email: </strong>{email}</h5>)}
+      </div>
+      { loggedIn && (<GetPortfolio />)}
+      { loggedIn && (<div className="PortfolioInLine">
+        <Link to="/buy"> <button className="PortfolioButton btn btn-success btn ">Buy</button> </Link>
+        <Link to="/sell"> <button className="PortfolioButton btn btn-danger btn">Sell</button> </Link> </div>)}
+      </div>
   );
 }
 
 export default Portfolio;
+ 

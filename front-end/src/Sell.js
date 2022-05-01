@@ -1,27 +1,21 @@
 import "./App.css";
-//import Sell from "./components/screens/Buy/Sell";
-import GetSell from "./expressConnections/GET/getSell";
+import "./css/Portfolio.css"
 import SellForm from "./expressConnections/POST/sellForm";
 
 import Portfolio from "./expressConnections/GET/getPortfolio"
 
-export default function CoinPage() {
+export default function SellPage() {
   return (
     <div>
 
-      {/* ADD TABLE UP HERE */}
-
       <br></br>
       <br></br>
       <br></br>
       <br></br>
 
+      <h3 className="text">Sell:</h3>
       <SellForm />
-
       <Portfolio/>
-
-      <GetSell />
-
     </div>
   );
 }

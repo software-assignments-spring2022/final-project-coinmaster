@@ -76,11 +76,6 @@ import axios from "axios"
             {/*Coin 2*/}
             <Comparison coin={coin2} setCoin={setCoin2} coinNames={coinNames} coinTable={coinTable2} setCoinTable = {setCoinTable2} allCoins={messages}/>
 
-
-            <br></br>
-            <h3>Performance</h3>
-            <p>Will be filled in Later</p>
-
         </div>
         </>
 

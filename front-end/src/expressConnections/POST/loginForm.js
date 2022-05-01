@@ -85,14 +85,6 @@ const LoginForm = props => {
               });
     };
 
-    if (formData.loginState==true) {
-        return (
-          <div>
-            loggged in
-            <button onClick={handleLogout}>logout</button>
-          </div>
-        );
-      }
     return (
         <Form className="login-form">
             <Form.Group className="mb-3">

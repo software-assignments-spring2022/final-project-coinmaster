@@ -1,42 +1,32 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-/**
- * A React component that represents a form the user can fill out to create and post a new Message.
- * @param {*} param0 an object holding any props and a few function definitions passed to this component from its parent component
- * @returns The contents of this component, in JSX form.
- */
-const BuyForm = ({ setError, setFeedback, addMessageToList }) => {
-  // create a state variable for each form field
+const BuyForm = () => {
   const [crypto, setName] = useState('')
-  const [quantity, setMessage] = useState('')
+  const [quantity, setQuantity] = useState('')
   const [user, setUser] = useState(localStorage.getItem("user"))
-  const [email, setEmail] = useState(localStorage.getItem("user").email)
-  const [username, setUsername] = useState(localStorage.getItem("user").user_name)
-  const [realName, setrealName] = useState(localStorage.getItem("user").your_name)
-  /**
-   * A nested function that is called when the user submits the form to save a new Message.
-   * @param {*} e
-   */
-  const submitForm = e => {
-    e.preventDefault() // prevent normal browser submit behavior
+ const [email, setEmail] = useState(localStorage.getItem("email"))
+ const [user_name, setUsername] = useState(localStorage.getItem("user_name"))
+ const [your_name, setrealName] = useState(localStorage.getItem("your_name"))
+  const [loggedIn, setLoginIn] = useState(localStorage.getItem("loggedIn"))
+  const [success, setSuccess] = useState(true)
+  const [error, setError] = useState(true)
+  const [message, setMessage] = useState(true)
 
-    // send data to server... getting server host name from .env environment variables file to make it easy to swap server hosts in one place
+  const submitForm = e => {
+    e.preventDefault() 
     axios
       // post new message to server
       .post(`${process.env.REACT_APP_SERVER_HOSTNAME}/buy`, {
         crypto: crypto,
         quantity: quantity,
+        user: user_name
       })
 
-      /* .post("/whoami", {
-        name: name,
-        message: message,
-      }) */
-
       .then(response => {
-        // setFeedback(`ooh la la: ${data}`)
-        addMessageToList(response.data.message)
+        console.log(user_name)
+        setSuccess(response.data.success);
+        setMessage(response.data.message);
       })
       .catch(err => {
         setError(`error error error! ${err}`)
@@ -44,27 +34,41 @@ const BuyForm = ({ setError, setFeedback, addMessageToList }) => {
 
     // clear form
     setName('')
-    setMessage('')
+    setQuantity('')
   }
 
   return (
-    <form className="MessageForm-form" onSubmit={submitForm}>
+    <div>
+    <form id="buyForm" className="MessageForm-form" onSubmit={submitForm}>
       <input
-        type="text"
-        placeholder="Buy Crypto"
-        value={crypto}
-        onChange={e => setName(e.target.value)}
+          type="text"
+          placeholder="Buy Crypto"
+          value={crypto}
+          onChange={e => setName(e.target.value)}
+          onKeyPress={(event) => {
+            if (!/[a-zA-Z ]/i.test(event.key)) {
+              event.preventDefault();
+            }
+          }}
+          
       />
       <input
         type="text"
         placeholder="Buy Quantity"
-        onChange={e => setMessage(e.target.value)}
-        value={quantity}
+        onChange={e => setQuantity(e.target.value)}
+        value={quantity}  
+        onKeyPress={(event) => {
+          if (!/[0-9]/.test(event.key)) { event.preventDefault(); }
+          }}
       />
       <input type="submit" disabled={!crypto || !quantity} value="Buy" />
     </form>
+
+    <div className="text">
+      {message}
+      </div>
+      </div>
   )
 }
 
-// make this component available to be imported into any other file
 export default BuyForm
