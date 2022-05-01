@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-const BuyForm = ({setFeedback, addMessageToList }) => {
+const BuyForm = () => {
   const [crypto, setName] = useState('')
   const [quantity, setQuantity] = useState('')
   const [user, setUser] = useState(localStorage.getItem("user"))
@@ -39,7 +39,7 @@ const BuyForm = ({setFeedback, addMessageToList }) => {
 
   return (
     <div>
-    <form className="MessageForm-form" onSubmit={submitForm}>
+    <form id="buyForm" className="MessageForm-form" onSubmit={submitForm}>
       <input
           type="text"
           placeholder="Buy Crypto"
@@ -64,10 +64,11 @@ const BuyForm = ({setFeedback, addMessageToList }) => {
       <input type="submit" disabled={!crypto || !quantity} value="Buy" />
     </form>
 
+    <div className="text">
       {message}
+      </div>
       </div>
   )
 }
 
-// make this component available to be imported into any other file
 export default BuyForm
