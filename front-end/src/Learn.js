@@ -12,10 +12,13 @@ import Article from './components/screens/Learn/Article'
 const Learn = props => {
     return (
         <main className="Learn">
+            <br></br>
             <h1>Tutorials and Bitcoin Basics</h1>
-            <h4>Get practical, step-by-step answers to all things crypto</h4>
-            {<Article/>}
-            {<Video/>}
+            <h3>Get practical, step-by-step answers to all things crypto</h3>
+            <br></br>
+            {<Video />}
+            <br></br>
+            {<Article />}
         </main>
       )
 }
