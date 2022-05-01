@@ -449,6 +449,9 @@ app.post(
                     console.log(users);
                     //currentUser = user_name;
                     //return res.json({success: true, message: "login success", user_name: user_name});
+
+                    users.loggedIn = true;
+
                     return res.json({success: true, message: "login success", user: users});
                   }else{
                     throw new Error("incorrect password");
