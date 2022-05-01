@@ -37,13 +37,6 @@ function Portfolio(props) {
         </table>
         <div className="buttons">
 
-{/*           <button type="button" class="btn btn-primary btn-lg">
-            Buy{" "}
-          </button>
-          <button type="button" class="btn btn-primary btn-lg">
-            Sell
-          </button> */}
-
         </div>
         <h1>Your Statistics</h1>
         <table class="table">

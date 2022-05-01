@@ -81,11 +81,6 @@ const GetPortfolio = () => {
 
   return (
     <>
-          
-      <br></br>
-      <br></br>
-      <br></br>
-
       <PortfolioTable data={cryptoTableData} columns={tableColumns}/>
     </>
   )

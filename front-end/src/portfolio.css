@@ -12,3 +12,11 @@
     margin-right: 100px;
     width: auto;
 }
+
+
+h2 {
+    margin-top: 100;
+    margin: 10;
+    display: flex;
+    justify-content: center;
+}

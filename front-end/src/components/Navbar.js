@@ -35,7 +35,7 @@ function Navbar(props) {
           {!loggedIn && <li><a href="/login">Login</a></li>}
           
           {!loggedIn && <li><a href="/login">Login</a></li>}   
-          {loggedIn && <li>{user_name}</li>}
+          {loggedIn && <li>Welcome {user_name}!</li>}
 
       <li><a href="/coins">Coins</a></li>
       <li><a href="/compare">Compare</a></li>
