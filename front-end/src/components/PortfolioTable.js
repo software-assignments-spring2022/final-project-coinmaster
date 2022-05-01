@@ -1,7 +1,9 @@
 import "../css/CryptoTable.css";
+import "../css/Portfolio.css";
 import React, { useEffect } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
+
 
 function PortfolioTable(props) {
     var coin = "";
@@ -22,7 +24,7 @@ function PortfolioTable(props) {
     
     return (
         <>
-        <Table>
+        <Table id="table">
             <Thead>
                 <Tr>
                 {props.columns.map((columns, index) => (  
@@ -32,9 +34,12 @@ function PortfolioTable(props) {
             </Thead>
             <Tbody>
                 {props.data.map((crypto, index) => (  
-                <Tr data-index={index} onClick = {select}>  
-                    <Td id='symbol'>{crypto.symbol}</Td>  
-                    {/* <Td>{crypto.buyPrice}</Td> */}                  
+                <Tr data-index={index} onClick = {select}> 
+                {/* {Object.values(crypto).forEach((element)=>{
+                    {console.log(element)}
+                    <Td id= {element}> {element}</Td>
+                })}  */}
+                    <Td id='symbol'>{crypto.symbol}</Td>                   
                     <Td>{crypto.quantity}</Td>   
                 </Tr>  
                 ))}  
