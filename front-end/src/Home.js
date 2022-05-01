@@ -12,7 +12,11 @@ import { useEffect } from 'react'
 const [columns,setColumns] = useState(["SYMBOL","NAME","RANK", "PRICE", "MARKET CAP"]) */
 
 const Home = (props) => {
-
+  const [user, setUser] = useState(localStorage.getItem("user"))
+  const [email, setEmail] = useState(localStorage.getItem("email"))
+  const [user_name, setUsername] = useState(localStorage.getItem("user_name"))
+  const [your_name, setrealName] = useState(localStorage.getItem("your_name"))
+  const [loggedIn, setLoginIn] = useState(localStorage.getItem("loggedIn"))
 
   return (
     <>
@@ -35,22 +39,30 @@ const Home = (props) => {
           </p>
         </div>
 
-        <div className="section-two">
-          <h1>Get Started Here!</h1>
+          <div className="section-two">            
+            {!loggedIn && <h1>Get Started Here!</h1>}
+            {loggedIn && <h1>Welcome Back {your_name}!</h1>}
           <div className="links">
             <div className="link-one">
-              <Link to="/register">
-                <button type="button" class="button">
-                  Register
+                {!loggedIn && <Link to="/register">
+                  <button type="button" class="button">
+                    Register
                 </button>
-              </Link>
+                </Link>}
+
+                {loggedIn && <Link to="/logout">
+                  <button type="button" class="button">
+                    Logout
+                </button>
+                </Link>}
+
             </div>
             <div className="link-two">
-              <Link to="/login">
-                <button type="button" class="button">
-                Login
+                {!loggedIn && <Link to="/login">
+                  <button type="button" class="button">
+                    Login
                 </button>
-              </Link>
+                </Link>}
             </div>
           </div>
         </div>

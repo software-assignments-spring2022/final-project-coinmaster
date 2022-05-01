@@ -22,10 +22,8 @@ function Portfolio(props) {
       <br></br>
       <GetPortfolio />
 
-
       <div className = "PortfolioInLine">
         <Link to="/buy"> <button className="PortfolioButton btn btn-dark btn ">Buy</button> </Link>
-
         <Link to="/sell"> <button className="PortfolioButton btn btn-dark btn">Sell</button> </Link>
         
 </div>
