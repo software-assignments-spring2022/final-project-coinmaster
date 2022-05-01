@@ -11,5 +11,10 @@
 .Video {
   display: flex;
   flex-direction: column;
+  flex-basis: auto;
   align-items: center;
+}
+
+h4 {
+  background-color: #33bfff;
 }
