@@ -1,0 +1,14 @@
+
+
+.PortfolioInLine {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.PortfolioButton {
+    margin-top: 10px;
+    margin-left: 100px;
+    margin-right: 100px;
+    width: auto;
+}
