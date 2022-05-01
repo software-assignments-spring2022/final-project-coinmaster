@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-const SellForm = ({ setError, setFeedback, addMessageToList }) => {
+const SellForm = ({setFeedback, addMessageToList }) => {
   // create a state variable for each form field
   const [crypto, setName] = useState('')
-  const [quantity, setMessage] = useState('')
-
+  const [quantity, setQuantity] = useState('')
   const [user_name, setUsername] = useState(localStorage.getItem("user_name"))
+  const [success, setSuccess] = useState(true)
+  const [error, setError] = useState(true)
+  const [message, setMessage] = useState(true)
 
   const submitForm = e => {
     e.preventDefault() 
@@ -20,33 +22,51 @@ const SellForm = ({ setError, setFeedback, addMessageToList }) => {
       })
 
       .then(response => {
-        addMessageToList(response.data.message)
+        //addMessageToList(response.data.message)
+        setSuccess(response.data.success);
+        setMessage(response.data.message);
+
       })
       .catch(err => {
+        console.log(err)
         setError(`error error error! ${err}`)
       })
 
     // clear form
     setName('')
-    setMessage('')
+    setQuantity('')
   }
 
+
   return (
+    <div>
+
     <form className="MessageForm-form" onSubmit={submitForm}>
       <input
         type="text"
         placeholder="Sell Stock"
         value={crypto}
         onChange={e => setName(e.target.value)}
+        onKeyPress={(event) => {
+          if (!/[a-zA-Z ]/i.test(event.key)) {
+            event.preventDefault(); }
+        }}
       />
         <input
         type="text"
         placeholder="Sell Quantity"
-        onChange={e => setMessage(e.target.value)}
+        onChange={e => setQuantity(e.target.value)}
         value={quantity}
+        onKeyPress={(event) => {
+          if (!/[0-9]/.test(event.key)) { event.preventDefault(); }
+        }}
       />
       <input type="submit" disabled={!crypto || !quantity} value="Sell" />
-    </form>
+      </form>
+      
+      {message}
+
+      </div>
   )
 }
 
