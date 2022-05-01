@@ -23,7 +23,6 @@ mongoose
   .connect(`${process.env.DB_CONNECTION_STRING}`)
   .then(data => console.log(`Connected to MongoDB`))
   .catch(err => console.error(`Failed to connect to MongoDB: ${err}`))
-  console.log(`${process.env.DB_CONNECTION_STRING}`)
 
 // load the dataabase models we want to deal with
 // const { Portfolio } = require('./database/Portfolio')
@@ -34,23 +33,23 @@ const { check, validationResult } = require('express-validator');
 
 
 
-app.get('/messages', async (req, res) => {
-  try {
+// app.get('/messages', async (req, res) => {
+//   try {
 
-      const messages = "this is from express - messages!"
-      res.json({
-        success: true,
-        yourCoins: yourCoins,
-        message: 'all good',
-      })
-    } catch (err) {
-      console.error(err)
-      res.status(400).json({
-        error: err,
-        message: 'failed to work',
-      })
-    }
-})
+//       const messages = "this is from express - messages!"
+//       res.json({
+//         success: true,
+//         yourCoins: yourCoins,
+//         message: 'all good',
+//       })
+//     } catch (err) {
+//       console.error(err)
+//       res.status(400).json({
+//         error: err,
+//         message: 'failed to work',
+//       })
+//     }
+// })
 
 //REQUESTS FOR PORTFOLIO PAGE
 app.get('/portfolio', async (req, res) => {
