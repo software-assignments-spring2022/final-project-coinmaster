@@ -1,38 +1,25 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-/**
- * A React component that represents a form the user can fill out to create and post a new Message.
- * @param {*} param0 an object holding any props and a few function definitions passed to this component from its parent component
- * @returns The contents of this component, in JSX form.
- */
 const SellForm = ({ setError, setFeedback, addMessageToList }) => {
   // create a state variable for each form field
   const [crypto, setName] = useState('')
   const [quantity, setMessage] = useState('')
 
-  /**
-   * A nested function that is called when the user submits the form to save a new Message.
-   * @param {*} e
-   */
-  const submitForm = e => {
-    e.preventDefault() // prevent normal browser submit behavior
+  const [user_name, setUsername] = useState(localStorage.getItem("user_name"))
 
-    // send data to server... getting server host name from .env environment variables file to make it easy to swap server hosts in one place
+  const submitForm = e => {
+    e.preventDefault() 
+
     axios
       // post new message to server
       .post(`${process.env.REACT_APP_SERVER_HOSTNAME}/sell`, {
         crypto: crypto,
         quantity: quantity,
+        user: user_name
       })
 
-      /* .post("/whoami", {
-        name: name,
-        message: message,
-      }) */
-
       .then(response => {
-        // setFeedback(`ooh la la: ${data}`)
         addMessageToList(response.data.message)
       })
       .catch(err => {
