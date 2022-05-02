@@ -41,7 +41,12 @@ jobs:
   auto-deploy-app:
       - checkout
       - run: echo "this is the auto-deploy job"
-      - run: ./auto-deploy.sh
+      - run: |
+          ssh root@67.207.83.112
+          cd final-project-coinmaster
+          git pull origin master
+          cd front-end && npm install && npm run build && rm -rf ../back-end/client && cp -R ./build ../back-end/client
+          cd ../back-end && npm install && pm2 start npm -- start
 
 # Orchestrate our job run sequence
 workflows:
@@ -54,3 +59,7 @@ workflows:
   auto-deploy:
     jobs:
       - auto-deploy-app
+          # filters:
+          #     branches:
+          #       only: 
+          #         - master
