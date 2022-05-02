@@ -19,12 +19,12 @@ app.use(morgan('dev', { skip: (req, res) => process.env.NODE_ENV === 'test' })) 
 
 app.use(cors()) // allow cross-origin resource sharing
 
-app.use(function (req, res, next) {
-  //res.header("Access-Control-Allow-Origin", "https://overdemoc.netlify.app"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Origin", "http://67.207.83.112:5002"); // update to match the domain you will make the request from          // CHNAGE HERE WHAT HERUKO
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+// app.use(function (req, res, next) {
+//   //res.header("Access-Control-Allow-Origin", "https://overdemoc.netlify.app"); // update to match the domain you will make the request from
+//   res.header("Access-Control-Allow-Origin", "http://67.207.83.112:5002"); // update to match the domain you will make the request from          // CHNAGE HERE WHAT HERUKO
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 
 // use express's builtin body-parser middleware to parse any data included in a request
 app.use(express.json()) // decode JSON-formatted incoming POST data
@@ -111,7 +111,9 @@ app.get('/buy', async (req, res) => {
   try {
     await axios
     // .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
-    .get("https://coinlib.io/api/v1/coin?key=1ba60195f39ff3a1&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    // .get("https://coinlib.io/api/v1/coin?key=1ba60195f39ff3a1&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    .get("https://coinlib.io/api/v1/coin?key=382BEB9C-139E-44F8-99BB-45646D883A64&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+
     .then(function (response){
   
       const allCoins = [];
@@ -224,7 +226,8 @@ app.get('/sell', async (req, res) => {
 
     await axios
     // .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
-    .get("https://coinlib.io/api/v1/coin?key=1ba60195f39ff3a1&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    // .get("https://coinlib.io/api/v1/coin?key=1ba60195f39ff3a1&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    .get("https://coinlib.io/api/v1/coin?key=382BEB9C-139E-44F8-99BB-45646D883A64&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
     .then(function (response){
   
       const allCoins = [];
@@ -356,7 +359,8 @@ app.post('/coinTable', async (req, res) => {
  app.get('/compare', async (req, res) => {
   try {
      axios
-    .get("https://coinlib.io/api/v1/coin?key=9810ec37c3769c55&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    // .get("https://coinlib.io/api/v1/coin?key=9810ec37c3769c55&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    .get("https://coinlib.io/api/v1/coin?key=382BEB9C-139E-44F8-99BB-45646D883A64&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
     .then(function (response){
      const allCoins = [];
       const coinNames = [];
