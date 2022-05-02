@@ -19,22 +19,18 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    balance: {
+      type: Number,
+      required: true,
+    },
     coins: [{
       symbol:{type: String,required: true},
       quantity:{type: Number,required: true}
     }],
-    stats: {
-      type: [{
-        net_profit: {type: Number, required: true},
-        all_time_high: {type: Number, required: true},
-        fifty_two_week_high: {type: Number, required: true},
-        account_age: {type: Number, required: true},
-      }]
-    },
     transactions: [{
       symbol:{type: String,required: true},
       type: {type: String, required: true},
-      //price:{type: Number,required: true},
+      price:{type: Number,required: true},
       quantity:{type: Number,required: true},
       timestamp:{type: String, default: new Date().toDateString() + ", "+ new Date().toTimeString().split(' ')[0], required: true},
     }],
