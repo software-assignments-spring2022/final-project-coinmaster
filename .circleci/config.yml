@@ -39,14 +39,10 @@ jobs:
           npm install # install all dependencies listed in package.json
           npm run build # have react build the stand-alone front-end code
   auto-deploy-app:
+    steps:
       - checkout
       - run: echo "this is the auto-deploy job"
-      - run: |
-          ssh root@67.207.83.112
-          cd final-project-coinmaster
-          git pull origin master
-          cd front-end && npm install && npm run build && rm -rf ../back-end/client && cp -R ./build ../back-end/client
-          cd ../back-end && npm install && pm2 start npm -- start
+      - run: ./auto-deploy.sh
 
 # Orchestrate our job run sequence
 workflows:
@@ -58,8 +54,8 @@ workflows:
       - build-react-js
   auto-deploy:
     jobs:
-      - auto-deploy-app
-          # filters:
-          #     branches:
-          #       only: 
-          #         - master
+      - auto-deploy-app:
+          filters:
+              branches:
+                only: 
+                  - master
