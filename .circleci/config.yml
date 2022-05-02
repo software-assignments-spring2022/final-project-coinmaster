@@ -57,4 +57,5 @@ workflows:
       - auto-deploy-app:
           filters:
               branches:
-                only: master
+                only: 
+                  - master
