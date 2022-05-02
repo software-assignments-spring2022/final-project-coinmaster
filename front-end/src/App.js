@@ -25,16 +25,16 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route exact path="/client" element={<Home />} />
-        <Route exact path="/client/coins" element={<Coins />} />
-        <Route exact path="/client/compare" element={<Compare />} />
-        <Route exact path="/client/login" element={<Login />} />
-        <Route exact path="/client/logout" element={<Logout />} />
-        <Route exact path="/client/register" element={<Register />} />
-        <Route exact path="/client/portfolio" element={<Portfolio />} />
-        <Route exact path="/client/learn" element={<Learn />} />
-        <Route exact path="/client/buy" element={<Buy />} />
-        <Route exact path="/client/sell" element={<Sell />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/coins" element={<Coins />} />
+        <Route path="/compare" element={<Compare />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/learn" element={<Learn />} />
+        <Route path="/buy" element={<Buy />} />
+        <Route path="/sell" element={<Sell />} />
         
       </Routes>
     </BrowserRouter>
