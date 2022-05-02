@@ -55,6 +55,6 @@ workflows:
   auto-deploy:
     jobs:
       - auto-deploy
-        filters:
-            branches:
-              only: master
+          filters:
+              branches:
+                only: master
