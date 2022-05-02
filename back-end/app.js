@@ -16,11 +16,19 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/index.html'));
 });
 app.use(morgan('dev', { skip: (req, res) => process.env.NODE_ENV === 'test' })) // log all incoming requests, except when in unit test mode.  morgan has a few logging default styles - dev is a nice concise color-coded style
-app.use(cors()) // allow cross-origin resource sharing
+//app.use(cors()) // allow cross-origin resource sharing
+
+app.use(function (req, res, next) {
+  //res.header("Access-Control-Allow-Origin", "https://overdemoc.netlify.app"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", "http://67.207.83.112:5002"); // update to match the domain you will make the request from          // CHNAGE HERE WHAT HERUKO
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // use express's builtin body-parser middleware to parse any data included in a request
 app.use(express.json()) // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming POST data
+
 
 
 //app.use(function(req, res, next) {
@@ -393,7 +401,7 @@ app.post('/coinTable', async (req, res) => {
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(cors())
+//app.use(cors())
 
 app.post(
           '/register',
