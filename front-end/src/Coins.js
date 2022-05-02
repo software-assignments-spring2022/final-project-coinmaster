@@ -72,14 +72,12 @@ export default function CoinPage() {
         <br></br>
         <h1>Get Started Today!</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
-          ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor
-          sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit
-          amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-          labore et dolore magna aliqua.
+        Paper trading on Coinmaster allows you to trade using real-life exchange data with simulated crypto.
+        This way, you can experience trading without taking any risk.
+        Are you interested simply because of cryptocurrency’s trendiness? 
+        Or is there a more compelling reason for an investment in one or more specific
+        digital tokens? Of course, different investors have various personal investment goals, 
+        and exploring the cryptocurrency space may make more sense for some individuals than for others.
         </p>
         <br></br>
 
