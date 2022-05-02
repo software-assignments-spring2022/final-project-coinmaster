@@ -40,7 +40,7 @@ jobs:
           npm run build # have react build the stand-alone front-end code
   auto-deploy:
       - checkout
-      -run: echo "this is the auto-deploy job"
+      - run: echo "this is the auto-deploy job"
       - run: |
           ./auto-deploy.sh
 
