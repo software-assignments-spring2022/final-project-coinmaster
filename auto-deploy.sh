@@ -1,4 +1,5 @@
 #!/bin/bash
+ssh -o StrictHostKeyChecking=no "root@67.207.83.112"
 ssh root@67.207.83.112 <<EOF
 cd final-project-coinmaster
 git pull origin master
