@@ -4,20 +4,25 @@ const morgan = require('morgan') // middleware for nice logging of incoming HTTP
 const cors = require('cors') // middleware for enabling CORS (Cross-Origin Resource Sharing) requests.
 const bodyParser = require("body-parser"); // parsing posted json body
 const mongoose = require('mongoose')
+const path = require('path')
 bcrypt = require('bcrypt'),
 SALT_WORK_FACTOR = 10;
 
 const { default: axios } = require('axios');
 
 const app = express() // instantiate an Express object
-
+app.use(express.static(path.join(__dirname + '/client')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/index.html'));
+});
 app.use(morgan('dev', { skip: (req, res) => process.env.NODE_ENV === 'test' })) // log all incoming requests, except when in unit test mode.  morgan has a few logging default styles - dev is a nice concise color-coded style
 app.use(cors()) // allow cross-origin resource sharing
 
 // use express's builtin body-parser middleware to parse any data included in a request
 app.use(express.json()) // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming POST data
-//app.use("/client", express.static("client"))
+
+
 //app.use(function(req, res, next) {
 //  res.sendFile(path.join(__dirname, 'public', 'app.html'));
 // });

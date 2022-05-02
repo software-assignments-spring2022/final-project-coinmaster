@@ -45,7 +45,7 @@ services:
     networks:
       - mern-network
     volumes:
-      - back-end/database
+      - mongo-data: back-end/database
 
 networks:
   mern-network:
