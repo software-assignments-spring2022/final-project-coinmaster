@@ -18,10 +18,10 @@ app.use(cors()) // allow cross-origin resource sharing
 app.use(express.json()) // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming POST data
 app.use("/client", express.static("client"))
-app.use(function(req, res, next) {
-  res.sendFile(path.join(__dirname, 'public', 'app.html'));
- });
-app.get('*', (req, res) => res.sendFile(path.resolve('client', 'index.html')));
+app.use('/static', express.static(path.join(__dirname, '../client//static')));
+app.get('*', function(req, res) {
+  res.sendFile('index.html', {root: path.join(__dirname, '../../client/')});
+});
 // connect to database
 mongoose
   .connect(`${process.env.DB_CONNECTION_STRING}`)
