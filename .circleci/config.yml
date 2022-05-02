@@ -53,8 +53,4 @@ workflows:
       - build-react-js
   auto-deploy:
     jobs:
-      - auto-deploy-app:
-          filters:
-              branches:
-                only: 
-                  - master
+      - auto-deploy-app
