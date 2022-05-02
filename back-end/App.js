@@ -10,6 +10,7 @@ SALT_WORK_FACTOR = 10;
 const { default: axios } = require('axios');
 
 const app = express() // instantiate an Express object
+app.use("/client", express.static("client"))
 app.use(morgan('dev', { skip: (req, res) => process.env.NODE_ENV === 'test' })) // log all incoming requests, except when in unit test mode.  morgan has a few logging default styles - dev is a nice concise color-coded style
 app.use(cors()) // allow cross-origin resource sharing
 
