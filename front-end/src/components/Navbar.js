@@ -22,7 +22,7 @@ function Navbar(props) {
     //   </nav>
     // </div>
   <>
-  <div class="header"><a href="/" class="title">IT WORKS!</a></div>
+  <div class="header"><a href="/" class="title">Coin Master</a></div>
   <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu"/>
   <label for="openSidebarMenu" class="sidebarIconToggle">
     <div class="spinner diagonal part-1"></div>
