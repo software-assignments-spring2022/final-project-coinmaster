@@ -16,7 +16,8 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/index.html'));
 });
 app.use(morgan('dev', { skip: (req, res) => process.env.NODE_ENV === 'test' })) // log all incoming requests, except when in unit test mode.  morgan has a few logging default styles - dev is a nice concise color-coded style
-//app.use(cors()) // allow cross-origin resource sharing
+
+app.use(cors()) // allow cross-origin resource sharing
 
 app.use(function (req, res, next) {
   //res.header("Access-Control-Allow-Origin", "https://overdemoc.netlify.app"); // update to match the domain you will make the request from
