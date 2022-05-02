@@ -38,7 +38,7 @@ jobs:
           cd front-end
           npm install # install all dependencies listed in package.json
           npm run build # have react build the stand-alone front-end code
-  auto-deploy:
+  auto-deploy-app:
       - checkout
       - run: echo "this is the auto-deploy job"
       - run: |
@@ -54,7 +54,7 @@ workflows:
       - build-react-js
   auto-deploy:
     jobs:
-      - auto-deploy
+      - auto-deploy-app:
           filters:
               branches:
                 only: master
