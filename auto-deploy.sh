@@ -1,4 +1,6 @@
 #!/bin/bash
 #ssh todo
-cd FINAL_PROJECT_COINMASTER && git pull origin master && cd back-end
-pm2 start npm -- start & ./auto-deploy-client.sh
+git pull origin master
+cd front-end && npm run build && rm -rf ../back-end/client && cp -R ./build ../back-end/client
+pm2 start npm -- start
+cd ../back-end && pm2 start npm -- start
