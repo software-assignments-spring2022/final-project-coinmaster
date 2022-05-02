@@ -41,8 +41,7 @@ jobs:
   auto-deploy-app:
       - checkout
       - run: echo "this is the auto-deploy job"
-      - run: |
-          ./auto-deploy.sh
+      - run: ./auto-deploy.sh
 
 # Orchestrate our job run sequence
 workflows:
