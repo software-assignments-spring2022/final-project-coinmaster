@@ -39,6 +39,11 @@ jobs:
           npm install # install all dependencies listed in package.json
           npm run build # have react build the stand-alone front-end code
   auto-deploy-app:
+    docker:
+      - image: cimg/node:16.13.0 # latest stable node at the time of writing
+        # auth:
+        #   username: mydockerhub-user
+        #   password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
       - run: echo "this is the auto-deploy job"
