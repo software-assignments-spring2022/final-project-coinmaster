@@ -14,7 +14,7 @@ const app = express() // instantiate an Express object
 
 app.use(express.static(path.join(__dirname + '/client')));
 
-app.get('/client', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/index.html'));
 });
 
