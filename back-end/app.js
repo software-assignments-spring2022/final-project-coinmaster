@@ -6,13 +6,18 @@ const bodyParser = require("body-parser"); // parsing posted json body
 const mongoose = require('mongoose')
 const path = require('path')
 bcrypt = require('bcrypt'),
-SALT_WORK_FACTOR = 10;
+  SALT_WORK_FACTOR = 10;
+
+
+const routesHandler = require("./routesHandler")      // NEW
 
 const { default: axios } = require('axios');
 
 const app = express() // instantiate an Express object
 
 app.use(express.static(path.join(__dirname + '/client')));
+
+app.use('/api', routesHandler);       // NEW
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/index.html'));
@@ -22,24 +27,17 @@ app.use(morgan('dev', { skip: (req, res) => process.env.NODE_ENV === 'test' })) 
 
 app.use(cors()) // allow cross-origin resource sharing
 
-// app.use(function (req, res, next) {
-//   //res.header("Access-Control-Allow-Origin", "https://overdemoc.netlify.app"); // update to match the domain you will make the request from
-//   res.header("Access-Control-Allow-Origin", "http://67.207.83.112:5002"); // update to match the domain you will make the request from          // CHNAGE HERE WHAT HERUKO
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
+app.use(function (req, res, next) {
+  //res.header("Access-Control-Allow-Origin", "https://overdemoc.netlify.app"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from          // CHNAGE HERE WHAT HERUKO
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // use express's builtin body-parser middleware to parse any data included in a request
 app.use(express.json()) // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming POST data
 
-
-
-//app.use(function(req, res, next) {
-//  res.sendFile(path.join(__dirname, 'public', 'app.html'));
-// });
-//app.get('*', (req, res) => res.sendFile(path.resolve('client', 'index.html')));
-// connect to database
 mongoose
   .connect(`${process.env.DB_CONNECTION_STRING}`)
   .then(data => console.log(`Connected to MongoDB`))
@@ -104,59 +102,10 @@ app.post('/portfolio', async (req, res) => {
 })
 
 
-//REQUESTS FOR BUY PAGE
 let buyData = {
   crypto: "Please Enter a Crypto",
   quantity: "Please Enter a Quantity",
 };
-
-app.get('/buy', async (req, res) => {
-  try {
-    await axios
-    // .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
-    // .get("https://coinlib.io/api/v1/coin?key=1ba60195f39ff3a1&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
-    .get("https://coinlib.io/api/v1/coin?key=b73c908d4e773d9b&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
-
-    .then(function (response){
-  
-      const allCoins = [];
-      const coinNames = [];
-  
-      response.data.coins.forEach(coin=>{
-        const coinObj = {
-          symbol: coin.symbol,
-          name: coin.name,
-          price: coin.price,
-          rank: coin.rank,
-          market_cap: coin.market_cap
-        }
-       
-        allCoins.push(coinObj);
-        coinNames.push(coinObj.name+", "+coinObj.symbol);
-        
-      })
-  
-      console.log(allCoins);
-
-      res.json({
-        success: true,
-        cryptoData: allCoins,
-        message: 'all good',
-      })
-  
-    }) 
-    .catch(function (err){
-      console.log("axios error");
-    })
-
-  } catch (err) {
-    console.error(err)
-    res.status(400).json({
-      error: err,
-      message: 'failed to work',
-    })
-  }
-})
 
 app.post('/buy', async (req, res) => {
   try{
@@ -218,60 +167,10 @@ app.post('/buy', async (req, res) => {
 })
 
 
-//REQUESTS FOR SELL PAGE
 let sellData = {
   crypto: "Please Enter a Crypto",
   quantity: "Please Enter a Quantity",
 };
-
-app.get('/sell', async (req, res) => {        
-  try {
-
-    await axios
-    // .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
-    // .get("https://coinlib.io/api/v1/coin?key=1ba60195f39ff3a1&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
-    .get("https://coinlib.io/api/v1/coin?key=b73c908d4e773d9b&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
-    .then(function (response){
-  
-      const allCoins = [];
-      const coinNames = [];
-  
-      response.data.coins.forEach(coin=>{
-        const coinObj = {
-          symbol: coin.symbol,
-          name: coin.name,
-          price: coin.price,
-          rank: coin.rank,
-          market_cap: coin.market_cap
-        }
-       
-        allCoins.push(coinObj);
-        coinNames.push(coinObj.name+", "+coinObj.symbol);
-        
-      })
-
-      const messages = sellData;
-      res.json({
-        success: true,
-        crypto: messages.crypto,
-        quantity: messages.quantity,
-        cryptoData: allCoins,
-        message: 'all good',
-      })
-    }) 
-    .catch(function (err){
-      console.log("axios error");
-    })
-
-  } catch (err) {
-    console.error(err)
-    res.status(400).json({
-      error: err,
-      message: err.message,
-    })
-  }
-})
-
 
 app.post('/sell', async (req, res) => {
   try{
@@ -328,27 +227,6 @@ app.post('/sell', async (req, res) => {
 })
 
 
-// TESTING
-
-app.get('/coinTable', async (req, res) => {
-  // load all messages from database
-  try {
-    const messages = sellData;
-    res.json({
-      success: true,
-      crypto: messages.crypto,
-      quantity: messages.quantity,
-      message: 'all good',
-    })
-  } catch (err) {
-    console.error(err)
-    res.status(400).json({
-      error: err,
-      message: 'failed to work',
-    })
-  }
-})
-
 app.post('/coinTable', async (req, res) => {
   // try to save the message to the database
 
@@ -358,161 +236,111 @@ app.post('/coinTable', async (req, res) => {
   sellData.quantity = req.body.quantity;
 })
 
-//REQUESTS FOR COMPARE PAGE
- app.get('/compare', async (req, res) => {
-  try {
-     axios
-    // .get("https://coinlib.io/api/v1/coin?key=9810ec37c3769c55&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
-    .get("https://coinlib.io/api/v1/coin?key=b73c908d4e773d9b&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
-    .then(function (response){
-     const allCoins = [];
-      const coinNames = [];
-      response.data.coins.forEach(coin=>{
 
-        const coinObj = {
-          symbol: coin.symbol,
-          name: coin.name,
-          price: coin.price,
-          rank: coin.rank,
-          market_cap: coin.market_cap
-        }
-       
-        allCoins.push(coinObj);
-        coinNames.push(coinObj.name);
-      })
 
-      console.log(coinNames);
-      const messages = allCoins;
-      res.json({
-        messages: messages,
-        names: coinNames,
-      }) 
-    }) 
-    
-    .catch(function (err){
-      console.log("axios error or api request limit reached ");
-    })
-
-  } catch (err) {
-    console.log("Error");
-    res.status(400).json({
-      error: err,
-      message: 'failed to work',
-    })
-  } 
-}) 
-
-//REQUESTS FOR REGISTER PAGE
- app.get("/", (req, res) => {
-    res.send("Home")
- })
-
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
-//app.use(cors())
 
 app.post(
-          '/register',
-          check('user_name', 'username is required').notEmpty(),
-          check('your_name', 'your name is required').notEmpty(),
-          check('password', 'password is required').notEmpty(),
-          check('confirm_password', 'must enter password again').notEmpty(),
-          check('email', 'email is required').notEmpty(),
-          check('password', 'password must be at least 8 characters').isLength({ min: 8 }),
-          check('password').custom((value,{req}) => {
-            if (value !== req.body.confirm_password) {
-                throw new Error("passwords must match");
-            } else {
-                return value;
-            }
-          }),
-          check("email", "email must be valid").isEmail(),
-          async (req, res) => {
-            try{
-                const errors = validationResult(req);
-                if (!errors.isEmpty()) {
-                  throw new Error(errors.array()[0].msg);
-                }
-                //console.log(req.body)
-                const user_name = req.body.user_name
-                const your_name = req.body.your_name
-                var password = req.body.password
-                const email = req.body.email
-                // try to save the message to the database
-                var coins = []
-                var stats = {
-                  net_profit: 0,
-                  all_time_high: 0,
-                  fifty_two_week_high: 0,
-                  account_age: 0,
-                }
-                var transactions = []
-                const users = await User.find({user_name: user_name})
-                if(users.length != 0 && user_name != "unittest"){
-                  throw new Error("duplicate username");
-                }else{
-                  const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
-                  const hashed_password = await bcrypt.hash(password,salt);
-                  const user = await User.create({
-                    user_name: user_name,
-                    your_name: your_name,
-                    password: hashed_password,
-                    email: email,
-                    coins: coins,
-                    stats: stats,
-                    transactions: transactions,
-                  })
-                  return res.json({success: true, message: "register info successfully saved to database"});
-                }
-            }catch(err){
-                console.error(err)
-                return res.status(400).json({
-                    error: err,
-                    message: err.message,
-                })
-            }
-          }     
+  '/register',
+  check('user_name', 'username is required').notEmpty(),
+  check('your_name', 'your name is required').notEmpty(),
+  check('password', 'password is required').notEmpty(),
+  check('confirm_password', 'must enter password again').notEmpty(),
+  check('email', 'email is required').notEmpty(),
+  check('password', 'password must be at least 8 characters').isLength({ min: 8 }),
+  check('password').custom((value,{req}) => {
+    if (value !== req.body.confirm_password) {
+        throw new Error("passwords must match");
+    } else {
+        return value;
+    }
+  }),
+  check("email", "email must be valid").isEmail(),
+  async (req, res) => {
+    try{
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+          throw new Error(errors.array()[0].msg);
+        }
+        //console.log(req.body)
+        const user_name = req.body.user_name
+        const your_name = req.body.your_name
+        var password = req.body.password
+        const email = req.body.email
+        // try to save the message to the database
+        var coins = []
+        var stats = {
+          net_profit: 0,
+          all_time_high: 0,
+          fifty_two_week_high: 0,
+          account_age: 0,
+        }
+        var transactions = []
+        const users = await User.find({user_name: user_name})
+        if(users.length != 0 && user_name != "unittest"){
+          throw new Error("duplicate username");
+        }else{
+          const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
+          const hashed_password = await bcrypt.hash(password,salt);
+          const user = await User.create({
+            user_name: user_name,
+            your_name: your_name,
+            password: hashed_password,
+            email: email,
+            coins: coins,
+            stats: stats,
+            transactions: transactions,
+          })
+          return res.json({success: true, message: "register info successfully saved to database"});
+        }
+    }catch(err){
+        console.error(err)
+        return res.status(400).json({
+            error: err,
+            message: err.message,
+        })
+    }
+  }     
 )
-        
+
 
 //REQUESTS FOR LOGIN PAGE
 app.post(
-          "/login",
-          check('user_name', 'username is required').notEmpty(),
-          check('password', 'password is required').notEmpty(),
-          async (req, res) => {
-            try{
-              const errors = validationResult(req);
-              if (!errors.isEmpty()) {
-                throw new Error(errors.array()[0].msg);
-              }
-                const user_name = req.body.user_name
-                const password = req.body.password
-                //compare with database
-                const users = await User.find({user_name: user_name})
-                if(users.length != 0){
-                  const result = await bcrypt.compare(password, users[0].password)
-                  if (result) {
+  "/login",
+  check('user_name', 'username is required').notEmpty(),
+  check('password', 'password is required').notEmpty(),
+  async (req, res) => {
+    try{
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        throw new Error(errors.array()[0].msg);
+      }
+        const user_name = req.body.user_name
+        const password = req.body.password
+        //compare with database
+        const users = await User.find({user_name: user_name})
+        if(users.length != 0){
+          const result = await bcrypt.compare(password, users[0].password)
+          if (result) {
 
-                    console.log(users);
+            console.log(users);
 
-                    users.loggedIn = true;
+            users.loggedIn = true;
 
-                    return res.json({success: true, message: "login success", user: users});
-                  }else{
-                    throw new Error("incorrect password");
-                  }
-                }else{
-                  throw new Error("username does not exist");
-                }
-            }catch(err){
-                console.error(err)
-                return res.status(400).json({
-                    error: err,
-                    message: err.message,
-                })
-            }
+            return res.json({success: true, message: "login success", user: users});
+          }else{
+            throw new Error("incorrect password");
           }
-        )
+        }else{
+          throw new Error("username does not exist");
+        }
+    }catch(err){
+        console.error(err)
+        return res.status(400).json({
+            error: err,
+            message: err.message,
+        })
+    }
+  }
+)
 
 module.exports = app 
