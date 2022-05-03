@@ -1,6 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const server = require('../app');
+const apiServer = require('../routesHandler');
 const should = chai.should();
 const expect = chai.expect;
 chai.use(chaiHttp);
@@ -14,7 +14,7 @@ describe('get request to get API data with all fields from API', () => {
             cryptoData: "allCoins",
             status: 'all good',
         }
-        chai.request(server) 
+        chai.request(apiServer) 
         .get('/buy') 
         .query(test_buy)
         .end((err, res) => { 
@@ -38,7 +38,7 @@ describe('get request to get API data with all fields from API', () => {
             cryptoData: "allCoins",
             status: 'all good',
         }
-        chai.request(server) 
+        chai.request(apiServer) 
         .get('/sell') 
         .query(test_buy)
         .end((err, res) => { 
