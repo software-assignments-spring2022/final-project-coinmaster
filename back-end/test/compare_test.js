@@ -1,13 +1,13 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const server = require('../app');
+const apiServer = require('../routesHandler');
 const should = chai.should();
 const expect = chai.expect;
 chai.use(chaiHttp);
 
 describe('get request to compare', () => {
     it('it should successfully get the compare page and receive a http 200 status code', (done) => {
-        chai.request(server) 
+        chai.request(apiServer) 
         .get('/compare') 
         .end((err, res) => { 
             res.should.have.status(200); 
