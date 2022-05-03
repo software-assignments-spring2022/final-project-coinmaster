@@ -109,8 +109,8 @@ routesHandler.get('/buy', async (req, res) => {
   console.log("buy");
   try {
     await axios
-    .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
-    // .get("https://coinlib.io/api/v1/coin?key=1ba60195f39ff3a1&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    // .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    .get("https://coinlib.io/api/v1/coin?key=1ba60195f39ff3a1&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
     // .get("https://coinlib.io/api/v1/coin?key=b73c908d4e773d9b&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
 
     .then(function (response){
@@ -224,8 +224,8 @@ routesHandler.get('/sell', async (req, res) => {
   try {
 
     await axios
-    .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
-    // .get("https://coinlib.io/api/v1/coin?key=1ba60195f39ff3a1&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    // .get("https://coinlib.io/api/v1/coin?key=c547247f9214255e&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    .get("https://coinlib.io/api/v1/coin?key=1ba60195f39ff3a1&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
     // .get("https://coinlib.io/api/v1/coin?key=b73c908d4e773d9b&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
     .then(function (response){
   
@@ -358,8 +358,8 @@ routesHandler.get('/coinTable', async (req, res) => {
 routesHandler.get('/compare', async (req, res) => {
   try {
      axios
-    .get("https://coinlib.io/api/v1/coin?key=9810ec37c3769c55&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
-    // .get("https://coinlib.io/api/v1/coin?key=b73c908d4e773d9b&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    // .get("https://coinlib.io/api/v1/coin?key=9810ec37c3769c55&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
+    .get("https://coinlib.io/api/v1/coin?key=b73c908d4e773d9b&pref=USD&symbol=BTC,ETH,USDT,BNB,USDC,SOL,XRP,ADA,LUNA,AVAX")
     .then(function (response){
      const allCoins = [];
       const coinNames = [];
