@@ -16,7 +16,7 @@ export default function CoinPage() {
 
   const fetchMessages = () => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/sell`)
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/sell`)
       .then(response => {
         const messages = response.data
 
