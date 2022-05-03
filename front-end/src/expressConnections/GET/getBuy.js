@@ -14,7 +14,7 @@ const GetBuy = () => {
   const fetchMessages = () => {
 
     axios
-      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/buy`)
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/buy`)
       .then(response => {
         const messages = response.data
 
