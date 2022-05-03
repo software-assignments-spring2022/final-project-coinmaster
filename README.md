@@ -35,5 +35,22 @@ As college students who are interested in investing in the Crypto Market, we fin
 [contribute to the project](https://github.com/software-assignments-spring2022/final-project-coinmaster/blob/master/CONTRIBUTING.md)
 
 ## Instructions for Building and Testing
+### Test this project: 
+1. Navigate into the back-end directory and 
+2. `npm test`
+
+### Run the front-end 
+Navigate into the front-end directory and 
+1. `npm install`
+2. `npm start` 
+
+### Run the back-end 
+Navigate into the back-end directory and 
+1. `npm install` 
+2. `nodemon server` 
+
+## For Potential Contributors 
+If you would like to correct any bugs in our code or add new functionalities feel free to do so by following [these](./CONTRIBUTING.md) instructions.  
+
 ## Additional Link
 ## Additional Information
