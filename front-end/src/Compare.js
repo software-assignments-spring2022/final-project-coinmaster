@@ -25,7 +25,7 @@ import axios from "axios"
     const fetchData = () => {
    
       axios
-        .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/compare`)
+        .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/api/compare`)
         .then(response => {
 
           const messages = response.data.messages;
