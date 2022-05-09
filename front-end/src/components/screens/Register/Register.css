@@ -1,0 +1,12 @@
+.container{
+  padding-top: 80px;
+  border: solid 1px black;
+  max-width: 700px;
+  text-align: center;
+}
+.footnote {
+  font-size: 14px;
+}
+.link-login{
+  margin-left: 10px;
+}

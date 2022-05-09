@@ -1,0 +1,30 @@
+
+
+.PortfolioInLine {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.PortfolioButton {
+    margin-top: 10px;
+    margin-left: 100px;
+    margin-right: 100px;
+    width: auto;
+}
+
+
+h2 {
+    margin-top: 100;
+    margin: 10;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
+
+.ProfileDetails {
+    margin-left: 3%;
+    margin-right: 3%;
+}
