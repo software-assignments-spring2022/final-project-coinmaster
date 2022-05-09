@@ -38,15 +38,16 @@ As college students who are interested in investing in the Crypto Market, we fin
 
 ### Clone this repository
 1. Clone the repository and navigate into the repository.
+2. Copy the two .env hidden files into the front-end and back-end directories.
 
 ### Test this project: 
 1. Navigate into the back-end directory and 
-2. `npm test`
+2. `npm test` Note: Some tests depend on API calls, which fails if the API call limit is reached.
 
 ### Run the front-end 
 Navigate into the front-end directory and 
-1. `npm install`
-2. `npm start` 
+2. `npm install`
+3. `npm start` 
 
 ### Run the back-end 
 Navigate into the back-end directory and 
