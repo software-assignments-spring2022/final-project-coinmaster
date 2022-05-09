@@ -35,6 +35,10 @@ As college students who are interested in investing in the Crypto Market, we fin
 [contribute to the project](https://github.com/software-assignments-spring2022/final-project-coinmaster/blob/master/CONTRIBUTING.md)
 
 ## Instructions for Building and Testing
+
+### Clone this repository
+1. Clone the repository and navigate into the repository.
+
 ### Test this project: 
 1. Navigate into the back-end directory and 
 2. `npm test`
