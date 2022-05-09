@@ -38,7 +38,7 @@ As college students who are interested in investing in the Crypto Market, we fin
 
 ### Clone this repository
 1. Clone the repository and navigate into the repository.
-2. Copy the two .env hidden files into the front-end and back-end directories.
+2. Copy the two .env files into the front-end and back-end directories.
 
 ### Test this project: 
 1. Navigate into the back-end directory and 
